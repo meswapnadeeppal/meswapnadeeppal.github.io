@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --font-primary: "Roboto", sans-serif;
+  --font-header: "Exo 2", sans-serif;
+
+  --background: rgba(17, 17, 17, 1);
+  --background-dark: rgba(34, 34, 34, 1);
+
+  --primary-text: rgba(255, 255, 255, 1);
+
+  --cyberpunk-primary: rgba(153, 41, 234, 1);
+  --cyberpunk-secondary: rgba(237, 12, 239, 1);
+
+  --shadow-dark: rgba(34, 34, 34, 0.6);
+}

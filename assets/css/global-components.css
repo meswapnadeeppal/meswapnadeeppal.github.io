@@ -1,0 +1,205 @@
+body {
+  margin: 0;
+  padding: 30px;
+  background-color: var(--background);
+  font-family: var(--font-primary);
+  color: var(--primary-text);
+  font-size: 15px;
+  overflow-x: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.portfolio-frame {
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  row-gap: 12px;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-header {
+  background-image: url("/assets/images/project-data-breach.webp");
+  background-size: cover;
+  background-position: center;
+  border: 2px solid var(--cyberpunk-primary);
+  border-radius: 3px;
+}
+
+.header-overlay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 5%;
+  background: linear-gradient(
+    to right,
+    var(--background-dark) 0%,
+    var(--shadow-dark) 100%
+  );
+}
+
+.brand-logo {
+  font-family: var(--font-header);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.term-user {
+  color: var(--primary-text);
+}
+
+.term-host {
+  color: var(--primary-text);
+  opacity: 0.6;
+}
+
+.term-prompt {
+  color: var(--cyberpunk-primary);
+  margin-left: 4px;
+}
+
+.term-cursor {
+  color: var(--cyberpunk-primary);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 16px;
+}
+
+.nav-link {
+  color: var(--primary-text);
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.nav-link span {
+  margin-right: 5px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+.nav-link.active {
+  opacity: 1;
+  color: var(--cyberpunk-secondary);
+}
+
+.nav-link:hover span,
+.nav-link.active span {
+  opacity: 1;
+}
+
+.btn-cyber-solid {
+  display: inline-block;
+  background-color: var(--cyberpunk-primary);
+  color: var(--primary-text);
+  padding: 12px 30px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.btn-cyber-solid:hover {
+  background-color: var(--cyberpunk-secondary);
+  color: var(--primary-text);
+  box-shadow: 0 0 15px var(--cyberpunk-primary);
+}
+
+.site-footer {
+  background-image: url("/assets/images/decor-programmer.webp");
+  background-size: cover;
+  background-position: center;
+  border: 2px solid var(--cyberpunk-primary);
+  border-radius: 3px;
+}
+
+.footer-overlay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 5%;
+  font-size: 14px;
+  background: linear-gradient(
+    to right,
+    var(--background-dark) 0%,
+    var(--shadow-dark) 100%
+  );
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+.social-link {
+  color: var(--primary-text);
+  opacity: 0.7;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.social-link:hover {
+  opacity: 1;
+}
+
+.footer-metadata {
+  color: var(--primary-text);
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .footer-overlay {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 412px) {
+  body {
+    font-size: 14px;
+  }
+
+  .header-overlay,
+  .footer-overlay {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 5%;
+    gap: 15px;
+  }
+  
+  .footer-overlay {
+    font-size: 14px;
+  }
+
+  .btn-cyber-solid {
+    padding: 12px 20px;
+  }
+}

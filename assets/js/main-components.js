@@ -2,22 +2,22 @@ const projects = [
   {
     name: "Personal Portfolio",
     techStack: "HTML, CSS, JavaScript",
-    imageUrl: "/assets/images/project-data-breach.webp",
+    imageUrl: "/assets/images/index/project-data-breach.webp",
   },
   {
     name: "C++ Algorithm Visualizer",
     techStack: "C++, Data Structures",
-    imageUrl: "/assets/images/decor-programmer.webp",
+    imageUrl: "/assets/images/index/decor-programmer.webp",
   },
   {
     name: "AI / ML Data Model",
     techStack: "Python, Machine Learning",
-    imageUrl: "/assets/images/project-data-breach.webp",
+    imageUrl: "/assets/images/index/project-data-breach.webp",
   },
   {
     name: "Webart Dashboard UI",
     techStack: "UI/UX, Front-End Design",
-    imageUrl: "/assets/images/decor-programmer.webp",
+    imageUrl: "/assets/images/index/decor-programmer.webp",
   },
 ];
 

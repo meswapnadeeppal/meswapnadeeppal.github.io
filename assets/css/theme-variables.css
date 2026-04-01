@@ -4,13 +4,18 @@
   --font-primary: "Roboto", sans-serif;
   --font-header: "Exo 2", sans-serif;
 
-  --background: rgba(17, 17, 17, 1);
-  --background-dark: rgba(34, 34, 34, 1);
+  --background-charcoal: rgba(37, 37, 38, 1);
+  --background-obsidian: rgba(17, 50, 77, 1);
+  --background-slate: rgba(30, 41, 59, 1);
 
-  --primary-text: rgba(255, 255, 255, 1);
+  --container-border: rgba(56, 62, 86, 1);
+  --container-shadow: rgba(34, 34, 34, 0.8);
 
   --cyberpunk-primary: rgba(153, 41, 234, 1);
   --cyberpunk-secondary: rgba(237, 12, 239, 1);
+  --cyberpunk-hyperlink: rgba(255, 196, 0, 1);
+  --cyberpunk-select: rgba(73, 36, 62, 1);
 
-  --shadow-dark: rgba(34, 34, 34, 0.6);
+  --primary-text: rgba(255, 255, 255, 1);
+  --secondary-text: rgba(248, 250, 252, 1);
 }

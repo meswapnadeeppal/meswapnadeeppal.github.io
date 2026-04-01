@@ -1,8 +1,7 @@
 body {
   margin: 0;
   padding: 30px;
-  background-color: var(--background);
-  font-family: var(--font-primary);
+  background-color: var(--background-obsidian);
   color: var(--primary-text);
   font-size: 15px;
   overflow-x: hidden;
@@ -12,6 +11,27 @@ main {
   display: flex;
   flex-direction: column;
   row-gap: 12px;
+}
+
+::selection {
+  color: var(--cyberpunk-select);
+  background: var(--cyberpunk-hyperlink);
+}
+
+a {
+  font-family: var(--font-header);
+  color: var(--cyberpunk-hyperlink);
+  opacity: 1;
+}
+
+p {
+  font-family: var(--font-primary);
+  color: var(--secondary-text);
+  opacity: 0.8;
+}
+
+span {
+  opacity: 0.8;
 }
 
 .portfolio-frame {
@@ -25,9 +45,6 @@ main {
 }
 
 .site-header {
-  background-image: url("/assets/images/project-data-breach.webp");
-  background-size: cover;
-  background-position: center;
   border: 2px solid var(--cyberpunk-primary);
   border-radius: 3px;
 }
@@ -39,13 +56,12 @@ main {
   padding: 30px 5%;
   background: linear-gradient(
     to right,
-    var(--background-dark) 0%,
-    var(--shadow-dark) 100%
+    var(--background-charcoal) 0%,
+    var(--background-slate) 100%
   );
 }
 
 .brand-logo {
-  font-family: var(--font-header);
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
@@ -53,11 +69,6 @@ main {
 
 .term-user {
   color: var(--primary-text);
-}
-
-.term-host {
-  color: var(--primary-text);
-  opacity: 0.6;
 }
 
 .term-prompt {
@@ -84,11 +95,9 @@ main {
 }
 
 .nav-link {
-  color: var(--primary-text);
   text-decoration: none;
   font-weight: 600;
   text-transform: uppercase;
-  opacity: 0.7;
   transition: 0.3s;
 }
 
@@ -99,6 +108,7 @@ main {
 }
 
 .nav-link:hover {
+  color: var(--cyberpunk-hyperlink);
   opacity: 1;
 }
 
@@ -125,14 +135,10 @@ main {
 
 .btn-cyber-solid:hover {
   background-color: var(--cyberpunk-secondary);
-  color: var(--primary-text);
   box-shadow: 0 0 15px var(--cyberpunk-primary);
 }
 
 .site-footer {
-  background-image: url("/assets/images/decor-programmer.webp");
-  background-size: cover;
-  background-position: center;
   border: 2px solid var(--cyberpunk-primary);
   border-radius: 3px;
 }
@@ -142,11 +148,10 @@ main {
   justify-content: space-between;
   align-items: center;
   padding: 30px 5%;
-  font-size: 14px;
   background: linear-gradient(
     to right,
-    var(--background-dark) 0%,
-    var(--shadow-dark) 100%
+    var(--background-charcoal) 0%,
+    var(--background-slate) 100%
   );
 }
 
@@ -156,28 +161,18 @@ main {
 }
 
 .social-link {
-  color: var(--primary-text);
-  opacity: 0.7;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.3s;
 }
 
 .social-link:hover {
+  color: var(--cyberpunk-secondary);
   opacity: 1;
-}
-
-.footer-metadata {
-  color: var(--primary-text);
-  opacity: 0.8;
 }
 
 @media (max-width: 768px) {
   body {
-    font-size: 16px;
-  }
-
-  .footer-overlay {
     font-size: 16px;
   }
 }
@@ -185,6 +180,15 @@ main {
 @media (max-width: 412px) {
   body {
     font-size: 14px;
+    padding: 5.3%;
+  }
+
+  main {
+    row-gap: 18px;
+  }
+
+  .portfolio-frame {
+    row-gap: 18px;
   }
 
   .header-overlay,
@@ -193,10 +197,6 @@ main {
     align-items: flex-start;
     padding: 20px 5%;
     gap: 15px;
-  }
-  
-  .footer-overlay {
-    font-size: 14px;
   }
 
   .btn-cyber-solid {

@@ -1,46 +1,43 @@
-const projects = [
-  {
-    name: "Personal Portfolio",
-    techStack: "HTML, CSS, JavaScript",
-    imageUrl: "/assets/images/index/project-data-breach.webp",
-  },
-  {
-    name: "C++ Algorithm Visualizer",
-    techStack: "C++, Data Structures",
-    imageUrl: "/assets/images/index/decor-programmer.webp",
-  },
-  {
-    name: "AI / ML Data Model",
-    techStack: "Python, Machine Learning",
-    imageUrl: "/assets/images/index/project-data-breach.webp",
-  },
-  {
-    name: "Webart Dashboard UI",
-    techStack: "UI/UX, Front-End Design",
-    imageUrl: "/assets/images/index/decor-programmer.webp",
-  },
-];
-
-const container = document.getElementById("projects-container");
-
-function renderProjects() {
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("projects-container");
   if (!container) return;
+
+  const projects = [
+    {
+      name: "Personal Portfolio",
+      techStack: "HTML, CSS, JavaScript",
+      imageUrl: "/assets/images/index/project-data-breach.webp",
+    },
+    {
+      name: "C++ Algorithm Visualizer",
+      techStack: "C++, Data Structures",
+      imageUrl: "/assets/images/index/decor-programmer.webp",
+    },
+    {
+      name: "AI / ML Data Model",
+      techStack: "Python, Machine Learning",
+      imageUrl: "/assets/images/index/project-data-breach.webp",
+    },
+    {
+      name: "Webart Dashboard UI",
+      techStack: "UI/UX, Front-End Design",
+      imageUrl: "/assets/images/index/decor-programmer.webp",
+    },
+  ];
 
   container.innerHTML = projects
     .map(
-      (project) => `
+      ({ name, techStack, imageUrl }) => `
         <div class="project-card">
-            <img src="${project.imageUrl}" alt="${project.name}">
+            <img src="${imageUrl}" alt="${name}">
             <div class="project-overlay">
-                <h3 class="project-name">${project.name}</h3>
+                <h3 class="project-name">${name}</h3>
                 <div class="project-tech-info">
-                    <span>💻 ${project.techStack}</span>
+                    <span>💻 ${techStack}</span>
                 </div>
             </div>
         </div>
     `,
     )
     .join("");
-}
-
-renderProjects();
+});

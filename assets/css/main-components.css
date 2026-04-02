@@ -1,7 +1,7 @@
 .portfolio-hero {
   position: relative;
   min-height: 85vh;
-  background-image: url("/assets/images/hero-workspace.webp");
+  background-image: url("/assets/images/background.webp");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -18,8 +18,8 @@
   height: 100%;
   background: linear-gradient(
     to right,
-    var(--background-obsidian) 0%,
-    var(--container-shadow) 100%
+    var(--container-shadow) 0%,
+    var(--background-obsidian) 100%
   );
 }
 
@@ -105,7 +105,7 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 18px;
+  gap: 12px;
 }
 
 .project-card {
@@ -176,7 +176,7 @@
 .features-flex {
   display: flex;
   gap: 12px;
-  padding-top: 18px;
+  padding-top: 12px;
   overflow: hidden;
   flex-wrap: wrap;
 }
@@ -226,10 +226,6 @@
 
   .project-card {
     height: 350px;
-  }
-
-  .features-flex {
-    row-gap: 18px;
   }
 }
 

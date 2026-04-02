@@ -6,13 +6,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!loader) return;
 
-  const loadingMessages = [
+  let loadingMessages = [
     "Establishing secure connection...",
     "Bypassing mainframe security...",
     "Downloading encrypted assets...",
     "Compiling terminal interface...",
     "Access granted.",
   ];
+
+  if (document.title.includes("404")) {
+    loadingMessages = [
+      "Scanning sector for data...",
+      "Navigating orbital debris...",
+      "Uplink tether severed...",
+      "Drifting into the void...",
+      "Critical Error: 404.",
+    ];
+  }
 
   let progress = 0;
   let messageIndex = 0;

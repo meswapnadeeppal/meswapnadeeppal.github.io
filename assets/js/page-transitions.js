@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const percentageText = document.getElementById("uplink-percentage");
   const statusText = document.getElementById("uplink-status-log");
 
-  if (!loader) return;
+  if (!loader || !progressBar || !percentageText || !statusText) return;
 
   let loadingMessages = [
     "Establishing secure connection...",

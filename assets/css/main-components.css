@@ -19,7 +19,7 @@
   background: linear-gradient(
     to right,
     var(--container-shadow) 0%,
-    var(--background-obsidian) 100%
+    var(--background-body) 100%
   );
 }
 
@@ -148,7 +148,7 @@
   justify-content: flex-end;
   background: linear-gradient(
     to top,
-    var(--background-obsidian) 0%,
+    var(--background-body) 0%,
     var(--container-shadow) 50%,
     transparent 100%
   );
@@ -165,6 +165,7 @@
   font-size: 13px;
   display: flex;
   align-items: center;
+  opacity: 0.8;
 }
 
 .project-tech-info i {

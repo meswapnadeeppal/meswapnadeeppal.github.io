@@ -9,7 +9,7 @@
   border-radius: 3px;
   background: linear-gradient(
     to right,
-    var(--background-obsidian) 0%,
+    var(--background-body) 0%,
     var(--container-shadow) 100%
   );
 }

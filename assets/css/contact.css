@@ -145,6 +145,11 @@
   font-size: 3vw;
   line-height: 1;
   font-family: var(--font-header);
+  padding-bottom: 8px;
+}
+
+.feature-text {
+  padding-bottom: 10px;
 }
 
 .contact-card {
@@ -197,6 +202,7 @@
   flex-direction: column;
   gap: 12px;
   text-transform: uppercase;
+  padding-top: 18px;
 }
 
 .contact-main {
@@ -208,16 +214,16 @@
 
 .form-panel {
   background-color: var(--background-body);
-  border: 1px solid var(--container-border);
-  border-radius: 8px;
-  padding: 40px;
+  border: 2px solid var(--container-border);
+  border-radius: 3px;
+  padding: 35px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .cyber-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .form-group {
@@ -229,7 +235,7 @@
   font-family: var(--font-header);
   font-weight: 600;
   font-size: 14px;
-  margin-bottom: 8px;
+  padding-bottom: 10px;
   color: var(--secondary-text);
 }
 
@@ -239,7 +245,7 @@
   border: 1px solid var(--container-border);
   color: var(--primary-text);
   padding: 12px 15px;
-  border-radius: 4px;
+  border-radius: 3px;
   font-family: var(--font-primary);
   font-size: 15px;
   transition:
@@ -261,8 +267,7 @@
   background-color: var(--background-slate);
   border: 1px solid var(--container-border);
   padding: 15px 20px;
-  border-radius: 4px;
-  margin-top: 15px;
+  border-radius: 3px;
 }
 
 .captcha-checkbox {
@@ -291,17 +296,51 @@
   }
 
   .contact-intel {
-    border-right: none;
-    border-bottom: 2px solid var(--container-border);
-    min-height: auto;
+    padding: 50px 5%;
+    margin: 40px 5% 0px 5%;
+    border-radius: 3px;
+    border: 4px solid var(--container-border);
+  }
+
+  .project-heading {
+    font-size: 38px;
+    padding-bottom: 8px;
+  }
+
+  .project-heading > br {
+    display: none;
+  }
+
+  .feature-text {
+    padding-bottom: 8px;
+  }
+
+  .social-row {
+    padding-top: 6px;
   }
 
   .contact-main {
-    padding: 40px 20px;
+    padding: 0px 5% 50px;
   }
 
   .form-panel {
-    padding: 25px;
+    padding: 40px 5%;
+    border: 4px solid var(--container-border);
+  }
+
+  .cyber-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cyber-form input,
+  .cyber-form textarea {
+    border: 2px solid var(--container-border);
+  }
+
+  .cyber-captcha {
+    border: 2px solid var(--container-border);
   }
 }
 
@@ -312,5 +351,12 @@
   }
   50% {
     opacity: 0.4;
+  }
+}
+
+@media (max-width: 412px) {
+  .contact-intel,
+  .form-panel {
+    padding: 30px 5.6%;
   }
 }

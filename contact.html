@@ -20,17 +20,14 @@
     <meta property="twitter:image" content="https://swapnadeep.cloud/assets/images/social-preview.webp">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     
     <link rel="stylesheet" href="/assets/css/theme-variables.css">
     <link rel="stylesheet" href="/assets/css/global-components.css">
     <link rel="stylesheet" href="/assets/css/contact.css">
     <link rel="stylesheet" href="/assets/css/page-transitions.css">
 
-    <script src="/assets/js/main-components.js" defer></script>
+    <script src="/assets/js/contact.js" defer></script>
     <script src="/assets/js/page-transitions.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -71,7 +68,7 @@
                 <div class="radar-pulse"></div>
             </div>
 
-            <div class="terminal-widget mb-15">
+            <div class="terminal-widget">
                <div class="terminal-header">
                    <div class="term-dots">
                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
@@ -114,14 +111,14 @@
 
             <div class="contact-cards-container">
                 <a class="contact-card">
-                    <div class="card-icon">✉️</div>
+                    <div class="card-icon">📬</div>
                     <div class="card-info">
                         <span class="card-label">Email:</span>
                         <span class="card-value">ping@swapnadeep.cloud</span>
                     </div>
                 </a>
                 <a class="contact-card">
-                    <div class="card-icon">📍</div>
+                    <div class="card-icon">⛩️</div>
                     <div class="card-info">
                         <span class="card-label">Location / Status:</span>
                         <span class="card-value">Kolkata<span class="status-dot"></span></span>
@@ -141,28 +138,107 @@
 
         <section class="contact-main">
             <div class="form-panel">
-                <form class="cyber-form" action="#" method="POST">
+                <form class="swapnadeep-form" action="#" method="POST">
+
                     <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" placeholder="Your name" required>
+                        <label for="fullName">Your Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Identify yourself..." required>
+                    </div>
+
+                    <div class="form-group-collage">
+                        <div class="form-group">
+                            <label for="contactNumber">Contact Number</label>
+                            <input type="tel" id="contactNumber" name="contactNumber" placeholder="(555) 123-4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="hello@example.node" required>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your email address" required>
+                        <label for="subjectInquiry">Reason for Contact</label>
+                        <input type="text" id="subjectInquiry" name="subjectInquiry" placeholder="How can I help you?" required>
+                    </div>
+
+                    <div class="form-group-collage">
+                        <div class="form-group">
+                            <label for="visitorRole">Who is reaching out?</label>
+                            <div class="role-select-wrapper" id="roleSelectWrapper">
+                                <input type="hidden" name="visitorRole" id="visitorRoleInput" required>
+                                <div class="role-select-trigger" id="roleSelectTrigger">
+                                    <span>Select your role</span>
+                                    <div class="arrow-icon">👇</div>
+                                </div>
+                                <ul class="role-select-options" id="roleSelectOptions">
+                                    <li data-value="Recruiter">Recruiter / HR</li>
+                                    <li data-value="Client">Potential Client</li>
+                                    <li data-value="Developer">Fellow Developer</li>
+                                    <li data-value="Other">Other</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyLink">Website / LinkedIn</label>
+                            <input type="url" id="companyLink" name="companyLink" placeholder="https://...">
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="company">Company (optional)</label>
-                        <input type="text" id="company" name="company" placeholder="Company name">
+                        <label for="message">Message / Project Details</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="message">Leave us a message</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+                    <div class="form-label-input">
+                        <p>How should I reach you?</p>                    
+                        <div class="form-option-group">
+                            <label class="form-option" for="respEmail">
+                                <input type="radio" id="respEmail" name="preferredResponse" value="Email" required>
+                                <div class="option-icon">📧</div>
+                                <span class="custom-radio">Email</span>
+                            </label>
+                            <label class="form-option" for="respPhone">
+                                <input type="radio" id="respPhone" name="preferredResponse" value="Phone">
+                                <div class="option-icon">📱</div>
+                                <span class="custom-radio">Phone</span>
+                            </label>
+                            <label class="form-option" for="respMeet">
+                                <input type="radio" id="respMeet" name="preferredResponse" value="In-Person Meeting">
+                                <div class="option-icon">🙏</div>
+                                <span class="custom-radio">In-Person Meeting</span>
+                            </label>
+                        </div>
                     </div>
 
-                    <div class="cyber-captcha">
+                    <div class="form-label-input">
+                        <p>How did you find my portfolio?</p>
+                        <div class="form-option-group">
+                            <label class="form-option" for="hearReferral">
+                                <input type="checkbox" id="hearReferral" name="hearAboutUs" value="Referral">
+                                <span class="custom-checkbox">Referral</span>
+                            </label>
+                            <label class="form-option" for="hearSocial">
+                                <input type="checkbox" id="hearSocial" name="hearAboutUs" value="Social Media">
+                                <span class="custom-checkbox">Social Media</span>
+                            </label>
+                            <label class="form-option" for="hearSearch">
+                                <input type="checkbox" id="hearSearch" name="hearAboutUs" value="Online Search">
+                                <span class="custom-checkbox">Online Search</span>
+                            </label>
+                            <label class="form-option" for="hearEvent">
+                                <input type="checkbox" id="hearEvent" name="hearAboutUs" value="Event">
+                                <span class="custom-checkbox">Event</span>
+                            </label>
+                            <label class="form-option inline-option" for="hearOther">
+                                <input type="checkbox" id="hearOther" name="hearAboutUs" value="Other">
+                                <span class="custom-checkbox">Other</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="swapnadeep-captcha">
                         <label class="captcha-checkbox">
                             <input type="checkbox" required>
                             <span class="checkmark"></span>
@@ -171,7 +247,7 @@
                         <div class="captcha-logo">🛡️ Secure</div>
                     </div>
 
-                    <button type="submit" class="btn-cyber-solid w-100">Send Message</button>
+                    <button type="submit" class="btn-cyber-solid">Send Message</button>
                 </form>
             </div>
         </section>

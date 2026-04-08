@@ -1,6 +1,9 @@
-# ⚡ Swapnadeep Pal -- System Archive
+# ⚡ Swapnadeep Pal [ // System Archive ]
 
-> `swapnadeep@cloud:~$ ./execute_portfolio.sh`
+> `swapnadeep@cloud:~$ ./execute_portfolio.sh --verbose`
+> `[ OK ] Establishing secure connection...`
+> `[ OK ] Rendering DOM nodes...`
+> `[ OK ] Welcome to the Grid.`
 
 Welcome to the core repository of my personal portfolio—a high-performance, framework-free digital experience built from the ground up. This space isn't just a gallery of my work; it's a living document of my journey across front-end systems, C++ architectures, and intelligent AI/ML models.
 
@@ -14,12 +17,48 @@ In an ecosystem crowded with heavy frameworks and drag-and-drop builders, I engi
 
 It features a custom-built "cyber-terminal" aesthetic, complete with a simulated uplink loader, dynamic JavaScript rendering, and native CSS variables.
 
+### ⚙️ System Specs
+
+!HTML5 !CSS3 !JavaScript
+
 ## 🛠️ Core Architecture & Features
 
-- **Modern UI Design:** Powered by Bootstrap to ensure a flawless layout across all devices, seamlessly integrated with custom CSS Variables and Grid to keep the design personalized and tailored look.
+- **Modern UI Design:** Custom-built layout system using CSS Flexbox and Grid to ensure a flawless layout across all devices, seamlessly integrated with custom CSS Variables to keep the design personalized and tailored.
 - **Dynamic DOM Injection:** Projects are managed as a data layer in `assets/js/main-components.js` and rendered dynamically. Adding a new project is as simple as appending an object to an array.
 - **Fluid & Responsive:** The UI natively scales across all viewports, ensuring the glassmorphism and terminal aesthetics remain crisp from mobile to ultrawide monitors.
 - **Optimized Metadata:** Fully equipped with Open Graph (`og:`) and Twitter card meta tags for seamless and professional social sharing.
+
+## 📂 Directory Map
+
+```text
+[ ~/meswapnadeeppal.github.io ]
+├── assets/
+│   ├── css/
+│   │   ├── 404.css
+│   │   ├── contact.css
+│   │   ├── global-components.css
+│   │   ├── main-components.css
+│   │   ├── page-transitions.css
+│   │   └── theme-variables.css
+│   ├── images/
+│   │   ├── background.webp
+│   │   ├── error.png
+│   │   ├── contact/
+│   │   │   └── contact-illustration.png
+│   │   └── index/
+│   │       ├── decor-programmer.webp
+│   │       └── project-data-breach.webp
+│   └── js/
+│       ├── contact.js
+│       ├── main-components.js
+│       └── page-transitions.js
+├── 404.html
+├── contact.html
+├── index.html
+├── LICENSE
+├── README.md
+└── vercel.json
+```
 
 ## 💻 Local Boot Sequence
 

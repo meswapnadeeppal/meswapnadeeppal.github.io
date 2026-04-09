@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         loader.classList.add("uplink-hidden");
+        document.body.classList.remove("locked");
       }, 400);
     } else {
       progressBar.style.width = `${progress}%`;

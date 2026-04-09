@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 30px;
@@ -22,7 +26,6 @@ main {
 a {
   font-family: var(--font-header);
   color: var(--cyberpunk-hyperlink);
-  opacity: 1;
 }
 
 p {
@@ -89,6 +92,7 @@ p {
 
 .nav-link {
   text-decoration: none;
+  color: var(--secondary-text);
   font-weight: 600;
   text-transform: uppercase;
   transition: 0.3s;
@@ -110,6 +114,13 @@ p {
   color: var(--cyberpunk-secondary);
 }
 
+.nav-link.active:hover {
+  opacity: 1;
+  color: var(--window-close);
+  transform: scale(1.1);
+  cursor: not-allowed;
+}
+
 .nav-link:hover span,
 .nav-link.active span {
   opacity: 1;
@@ -119,16 +130,22 @@ p {
   display: inline-block;
   background-color: var(--cyberpunk-primary);
   color: var(--primary-text);
-  padding: 12px 30px;
+  padding: 14px 18px;
+  font-size: 14px;
   font-weight: bold;
   text-decoration: none;
+  border: 2px solid var(--cyberpunk-select);
   border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: all 0.3s ease;
 }
 
 .btn-cyber-solid:hover {
   background-color: var(--cyberpunk-secondary);
   box-shadow: 0 0 15px var(--cyberpunk-primary);
+  text-shadow: 0 0 8px var(--container-shadow);
+  border: 2px solid var(--background-body);
 }
 
 .site-footer {
@@ -199,5 +216,10 @@ p {
 
   .btn-cyber-solid {
     padding: 12px 20px;
+  }
+
+  .social-btn {
+    width: 30px;
+    height: 30px;
   }
 }

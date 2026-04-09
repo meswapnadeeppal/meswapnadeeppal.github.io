@@ -29,7 +29,7 @@
     <script src="/assets/js/main-components.js" defer></script>
     <script src="/assets/js/page-transitions.js" defer></script>
 </head>
-<body>
+<body class="locked">
 
     <div id="uplink-loader">
         <div class="uplink-interface">
@@ -45,20 +45,21 @@
 
     <div class="portfolio-frame">
         
-        <header class="site-header">
+        <header class="site-header" style="display: none;">
             <a href="index.html" class="brand-logo">
                 <span class="term-user">swapnadeep</span><span class="term-host">@cloud:</span><span class="term-prompt">~$</span><span class="term-cursor"> _</span>
             </a>
             <nav class="site-nav">
-                <a href="index.html" class="nav-link active"><span>//</span> Home</a>
+                <a href="index.html" class="nav-link"><span>//</span> Home</a>
                 <a href="#projects" class="nav-link"><span>//</span> Projects</a>
+                <a href="contact.html" class="nav-link"><span>//</span> Contact</a>
             </nav>    
         </header>
 
         <main class="error-container">
         
             <div class="error-content">
-                <h1 class="error-code">404 <span class="d-block error-message">- Oopsy Page Not Found -</span></h1>
+                <h1 class="error-code">404 <span class="error-message">- Oopsy Page Not Found -</span></h1>
                 <p class="error-description">The page you are looking for might have been removed, had its name changed or is temporarily unavailable.</p>
                 <a href="index.html" class="btn-cyber-solid">Return to Homepage</a>
             </div>
@@ -68,7 +69,7 @@
 
         </main>
 
-        <footer class="site-footer">
+        <footer class="site-footer" style="display: none;">
             <div class="social-icons">
                 <a href="#" class="social-btn">GH</a>
                 <a href="#" class="social-btn">IN</a>

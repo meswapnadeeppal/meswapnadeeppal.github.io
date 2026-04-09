@@ -354,6 +354,7 @@
 .form-label-input > p {
   font-family: var(--font-header);
   font-weight: 600;
+  margin-top: 0px;
   margin-bottom: 10px;
   opacity: 1;
 }

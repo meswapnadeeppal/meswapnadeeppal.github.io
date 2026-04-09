@@ -47,9 +47,8 @@
 
 .hero-subtitle {
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 40px;
-  max-width: 550px;
 }
 
 .hero-features {
@@ -82,7 +81,7 @@
 
 .project-container {
   position: relative;
-  padding: 80px 5% 60px 5%;
+  padding: 70px 5% 60px 5%;
   border: 2px solid var(--cyberpunk-primary);
   border-radius: 3px;
   background-color: var(--background-slate);
@@ -99,7 +98,8 @@
   font-size: 28px;
   font-family: var(--font-header);
   font-weight: 800;
-  padding: 8px 0px 30px;
+  margin-top: 12px;
+  padding-bottom: 4px;
 }
 
 .projects-grid {
@@ -113,7 +113,7 @@
   border-radius: 3px;
   border: 4px solid var(--container-border);
   overflow: hidden;
-  height: 450px;
+  height: 250px;
   cursor: pointer;
   transition:
     transform 0.3s ease,
@@ -143,7 +143,6 @@
   width: 100%;
   height: 100%;
   display: flex;
-  padding: 25px;
   flex-direction: column;
   justify-content: flex-end;
   background: linear-gradient(
@@ -152,6 +151,10 @@
     var(--container-shadow) 50%,
     transparent 100%
   );
+}
+
+.project-data {
+  padding: 25px;
 }
 
 .project-name {
@@ -222,15 +225,16 @@
   }
 
   .project-heading {
-    padding: 8px 0px 20px;
-  }
-
-  .project-card {
-    height: 350px;
+    margin-bottom: 12px;
   }
 }
 
 @media (max-width: 412px) {
+  .hero-content-wrapper,
+  .project-container {
+    padding: 30px 5.6%;
+  }
+
   .hero-title {
     font-size: 8vw;
     line-height: 1.2;
@@ -240,21 +244,16 @@
     font-size: 15px;
   }
 
-  .hero-content-wrapper,
-  .project-container {
-    padding: 30px 5.6%;
-  }
-
   .hero-features {
     gap: 15px;
   }
 
-  .project-card {
-    height: 250px;
+  .project-heading {
+    margin-bottom: 8px;
   }
 
-  .project-overlay {
-    padding: 6%;
+  .project-data {
+    padding: 20px;
   }
 
   .project-name {
@@ -264,6 +263,10 @@
   .feature-block {
     flex-direction: column;
     padding: 6%;
-    gap: 8px;
+    gap: 4px;
+  }
+
+  .feature-heading {
+    margin-bottom: 6px;
   }
 }

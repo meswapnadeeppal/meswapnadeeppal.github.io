@@ -29,13 +29,15 @@ document.addEventListener("DOMContentLoaded", () => {
     .map(
       ({ name, techStack, imageUrl }) => `
         <div class="project-card">
-            <img src="${imageUrl}" alt="${name}">
-            <div class="project-overlay">
-                <h3 class="project-name">${name}</h3>
-                <div class="project-tech-info">
-                    <span>💻 ${techStack}</span>
-                </div>
+          <img src="${imageUrl}" alt="${name}">
+          <div class="project-overlay">
+            <div class="project-data">
+              <h3 class="project-name">${name}</h3>
+              <div class="project-tech-info">
+                <span>💻 ${techStack}</span>
+              </div>
             </div>
+          </div>
         </div>
     `,
     )

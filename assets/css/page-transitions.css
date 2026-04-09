@@ -1,3 +1,9 @@
+body.locked {
+  overflow: hidden;
+  height: 100vh;
+  cursor: progress;
+}
+
 #uplink-loader {
   position: fixed;
   top: 0;
@@ -31,7 +37,7 @@
 }
 
 .uplink-interface {
-  width: 320px;
+  width: 250px;
   padding: 30px;
   border: 2px solid var(--cyberpunk-primary);
   border-radius: 4px;

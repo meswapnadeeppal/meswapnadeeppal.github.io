@@ -306,6 +306,11 @@
   border-color: var(--cyberpunk-primary);
 }
 
+#swapnadeep-form ::placeholder {
+  color: var(--secondary-text);
+  opacity: 0.5;
+}
+
 .role-select-wrapper {
   position: relative;
   user-select: none;
@@ -485,7 +490,29 @@
   }
 
   .contact-sidebar {
+    order: 2;
+    margin: 0px 5% 40px;
+    padding: 36px 5% 28px;
+    border: 4px solid var(--container-border);
+    background-color: var(--background-body);
+  }
+
+  .sidebar-header,
+  .sidebar-visual,
+  .sidebar-footer {
     display: none;
+  }
+
+  .terminal-widget {
+    margin-bottom: 12px;
+  }
+
+  .terminal-header {
+    background-color: var(--background-charcoal);
+  }
+
+  .terminal-body {
+    background-color: var(--background-slate);
   }
 
   .contact-intel {
@@ -513,7 +540,7 @@
   }
 
   .contact-main {
-    padding: 0px 5% 50px;
+    padding: 0px 5%;
   }
 
   .form-panel {
@@ -559,11 +586,24 @@
 }
 
 @media (max-width: 412px) {
-  .contact-main {
-    padding: 0px 5% 40px;
+  .contact-sidebar {
+    padding: 26px 5% 10px;
+    margin: 0px 5% 30px;
   }
 
-  .contact-intel,
+  .terminal-widget {
+    margin-bottom: 18px;
+  }
+
+  .contact-intel {
+    margin: 35px 5% 0px 5%;
+    padding: 30px 5.6%;
+  }
+
+  .contact-main {
+    padding: 0px 5%;
+  }
+
   .form-panel {
     padding: 30px 5.6%;
   }

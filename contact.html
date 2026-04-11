@@ -28,7 +28,6 @@
 
     <script src="/assets/js/page-transitions.js" defer></script>
     <script src="/assets/js/contact.js" defer></script>
-    <script src="/assets/js/uplink-system.js" defer></script>
 </head>
 <body class="locked">
 
@@ -78,11 +77,11 @@
                    <span class="terminal-title">sys_monitor.AppImage</span>
                </div>
                <div class="terminal-body">
-                   <p>MEM: 4096MB [||||||||  ] 82%</p>
-                   <p>CPU: 8-CORE [||||      ] 45%</p>
-                   <p>NET: UPLINK ESTABLISHED</p>
-                   <p>> Tracing node paths...</p>
-                   <p>> Latency: 12ms</p>
+                   <p>> npm run init-uplink</p>
+                   <p>> [vite] v4.3.2 ready in 120ms</p>
+                   <p>> WebSocket connection established...</p>
+                   <p>> Handshake successful...</p>
+                   <p>> System mounting to swapnadeep.cloud...</p>
                </div>
            </div>
 
@@ -93,12 +92,9 @@
                    </div>
                    <span class="terminal-title">root@swapnadeep:~</span>
                </div>
-               <div class="terminal-body">
-                   <p>> ssh guest@swapnadeep.cloud</p>
-                   <p>> Handshake successful...</p>
-                   <p>> ./init_comm_protocol.sh</p>
+               <div class="terminal-body" id="comm-terminal">
                    <p class="success">> Secure channel open.</p>
-                   <p>> Awaiting data payload<span class="cursor"> _</span></p>
+                   <p>> Awaiting visitor input<span class="cursor"> _</span></p>
                </div>
            </div>
             
@@ -141,6 +137,7 @@
         <section class="contact-main">
             <div class="form-panel">
                 <form id="swapnadeep-form">
+                    <input type="hidden" name="access_key" value="19cc922c-99f3-4b41-a7c5-3b10aced2717">
                     <input type="checkbox" name="botcheck" class="hidden-trap" style="display: none;">
 
                     <div class="form-group">

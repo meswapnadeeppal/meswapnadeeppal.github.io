@@ -21,7 +21,20 @@ export default async function handler(req, res) {
       body: JSON.stringify(payload),
     });
 
-    const result = await response.json();
+    const rawText = await response.text();
+
+    let result;
+    try {
+      result = JSON.parse(rawText);
+    } catch (parseError) {
+      console.error("WEB3FORMS ERROR: Returned HTML instead of JSON.");
+      console.error("RAW HTML RESPONSE:", rawText);
+
+      return res.status(502).json({
+        message: "External API connection failed",
+        error: "Received HTML instead of JSON",
+      });
+    }
 
     if (response.ok) {
       return res.status(200).json(result);

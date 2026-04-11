@@ -3,11 +3,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
-  const payload = req.body;
-
-  payload.access_key = process.env.WEB3FORMS_KEY;
-
   try {
+    const bodyData =
+      typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+
+    const payload = {
+      ...bodyData,
+      access_key: process.env.WEB3FORMS_KEY,
+    };
+
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
@@ -25,6 +29,11 @@ export default async function handler(req, res) {
       return res.status(response.status).json(result);
     }
   } catch (error) {
-    return res.status(500).json({ message: "Internal System Error" });
+    console.error("CRITICAL API ERROR:", error);
+
+    return res.status(500).json({
+      message: "Internal System Error",
+      error: error.message,
+    });
   }
 }

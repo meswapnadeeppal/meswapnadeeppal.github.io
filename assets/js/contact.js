@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     options.forEach((option) => {
       option.addEventListener("click", () => {
         options.forEach((opt) => opt.classList.remove("selected"));
-
         option.classList.add("selected");
 
         triggerText.textContent = option.textContent;
@@ -29,6 +28,28 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("click", (e) => {
       if (!wrapper.contains(e.target)) {
         wrapper.classList.remove("open");
+      }
+    });
+  }
+
+  const humanToggle = document.getElementById("humanToggle");
+  const encryptionText = document.getElementById("encryptionText");
+  const captchaLogo = document.querySelector(".captcha-logo");
+
+  if (humanToggle && encryptionText && captchaLogo) {
+    encryptionText.textContent =
+      "Protection Disabled - Enable encryption to secure data";
+    captchaLogo.innerHTML = "🩻 Compromised";
+
+    humanToggle.addEventListener("change", function () {
+      if (this.checked) {
+        encryptionText.textContent =
+          "Protection Enabled - Your data is securely encrypted";
+        captchaLogo.innerHTML = "🛡️ Secured";
+      } else {
+        encryptionText.textContent =
+          "Protection Disabled - Enable encryption to secure data";
+        captchaLogo.innerHTML = "🩻 Compromised";
       }
     });
   }

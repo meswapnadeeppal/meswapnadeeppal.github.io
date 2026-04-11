@@ -22,12 +22,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <link rel="stylesheet" href="/assets/css/theme-variables.css">
+    <link rel="stylesheet" href="/assets/css/page-transitions.css">
     <link rel="stylesheet" href="/assets/css/global-components.css">
     <link rel="stylesheet" href="/assets/css/contact.css">
-    <link rel="stylesheet" href="/assets/css/page-transitions.css">
 
-    <script src="/assets/js/contact.js" defer></script>
     <script src="/assets/js/page-transitions.js" defer></script>
+    <script src="/assets/js/contact.js" defer></script>
+    <script src="/assets/js/uplink-system.js" defer></script>
 </head>
 <body class="locked">
 
@@ -139,35 +140,48 @@
 
         <section class="contact-main">
             <div class="form-panel">
-                <form class="swapnadeep-form" action="#" method="POST">
+                <form id="swapnadeep-form">
+                    <input type="checkbox" name="botcheck" class="hidden-trap" style="display: none;">
 
                     <div class="form-group">
-                        <label for="fullName">Your Full Name</label>
-                        <input type="text" id="fullName" name="fullName" placeholder="Identify yourself..." required>
+                        <div class="information-required">
+                            <label for="fullName">Your Full Name</label>
+                            <span class="required-badge">required</span>
+                        </div>
+                        <input type="text" id="fullName" name="sender_identity" placeholder="Identify yourself..." required>
                     </div>
 
                     <div class="form-group-collage">
                         <div class="form-group">
                             <label for="contactNumber">Contact Number</label>
-                            <input type="tel" id="contactNumber" name="contactNumber" placeholder="(555) 123-4567">
+                            <input type="tel" id="contactNumber" name="uplink_phone" placeholder="(555) 123-4567">
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <div class="information-required">
+                                <label for="email">Email</label>
+                                <span class="required-badge">required</span>
+                            </div>
                             <input type="email" id="email" name="email" placeholder="hello@example.node" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="subjectInquiry">Reason for Contact</label>
-                        <input type="text" id="subjectInquiry" name="subjectInquiry" placeholder="How can I help you?" required>
+                        <div class="information-required">
+                            <label for="subjectInquiry">Reason for Contact</label>
+                            <span class="required-badge">required</span>
+                        </div>
+                        <input type="text" id="subjectInquiry" name="subject" placeholder="How can I help you?" required>
                     </div>
 
                     <div class="form-group-collage">
                         <div class="form-group">
-                            <label for="visitorRole">Who is reaching out?</label>
+                            <div class="information-required">
+                                <label for="visitorRoleInput">Who is reaching out?</label>
+                                <span class="required-badge">required</span>
+                            </div>
                             <div class="role-select-wrapper" id="roleSelectWrapper">
-                                <input type="hidden" name="visitorRole" id="visitorRoleInput" required>
+                                <input type="text" name="entity_role" id="visitorRoleInput" class="hidden-validation" required>
                                 <div class="role-select-trigger" id="roleSelectTrigger">
                                     <span>Select your role</span>
                                     <div class="arrow-icon">👇</div>
@@ -183,30 +197,36 @@
 
                         <div class="form-group">
                             <label for="companyLink">Website / LinkedIn</label>
-                            <input type="url" id="companyLink" name="companyLink" placeholder="https://...">
+                            <input type="url" id="companyLink" name="external_link" placeholder="https://...">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Message / Project Details</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
+                        <div class="information-required">
+                            <label for="message">Message / Project Details</label>
+                            <span class="required-badge">required</span>
+                        </div>
+                        <textarea id="message" name="payload_content" rows="4" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
                     </div>
 
                     <div class="form-label-input">
-                        <p>How should I reach you?</p>                    
+                        <div class="information-required">
+                            <p>How should I reach you?</p>
+                            <span class="required-badge">required</span>
+                        </div>                  
                         <div class="form-option-group">
                             <label class="form-option" for="respEmail">
-                                <input type="radio" id="respEmail" name="preferredResponse" value="Email" required>
+                                <input type="radio" id="respEmail" name="preferred_comms_method" value="Email" required>
                                 <div class="option-icon">📧</div>
                                 <span class="custom-radio">Email</span>
                             </label>
                             <label class="form-option" for="respPhone">
-                                <input type="radio" id="respPhone" name="preferredResponse" value="Phone">
+                                <input type="radio" id="respPhone" name="preferred_comms_method" value="Phone">
                                 <div class="option-icon">📱</div>
                                 <span class="custom-radio">Phone</span>
                             </label>
                             <label class="form-option" for="respMeet">
-                                <input type="radio" id="respMeet" name="preferredResponse" value="In-Person Meeting">
+                                <input type="radio" id="respMeet" name="preferred_comms_method" value="In-Person Meeting">
                                 <div class="option-icon">🙏</div>
                                 <span class="custom-radio">In-Person Meeting</span>
                             </label>
@@ -217,35 +237,34 @@
                         <p>How did you find my portfolio?</p>
                         <div class="form-option-group">
                             <label class="form-option" for="hearReferral">
-                                <input type="checkbox" id="hearReferral" name="hearAboutUs" value="Referral">
+                                <input type="checkbox" id="hearReferral" name="discovery_source" value="Referral">
                                 <span class="custom-checkbox">Referral</span>
                             </label>
                             <label class="form-option" for="hearSocial">
-                                <input type="checkbox" id="hearSocial" name="hearAboutUs" value="Social Media">
+                                <input type="checkbox" id="hearSocial" name="discovery_source" value="Social Media">
                                 <span class="custom-checkbox">Social Media</span>
                             </label>
                             <label class="form-option" for="hearSearch">
-                                <input type="checkbox" id="hearSearch" name="hearAboutUs" value="Online Search">
+                                <input type="checkbox" id="hearSearch" name="discovery_source" value="Online Search">
                                 <span class="custom-checkbox">Online Search</span>
                             </label>
                             <label class="form-option" for="hearEvent">
-                                <input type="checkbox" id="hearEvent" name="hearAboutUs" value="Event">
+                                <input type="checkbox" id="hearEvent" name="discovery_source" value="Event">
                                 <span class="custom-checkbox">Event</span>
                             </label>
                             <label class="form-option inline-option" for="hearOther">
-                                <input type="checkbox" id="hearOther" name="hearAboutUs" value="Other">
+                                <input type="checkbox" id="hearOther" name="discovery_source" value="Other">
                                 <span class="custom-checkbox">Other</span>
                             </label>
                         </div>
                     </div>
 
-                    <div class="swapnadeep-captcha">
-                        <label class="captcha-checkbox">
-                            <input type="checkbox" required>
-                            <span class="checkmark"></span>
-                            I am not a bot
+                    <div class="advanced-security-module">
+                        <label class="encryption-status">
+                            <input type="checkbox" id="humanToggle" required>
+                            <span class="encryption-text" id="encryptionText"></span>
                         </label>
-                        <div class="captcha-logo">🛡️ Secure</div>
+                        <div class="captcha-logo"></div>
                     </div>
 
                     <button type="submit" class="btn-cyber-solid">Send Message</button>

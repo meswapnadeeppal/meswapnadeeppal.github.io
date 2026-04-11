@@ -159,7 +159,7 @@
                                 <label for="email">Email</label>
                                 <span class="required-badge">required</span>
                             </div>
-                            <input type="email" id="email" name="email" placeholder="hello@example.node" required>
+                            <input type="email" id="email" name="email" autocomplete="email" placeholder="hello@example.node" required>
                         </div>
                     </div>
 
@@ -264,7 +264,15 @@
                         <div class="captcha-logo"></div>
                     </div>
 
-                    <button type="submit" class="btn-cyber-solid">Send Message</button>
+                    <button type="submit" class="btn-cyber-solid" id="submit-btn">
+                        <span class="btn-text">let's go!</span>
+                        <div class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="8" cy="6" r="1.5"/><circle cx="12" cy="6" r="1.5"/><circle cx="12" cy="10" r="1.5"/><circle cx="16" cy="10" r="1.5"/><circle cx="20" cy="12" r="1.5"/><circle cx="16" cy="14" r="1.5"/><circle cx="12" cy="14" r="1.5"/><circle cx="12" cy="18" r="1.5"/><circle cx="8" cy="18" r="1.5"/><circle cx="8" cy="10" r="1.5"/><circle cx="8" cy="14" r="1.5"/>
+                            </svg>
+                        </div>
+                    </button>
+
                 </form>
             </div>
         </section>

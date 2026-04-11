@@ -126,7 +126,7 @@ p {
   opacity: 1;
 }
 
-.btn-cyber-solid {
+.btn-emoji-solid {
   display: inline-block;
   background-color: var(--cyberpunk-primary);
   color: var(--primary-text);
@@ -141,11 +141,75 @@ p {
   transition: all 0.3s ease;
 }
 
-.btn-cyber-solid:hover {
+.btn-emoji-solid:hover {
   background-color: var(--cyberpunk-secondary);
   box-shadow: 0 0 15px var(--cyberpunk-primary);
   text-shadow: 0 0 8px var(--container-shadow);
   border: 2px solid var(--background-body);
+}
+
+.btn-cyber-solid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(
+    90deg,
+    var(--cyberpunk-primary) 0%,
+    var(--cyberpunk-secondary) 100%
+  );
+  border: 2px solid var(--cyberpunk-primary);
+  border-radius: 50px;
+  padding: 8px 8px 8px 32px;
+  font-family: var(--font-header);
+  color: var(--secondary-text);
+  text-shadow: 0 0 8px var(--container-shadow);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  width: 100%;
+  height: 60px;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin-top: 4px;
+}
+
+.btn-cyber-solid .btn-text {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.btn-cyber-solid .btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-body);
+  border: 2px solid var(--secondary-text);
+  color: var(--secondary-text);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.btn-cyber-solid:hover {
+  border-color: var(--cyberpunk-hyperlink);
+  box-shadow: 0 4px 15px var(--container-shadow);
+  text-shadow: 0 0 8px var(--container-shadow);
+  background: linear-gradient(
+    90deg,
+    var(--cyberpunk-hyperlink) 0%,
+    var(--cyberpunk-success) 100%
+  );
+  color: var(--cyberpunk-select);
+}
+
+.btn-cyber-solid:hover .btn-icon {
+  transform: translateX(-4px);
+}
+
+.btn-cyber-solid:active {
+  transform: scale(0.96);
 }
 
 .site-footer {
@@ -214,8 +278,18 @@ p {
     gap: 15px;
   }
 
-  .btn-cyber-solid {
+  .btn-emoji-solid {
     padding: 12px 20px;
+  }
+
+  .btn-cyber-solid {
+    font-size: 14px;
+    height: auto;
+  }
+
+  .btn-cyber-solid .btn-icon {
+    width: 30px;
+    height: 30px;
   }
 
   .social-btn {

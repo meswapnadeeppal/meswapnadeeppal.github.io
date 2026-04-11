@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ==========================================
+  // 1. CUSTOM DROPDOWN LOGIC
+  // ==========================================
   const wrapper = document.getElementById("roleSelectWrapper");
   const trigger = document.getElementById("roleSelectTrigger");
   const triggerText = trigger ? trigger.querySelector("span") : null;
@@ -33,6 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ==========================================
+  // 2. ADVANCED SECURITY MODULE LOGIC
+  // ==========================================
   const humanToggle = document.getElementById("humanToggle");
   const encryptionText = document.getElementById("encryptionText");
   const captchaLogo = document.querySelector(".captcha-logo");
@@ -55,6 +61,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ==========================================
+  // 👉 NEW: 3. SMART URL FORMATTER
+  // ==========================================
+  const urlInput = document.getElementById("website");
+
+  if (urlInput) {
+    urlInput.addEventListener("blur", function () {
+      let val = this.value.trim();
+
+      if (val !== "" && !/^https?:\/\//i.test(val)) {
+        this.value = "https://" + val;
+      }
+    });
+  }
+
+  // ==========================================
+  // 4. DIRECT WEB3FORMS TRANSMISSION LOGIC
+  // ==========================================
   const form = document.getElementById("swapnadeep-form");
   const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
@@ -65,18 +89,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData = new FormData(form);
       const dataObject = Object.fromEntries(formData.entries());
 
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = "TRANSMITTING...";
+      const textSpan = submitBtn.querySelector(".btn-text");
+      const originalText = textSpan.textContent;
+
+      textSpan.textContent = "WAIT...";
       submitBtn.disabled = true;
 
       const logToTerminal = (message, status) => {
         const terminal = document.getElementById("comm-terminal");
         if (terminal) {
-          // 1. Find and remove the old blinking cursor
           const oldCursor = terminal.querySelector(".cursor");
           if (oldCursor) oldCursor.remove();
 
-          // 2. Create the new line with an empty span for the text
           const newLine = document.createElement("p");
           newLine.innerHTML = `> <span class="typing-text"></span><span class="cursor"> _</span>`;
 
@@ -85,24 +109,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
           terminal.appendChild(newLine);
 
-          // 3. The Typing Engine
-          const textSpan = newLine.querySelector(".typing-text");
+          const textSpanTerm = newLine.querySelector(".typing-text");
           let i = 0;
-          const typingSpeed = 15; // 15ms per character = extremely fast but visible
+          const typingSpeed = 15;
 
           const typeWriter = () => {
             if (i < message.length) {
-              textSpan.textContent += message.charAt(i);
+              textSpanTerm.textContent += message.charAt(i);
               i++;
               setTimeout(typeWriter, typingSpeed);
             }
           };
 
-          // Start typing!
           typeWriter();
+
+          terminal.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       };
-      
+
       try {
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -151,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "error",
         );
       } finally {
-        submitBtn.textContent = originalText;
+        textSpan.textContent = originalText;
         submitBtn.disabled = false;
       }
     });

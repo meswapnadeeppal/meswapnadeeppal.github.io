@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Swapnadeep Pal | UX Engineer & System Developer</title>
+    <meta name="title" content="Swapnadeep Pal | Web OS Portfolio" />
+    <meta name="description" content="Personal portfolio of Swapnadeep Pal. Explore my front-end web development, HTML design, C++ architectures, and interactive Web OS environment." />
+    <meta name="keywords" content="Swapnadeep Pal, UX Engineer, Web Developer, HTML Designer, C++, Web OS, Front-end Developer, Portfolio" />
+    <meta name="author" content="Swapnadeep Pal" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://swapnadeep.cloud/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://swapnadeep.cloud/" />
+    <meta property="og:title" content="Swapnadeep Pal | System Developer" />
+    <meta property="og:description" content="Explore my custom-built Web OS portfolio featuring C++ structures, UX design, and UI engineering." />
+    <meta property="og:image" content="https://swapnadeep.cloud/assets/images/social-preview.webp" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/assets/css/App.css" />
+
+    <script>
+      if (window.location.hostname === "meswapnadeeppal.github.io") {
+        window.location.replace("https://swapnadeep.cloud" + window.location.pathname);
+      }
+    </script>
+    <script src="/assets/js/App.js" defer></script>
+  </head>
+  <body class="bg-grad-1">
+    <div class="crt-overlay"></div>
+
+    <div id="uplink-loader">
+      <div class="uplink-interface">
+        <span id="uplink-status-log">Establishing secure connection...</span>
+        <div class="uplink-progress-track">
+          <div class="uplink-progress-fill" id="uplink-bar"></div>
+        </div>
+        <div class="uplink-metrics">
+          <span id="uplink-percentage">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <audio id="bgm-player" loop preload="none">
+      <source src="" type="audio/mpeg" />
+    </audio>
+
+    <nav class="caelestia-bar">
+      <div class="caelestia-pill left-pill">
+        <a href="https://github.com/meswapnadeeppal" target="_blank" rel="noopener noreferrer" class="sys-icon" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com/in/swapnadeep-pal" target="_blank" rel="noopener noreferrer" class="sys-icon" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://x.com/swapnadeep_pal" target="_blank" rel="noopener noreferrer" class="sys-icon" aria-label="X Profile"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+
+      <div class="caelestia-pill center-pill">
+        <span class="hire-me-btn" onclick="toggleWindow('window-system')">
+          <i class="fa-solid fa-briefcase icon-mr-5"></i> Hire Me
+        </span>
+        <span class="clock" id="os-clock" title="Control Center">00:00</span>
+      </div>
+
+      <div class="caelestia-pill right-pill cc-trigger" id="cc-toggle-btn" title="Control Center">
+        <div class="sys-icon-group">
+          <span class="sys-icon" title="System Help" onclick="event.stopPropagation()"><i class="fa-solid fa-circle-question"></i></span>
+          <span class="sys-icon" title="Personalize System" onclick="toggleWindow('window-personalize'); event.stopPropagation();"><i class="fa-solid fa-droplet"></i></span>
+          <span class="sys-icon" title="Reboot System" onclick="location.reload(); event.stopPropagation();"><i class="fa-solid fa-rotate-right"></i></span>
+        </div>
+        <div class="cc-arrow-wrapper">
+          <span class="sys-icon text-hyperlink cc-arrow"><i class="fa-solid fa-bars"></i></span>
+        </div>
+      </div>
+    </nav>
+
+    <div id="caelestia-cc" class="cc-dropdown">
+      <div class="cc-profile">
+        <img src="https://github.com/meswapnadeeppal.png" class="cc-avatar" alt="Profile" />
+        <div class="cc-user-info">
+          <span class="cc-name">swapnadeep@cloud</span>
+          <p class="cc-bio">UX Engineer from Kolkata. Blending intuitive UI design with robust system engineering.</p>
+        </div>
+      </div>
+
+      <div class="cc-toggles">
+        <button class="cc-toggle" onclick="toggleWindow('window-about')" title="About Me">
+          <i class="fa-solid fa-user-astronaut"></i>
+        </button>
+        <button class="cc-toggle" onclick="toggleWindow('window-projects')" title="Projects">
+          <i class="fa-solid fa-folder-open"></i>
+        </button>
+        <button class="cc-toggle" onclick="toggleWindow('window-contact')" title="Contact Form">
+          <i class="fa-solid fa-envelope"></i>
+        </button>
+      </div>
+
+      <div class="cc-metrics">
+        <div class="cc-metric-row">
+          <i class="fa-solid fa-microchip" title="CPU Usage"></i>
+          <div class="sys-load">
+            <div class="load-bar"><div class="fill cpu"></div></div>
+          </div>
+        </div>
+        <div class="cc-metric-row">
+          <i class="fa-solid fa-memory" title="Memory Usage"></i>
+          <div class="sys-load">
+            <div class="load-bar"><div class="fill mem"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-mantra">
+        <span id="footer-mantra-text"></span><span class="blink"> _</span>
+      </div>
+
+      <div class="cc-media">
+        <div class="cc-media-cover">
+          <i class="fa-solid fa-music"></i>
+        </div>
+        <div class="cc-media-content">
+          <div class="cc-media-header">
+            <i class="fa-solid fa-play cc-play-inline" id="cc-play-btn" title="Play / Pause"></i>
+            <div class="cc-media-info">
+              <span class="cc-media-title">Universal Source</span>
+              <span class="cc-media-artist">System BGM</span>
+            </div>
+          </div>
+          <div class="sys-load" title="Click to seek">
+            <div class="load-bar media-load-bar" id="media-load-bar">
+              <div class="fill media-fill media-progress-fill" id="media-progress-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main id="desktop">
+      <div id="window-personalize" class="os-window window-personalize-size hidden pos-personalize">
+        <div class="window-header">
+          <span>~/personalize.exe</span>
+          <div class="window-controls">
+            <button class="win-btn red" onclick="toggleWindow('window-personalize')" aria-label="Close personalize window"></button>
+          </div>
+        </div>
+        <div class="window-content personalize-content-wrapper">
+          <div class="personalize-section">
+            <h3>Visual Overrides</h3>
+            <div class="effects-toggles">
+              <label class="effect-toggle-row">
+                <span>CRT Retro Monitor Filter</span>
+                <input type="checkbox" id="toggle-crt" />
+              </label>
+            </div>
+          </div>
+
+          <div class="personalize-section flex-grow-1">
+            <h3>Desktop Background</h3>
+            <div class="theme-tabs-wrapper">
+              <button class="cc-toggle active theme-tab-btn" id="tab-gradients">Gradients</button>
+              <button class="cc-toggle theme-tab-btn" id="tab-wallpapers">Images</button>
+            </div>
+            <div class="theme-grid" id="grid-gradients">
+              <div class="swatch grad-1 active" data-bg="bg-grad-1" title="Cyberpunk Core"></div>
+              <div class="swatch grad-2" data-bg="bg-grad-2" title="Synthwave Neon"></div>
+              <div class="swatch grad-3" data-bg="bg-grad-3" title="Deep Matrix"></div>
+              <div class="swatch grad-4" data-bg="bg-grad-4" title="Hotline Miami"></div>
+            </div>
+            <div class="theme-grid grid-hidden" id="grid-wallpapers">
+              <div class="swatch img-1" data-bg="bg-img-1" title="New Worlds"></div>
+              <div class="swatch img-2" data-bg="bg-img-2" title="Night Town"></div>
+              <div class="swatch img-3" data-bg="bg-img-3" title="Forest Sunset"></div>
+              <div class="swatch img-4" data-bg="bg-img-4" title="Retro Truck"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="window-system" class="os-window window-system-size hidden pos-system">
+        <div class="window-header">
+          <span>~/execute_resume.exe</span>
+          <div class="window-controls">
+            <button class="win-btn red" onclick="toggleWindow('window-system')" aria-label="Close system window"></button>
+          </div>
+        </div>
+        <div class="window-content sys-manager-content">
+          <div class="sys-left-panel" id="cv-panel">
+            <div id="cv-idle-state" class="text-center">
+              <i class="fa-solid fa-file-shield cv-icon-shield"></i>
+              <h3 class="m-b-0">Encrypted Payload</h3>
+              <p class="cv-filename">Resume_Swapnadeep_Pal.pdf</p>
+              <button class="btn-emoji-solid btn-decrypt" onclick="startCVDecrypt()">
+                <i class="fa-solid fa-lock-open icon-mr-5"></i> Decrypt Payload
+              </button>
+            </div>
+
+            <div id="cv-decrypting-state" class="cv-decrypting-panel">
+              <i class="fa-solid fa-unlock-keyhole blink cv-icon-unlock"></i>
+              <h3 class="cv-progress-heading">Bypassing Encryption... <span id="cv-progress-text">0%</span></h3>
+              <div class="load-bar cv-load-bar">
+                <div class="fill media-fill cv-progress-fill" id="cv-progress-bar"></div>
+              </div>
+              <p class="cv-log-output" id="cv-log-text">> Initializing handshake...</p>
+            </div>
+
+            <div id="cv-ready-state" class="cv-ready-panel">
+              <i class="fa-solid fa-file-pdf cv-icon-pdf"></i>
+              <h3 class="m-b-0">Payload Ready</h3>
+              <p class="cv-ready-text">Decryption Complete</p>
+              <a href="/assets/docs/Swapnadeep_Pal_Resume.pdf" class="btn-emoji-solid btn-download-cv" download>
+                <i class="fa-solid fa-download icon-mr-5"></i> Download Resume
+              </a>
+            </div>
+
+            <div class="cv-status-footer" id="cv-status-footer">Status: Awaiting Action</div>
+          </div>
+
+          <div class="sys-right-panel">
+            <div class="sys-details-top">
+              <h3 class="text-center">swapnadeep.cloud</h3>
+              <p class="sys-active-props-title">Active Properties</p>
+              <ul class="sys-props-list">
+                <li><i class="fa-solid fa-location-dot"></i> Location: Kolkata, IN</li>
+                <li><i class="fa-solid fa-crosshairs"></i> Role: Front-End & Logic</li>
+                <li><i class="fa-solid fa-layer-group"></i> Stack: MERN, C++, Native Web</li>
+                <li><i class="fa-solid fa-network-wired"></i> Network: swapnadeep.cloud</li>
+                <li><i class="fa-brands fa-linux"></i> Env: Custom Kali WSL</li>
+                <li><i class="fa-solid fa-microchip"></i> Uptime: 24/7 Deployment</li>
+                <li><i class="fa-solid fa-thumbtack"></i> Clearance: Recruiter Granted</li>
+              </ul>
+            </div>
+            <div class="sys-details-bottom">
+              <div class="sys-launch-ops-title">
+                <span>Launch Operations</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+              <div class="sys-action-buttons">
+                <button class="sys-action-btn" onclick="toggleWindow('window-contact')">Contact</button>
+                <button class="sys-action-btn" onclick="toggleWindow('window-projects')">Projects</button>
+                <button class="sys-action-btn kill-btn" onclick="toggleWindow('window-about')">About Me</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="window-about" class="os-window window-about-size hidden pos-about">
+        <div class="window-header">
+          <span>~/about_me.txt</span>
+          <div class="window-controls">
+            <button class="win-btn red" onclick="toggleWindow('window-about')"></button>
+          </div>
+        </div>
+        <div class="window-content no-padding">
+          <section class="portfolio-hero os-hero">
+            <div class="hero-content-wrapper os-hero-content">
+              <div class="hero-main-text">
+                <h1 class="hero-title">Explore the code behind the digital experience</h1>
+                <p class="hero-subtitle">
+                  I'm Swapnadeep UX Engineer and web developer. By blending intuitive UI design with robust system engineering, complex requirements transform into high-performance, responsive applications. No fluff, just clean code and user-centered design.
+                </p>
+                <button class="btn-emoji-solid btn-hero-link" onclick="toggleWindow('window-projects')">
+                  朕 View Projects
+                </button>
+              </div>
+              <div class="hero-features os-hero-features">
+                <div class="feature-item">
+                  <span class="feature-number">01</span>
+                  <h3 class="feature-title">Front-End & UI Design</h3>
+                  <p class="feature-text">
+                    I design responsive web interfaces using modern Frameworks. My goal is always to translate complex requirements into products that are genuinely engaging and highly functional.
+                  </p>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-number">02</span>
+                  <h3 class="feature-title">CMS & Architecture</h3>
+                  <p class="feature-text">
+                    I architect and developed optimized websites tailored to client needs, handling everything from custom CMS configurations (Wix, Duda) to seamless third-party integrations.
+                  </p>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-number">03</span>
+                  <h3 class="feature-title">Core Logic & Workflow</h3>
+                  <p class="feature-text">
+                    I step outside the browser to write algorithms in C++ and optimize my development environment. I rely on customized Linux terminal setups and AI integrations to write better code faster.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div id="window-projects" class="os-window window-projects-size hidden pos-projects">
+        <div class="window-header">
+          <span>~/directory/projects</span>
+          <div class="window-controls">
+            <button class="win-btn red" onclick="toggleWindow('window-projects')"></button>
+          </div>
+        </div>
+        <div class="window-content no-padding">
+          <section class="project-container os-project-container">
+            <div class="project-contents">
+              <span class="project-kicker">Directory //</span>
+              <h2 class="project-heading">Featured Projects</h2>
+              <div class="projects-grid" id="projects-container"></div>
+            </div>
+            <div class="features-flex">
+              <div class="feature-block">
+                <div class="feature-content">
+                  <i class="fa-solid fa-code"></i>
+                  <h3 class="feature-heading">User-Centered Design</h3>
+                </div>
+                <p class="feature-text">
+                  Great code does not matter if the user is confused. I rely on usability testing and direct client feedback to shape my digital interfaces.
+                </p>
+              </div>
+              <div class="feature-block">
+                <div class="feature-content">
+                  <i class="fa-solid fa-compass-drafting"></i>
+                  <h3 class="feature-heading">Freelance Engineering</h3>
+                </div>
+                <p class="feature-text">
+                  I know how to run a project from day one straight through to launch. As a freelance developer I handle the full lifecycle including SEO optimization, custom plugins, and ensuring the front-end plays nicely with backend systems.
+                </p>
+              </div>
+              <div class="feature-block">
+                <div class="feature-content">
+                  <i class="fa-brands fa-bots"></i>
+                  <h3 class="feature-heading">Problem Solving</h3>
+                </div>
+                <p class="feature-text">
+                  I am constantly working to streamline my process. Whether I am debugging a layout issue, writing a new control flow, or setting up a fresh workspace, I focus on delivering high-quality results as efficiently as possible.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div id="window-contact" class="os-window window-contact-size hidden pos-contact">
+        <div class="window-header">
+          <span>secure_transmission.exe</span>
+          <div class="window-controls">
+            <button class="win-btn red" onclick="toggleWindow('window-contact')"></button>
+          </div>
+        </div>
+        <div class="window-content">
+          <section class="contact-main">
+            <div class="form-panel">
+              <h2 class="contact-form-heading">Initialize Contact Sequence</h2>
+
+              <form id="swapnadeep-form">
+                <input type="hidden" name="access_key" value="19cc922c-99f3-4b41-a7c5-3b10aced2717" />
+                <input type="checkbox" name="botcheck" class="hidden-trap" />
+
+                <div class="form-group">
+                  <div class="information-required">
+                    <label for="fullName">Your Full Name</label>
+                    <span class="required-badge">required</span>
+                  </div>
+                  <input type="text" id="fullName" name="sender_identity" placeholder="Identify yourself..." required />
+                </div>
+
+                <div class="form-group-collage">
+                  <div class="form-group">
+                    <label for="contactNumber">Contact Number</label>
+                    <input type="tel" id="contactNumber" name="uplink_phone" placeholder="(555) 123-4567" />
+                  </div>
+                  <div class="form-group">
+                    <div class="information-required">
+                      <label for="email">Email</label>
+                      <span class="required-badge">required</span>
+                    </div>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="hello@example.node" required />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="information-required">
+                    <label for="subjectInquiry">Reason for Contact</label>
+                    <span class="required-badge">required</span>
+                  </div>
+                  <input type="text" id="subjectInquiry" name="subject" placeholder="How can I help you?" required />
+                </div>
+
+                <div class="form-group-collage">
+                  <div class="form-group">
+                    <div class="information-required">
+                      <label for="visitorRoleInput">Who is reaching out?</label>
+                      <span class="required-badge">required</span>
+                    </div>
+                    <div class="role-select-wrapper" id="roleSelectWrapper">
+                      <input type="text" name="entity_role" id="visitorRoleInput" class="hidden-validation" required />
+                      <div class="role-select-trigger" id="roleSelectTrigger">
+                        <span>Select your role</span>
+                        <div class="arrow-icon">燥</div>
+                      </div>
+                      <ul class="role-select-options" id="roleSelectOptions">
+                        <li data-value="Recruiter">Recruiter / HR</li>
+                        <li data-value="Client">Potential Client</li>
+                        <li data-value="Developer">Fellow Developer</li>
+                        <li data-value="Other">Other</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="companyLink" class="sys-label-padding">Website / LinkedIn</label>
+                    <input type="url" id="companyLink" name="external_link" placeholder="https://..." />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="information-required">
+                    <label for="message">Message / Project Details</label>
+                    <span class="required-badge">required</span>
+                  </div>
+                  <textarea id="message" name="payload_content" rows="4" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
+                </div>
+
+                <div class="form-label-input">
+                  <div class="information-required">
+                    <p>How should I reach you?</p>
+                    <span class="required-badge">required</span>
+                  </div>
+                  <div class="form-option-group">
+                    <label class="form-option" for="respEmail">
+                      <input type="radio" id="respEmail" name="preferred_comms_method" value="Email" required />
+                      <div class="option-icon">透</div>
+                      <span class="custom-radio">Email</span>
+                    </label>
+                    <label class="form-option" for="respPhone">
+                      <input type="radio" id="respPhone" name="preferred_comms_method" value="Phone" />
+                      <div class="option-icon">導</div>
+                      <span class="custom-radio">Phone</span>
+                    </label>
+                    <label class="form-option" for="respMeet">
+                      <input type="radio" id="respMeet" name="preferred_comms_method" value="In-Person Meeting" />
+                      <div class="option-icon">剌</div>
+                      <span class="custom-radio">In-Person Meeting</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-label-input sys-margin-top-15">
+                  <p class="sys-survey-text">How did you find my portfolio?</p>
+                  <div class="form-option-group">
+                    <label class="form-option" for="hearReferral">
+                      <input type="checkbox" id="hearReferral" name="discovery_source" value="Referral" />
+                      <span class="custom-checkbox">Referral</span>
+                    </label>
+                    <label class="form-option" for="hearSocial">
+                      <input type="checkbox" id="hearSocial" name="discovery_source" value="Social Media" />
+                      <span class="custom-checkbox">Social Media</span>
+                    </label>
+                    <label class="form-option" for="hearSearch">
+                      <input type="checkbox" id="hearSearch" name="discovery_source" value="Online Search" />
+                      <span class="custom-checkbox">Online Search</span>
+                    </label>
+                    <label class="form-option" for="hearEvent">
+                      <input type="checkbox" id="hearEvent" name="discovery_source" value="Event" />
+                      <span class="custom-checkbox">Event</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="advanced-security-module sys-margin-top-20">
+                  <label class="encryption-status">
+                    <input type="checkbox" id="humanToggle" required />
+                    <span class="encryption-text" id="encryptionText"></span>
+                  </label>
+                  <div class="captcha-logo"></div>
+                </div>
+
+                <button type="submit" class="btn-cyber-solid" id="submit-btn">
+                  <span class="btn-text">Transmit Request</span>
+                  <div class="btn-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="8" cy="6" r="1.5" />
+                      <circle cx="12" cy="6" r="1.5" />
+                      <circle cx="12" cy="10" r="1.5" />
+                      <circle cx="16" cy="10" r="1.5" />
+                      <circle cx="20" cy="12" r="1.5" />
+                      <circle cx="16" cy="14" r="1.5" />
+                      <circle cx="12" cy="14" r="1.5" />
+                      <circle cx="12" cy="18" r="1.5" />
+                      <circle cx="8" cy="18" r="1.5" />
+                      <circle cx="8" cy="10" r="1.5" />
+                      <circle cx="8" cy="14" r="1.5" />
+                    </svg>
+                  </div>
+                </button>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div id="window-terminal" class="os-window window-terminal-size hidden pos-terminal">
+        <div class="window-header">
+          <span><i class="fa-solid fa-angle-right"></i>_ PowerShell</span>
+          <div class="window-controls">
+            <button class="win-btn red" onclick="toggleWindow('window-terminal')"></button>
+          </div>
+        </div>
+        <div class="window-content terminal-content-wrapper pwsh-theme" onclick="document.getElementById('cmd-input').focus()">
+          <div class="terminal-body terminal-output-container" id="interactive-terminal-output">
+            <p class="term-msg pwsh-msg">Loading personal and system profiles took 1262ms.</p>
+            <p class="term-msg-spaced pwsh-msg pwsh-msg-spaced">Type help for instructions on how to use Terminal</p>
+          </div>
+          <div class="terminal-input-line pwsh-input-line">
+            <div class="ps-prompt">
+              <div class="ps-seg orange"><i class="fa-brands fa-windows"></i> Swapnadeep</div>
+              <div class="ps-seg yellow">~</div>
+              <div class="ps-seg green"></div>
+              <div class="ps-time"><i class="fa-regular fa-clock"></i> <span id="live-prompt-time">00:00</span></div>
+              <div class="ps-arrow">➔</div>
+            </div>
+            <span id="cmd-text-display" class="pwsh-cmd-display"></span><span class="term-cursor pwsh-cursor">_</span>
+            <input type="text" id="cmd-input" class="hidden-cmd-input" autocomplete="off" spellcheck="false" autofocus />
+          </div>
+        </div>
+      </div>
+
+      <div id="window-transmission-log" class="os-window window-terminal-size hidden pos-transmission">
+        <div class="window-header">
+          <span>~/transmission_log.exe</span>
+          <div class="window-controls">
+            <button class="win-btn red" onclick="toggleWindow('window-transmission-log')"></button>
+          </div>
+        </div>
+        <div class="window-content terminal-log-wrapper">
+          <div class="terminal-body" id="comm-terminal">
+            <p class="success">> Terminal initialized.</p>
+            <p>> Background daemons active...</p>
+            <p>> Awaiting transmission logs<span class="term-cursor">_</span></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="win11-context-menu" class="win11-context-menu">
+      <div class="menu-item" onclick="location.reload()">
+        <i class="fa-solid fa-rotate-right"></i>
+        <span>Refresh</span>
+        <span class="shortcut">Ctrl+R</span>
+      </div>
+
+      <div class="menu-divider"></div>
+
+      <div class="menu-item" onclick="document.execCommand('copy')">
+        <i class="fa-solid fa-copy"></i>
+        <span>Copy</span>
+        <span class="shortcut">Ctrl+C</span>
+      </div>
+      <div class="menu-item" onclick="navigator.clipboard.readText().then((text) => { document.execCommand('insertText', false, text); }).catch(() => { alert('Please allow clipboard permissions or use Ctrl+V'); })">
+        <i class="fa-solid fa-paste"></i>
+        <span>Paste</span>
+        <span class="shortcut">Ctrl+V</span>
+      </div>
+
+      <div class="menu-divider"></div>
+
+      <div class="menu-item" onclick="toggleWindow('window-personalize')">
+        <i class="fa-solid fa-palette"></i>
+        <span>Personalize</span>
+      </div>
+      <div class="menu-item" onclick="toggleWindow('window-system')">
+        <i class="fa-solid fa-id-badge"></i>
+        <span>Execute Resume</span>
+      </div>
+      <div class="menu-item" onclick="toggleWindow('window-terminal')">
+        <i class="fa-solid fa-terminal"></i>
+        <span>Open Terminal</span>
+      </div>
+
+      <div class="menu-divider"></div>
+
+      <div class="menu-item" onclick="window.print()">
+        <i class="fa-solid fa-print"></i>
+        <span>Print...</span>
+        <span class="shortcut">Ctrl+P</span>
+      </div>
+
+      <div class="menu-item" onclick="window.open('https://github.com/meswapnadeeppal/meswapnadeeppal.github.io', '_blank')">
+        <i class="fa-solid fa-code"></i>
+        <span>View page source</span>
+        <span class="shortcut">Ctrl+U</span>
+      </div>
+
+      <div class="menu-item" onclick="alert('[SYSTEM SECURITY] DOM Inspector requires manual hardware override.\n\nPlease press F12 or Ctrl+Shift+I.')">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Inspect</span>
+        <span class="shortcut">Ctrl+Shift+I</span>
+      </div>
+    </div>
+  </body>
+</html>

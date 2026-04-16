@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Swapnadeep Pal | UX Engineer & System Developer</title>
+    
     <meta name="title" content="Swapnadeep Pal | Web OS Portfolio" />
     <meta name="description" content="Personal portfolio of Swapnadeep Pal. Explore my front-end web development, HTML design, C++ architectures, and interactive Web OS environment." />
     <meta name="keywords" content="Swapnadeep Pal, UX Engineer, Web Developer, HTML Designer, C++, Web OS, Front-end Developer, Portfolio" />
@@ -18,12 +19,37 @@
     <meta property="og:description" content="Explore my custom-built Web OS portfolio featuring C++ structures, UX design, and UI engineering." />
     <meta property="og:image" content="https://swapnadeep.cloud/assets/images/social-preview.webp" />
 
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@swapnadeep_pal" />
+    <meta name="twitter:title" content="Swapnadeep Pal | System Developer" />
+    <meta name="twitter:description" content="Explore my custom-built Web OS portfolio featuring C++ structures, UX design, and UI engineering." />
+    <meta name="twitter:image" content="https://swapnadeep.cloud/assets/images/social-preview.webp" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#11324d" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "name": "Swapnadeep Pal",
+      "url": "https://swapnadeep.cloud/",
+      "jobTitle": "UX Engineer & System Developer",
+      "sameAs": [
+        "https://github.com/meswapnadeeppal",
+        "https://linkedin.com/in/swapnadeep-pal",
+        "https://x.com/swapnadeep_pal"
+      ]
+    }
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/assets/css/App.css" />
 
     <script>
       if (window.location.hostname.includes("meswapnadeeppal.github.io")) {
-      window.location.replace("https://swapnadeep.cloud" + window.location.pathname);
+        window.location.replace("https://swapnadeep.cloud" + window.location.pathname);
       }
     </script>
     <script src="/assets/js/App.js" defer></script>
@@ -43,9 +69,7 @@
       </div>
     </div>
 
-    <audio id="bgm-player" loop preload="none">
-      <source src="" type="audio/mpeg" />
-    </audio>
+    <audio id="bgm-player" src="./assets/audio/om-namo-bhagavate-vasudevayale.mp3" loop preload="none"></audio>
 
     <nav class="caelestia-bar">
       <div class="caelestia-pill left-pill">
@@ -114,30 +138,25 @@
       </div>
 
       <div class="cc-media">
-        <div class="cc-media-cover">
-          <i class="fa-solid fa-music"></i>
-        </div>
-        <div class="cc-media-content">
-          <div class="cc-media-header">
-            <i class="fa-solid fa-play cc-play-inline" id="cc-play-btn" title="Play / Pause"></i>
-            <div class="cc-media-info">
-              <span class="cc-media-title">Universal Source</span>
-              <span class="cc-media-artist">System BGM</span>
-            </div>
+        <div class="cc-media-header">
+          <i class="fa-solid fa-play cc-play-inline" id="cc-play-btn" title="Play / Pause"></i>
+          <div class="cc-media-info">
+            <span class="cc-media-title">Om Namo Bhagavate Vasudevaya</span>
+            <span class="cc-media-artist">Hombale Films</span>
           </div>
-          <div class="sys-load" title="Click to seek">
-            <div class="load-bar media-load-bar" id="media-load-bar">
-              <div class="fill media-fill media-progress-fill" id="media-progress-fill"></div>
-            </div>
+        </div>
+        <div class="sys-load" title="Click to seek">
+          <div class="load-bar media-load-bar" id="media-load-bar">
+            <div class="fill media-progress-fill" id="media-progress-fill"></div>
           </div>
         </div>
       </div>
     </div>
 
     <main id="desktop">
-      <div id="window-personalize" class="os-window window-personalize-size hidden pos-personalize">
+      <div id="window-personalize" class="os-window hidden pos-personalize" style="width: 550px; height: auto; max-height: 85vh;">
         <div class="window-header">
-          <span>~/personalize.exe</span>
+          <span>~/ personalize.sh</span>
           <div class="window-controls">
             <button class="win-btn red" onclick="toggleWindow('window-personalize')" aria-label="Close personalize window"></button>
           </div>
@@ -175,9 +194,9 @@
         </div>
       </div>
 
-      <div id="window-system" class="os-window window-system-size hidden pos-system">
+      <div id="window-system" class="os-window hidden pos-system" style="width: 720px; height: auto;">
         <div class="window-header">
-          <span>~/execute_resume.exe</span>
+          <span>~/ resume.sh</span>
           <div class="window-controls">
             <button class="win-btn red" onclick="toggleWindow('window-system')" aria-label="Close system window"></button>
           </div>
@@ -197,7 +216,7 @@
               <i class="fa-solid fa-unlock-keyhole blink cv-icon-unlock"></i>
               <h3 class="cv-progress-heading">Bypassing Encryption... <span id="cv-progress-text">0%</span></h3>
               <div class="load-bar cv-load-bar">
-                <div class="fill media-fill cv-progress-fill" id="cv-progress-bar"></div>
+                <div class="fill cv-progress-fill" id="cv-progress-bar"></div>
               </div>
               <p class="cv-log-output" id="cv-log-text">> Initializing handshake...</p>
             </div>
@@ -243,24 +262,22 @@
         </div>
       </div>
 
-      <div id="window-about" class="os-window window-about-size hidden pos-about">
+      <div id="window-about" class="os-window hidden pos-about" style="width: 1280px; height: auto; max-height: 85vh;">
         <div class="window-header">
-          <span>~/about_me.txt</span>
+          <span>~/ whoami.sh</span>
           <div class="window-controls">
             <button class="win-btn red" onclick="toggleWindow('window-about')"></button>
           </div>
         </div>
         <div class="window-content no-padding">
-          <section class="portfolio-hero os-hero">
-            <div class="hero-content-wrapper os-hero-content">
+          <section class="os-hero">
+            <div class="os-hero-content">
               <div class="hero-main-text">
                 <h1 class="hero-title">Explore the code behind the digital experience</h1>
                 <p class="hero-subtitle">
                   I'm Swapnadeep UX Engineer and web developer. By blending intuitive UI design with robust system engineering, complex requirements transform into high-performance, responsive applications. No fluff, just clean code and user-centered design.
                 </p>
-                <button class="btn-emoji-solid btn-hero-link" onclick="toggleWindow('window-projects')">
-                  朕 View Projects
-                </button>
+                <button class="btn-emoji-solid btn-hero-link" onclick="toggleWindow('window-projects')">📋 View Projects</button>
               </div>
               <div class="hero-features os-hero-features">
                 <div class="feature-item">
@@ -290,20 +307,18 @@
         </div>
       </div>
 
-      <div id="window-projects" class="os-window window-projects-size hidden pos-projects">
+      <div id="window-projects" class="os-window hidden pos-projects" style="width: 1366px; height: auto; max-height: 85vh;">
         <div class="window-header">
-          <span>~/directory/projects</span>
+          <span>~/ projects.sh</span>
           <div class="window-controls">
             <button class="win-btn red" onclick="toggleWindow('window-projects')"></button>
           </div>
         </div>
         <div class="window-content no-padding">
-          <section class="project-container os-project-container">
-            <div class="project-contents">
-              <span class="project-kicker">Directory //</span>
-              <h2 class="project-heading">Featured Projects</h2>
-              <div class="projects-grid" id="projects-container"></div>
-            </div>
+          <section class="os-project-container">
+            <span class="project-kicker">Directory //</span>
+            <h2 class="project-heading">Featured Projects</h2>
+            <div class="projects-grid" id="projects-container"></div>
             <div class="features-flex">
               <div class="feature-block">
                 <div class="feature-content">
@@ -337,9 +352,9 @@
         </div>
       </div>
 
-      <div id="window-contact" class="os-window window-contact-size hidden pos-contact">
+      <div id="window-contact" class="os-window hidden pos-contact" style="width: 760px; height: auto; max-height: 85vh;">
         <div class="window-header">
-          <span>secure_transmission.exe</span>
+          <span>~/ transmission.sh</span>
           <div class="window-controls">
             <button class="win-btn red" onclick="toggleWindow('window-contact')"></button>
           </div>
@@ -390,10 +405,10 @@
                       <span class="required-badge">required</span>
                     </div>
                     <div class="role-select-wrapper" id="roleSelectWrapper">
-                      <input type="text" name="entity_role" id="visitorRoleInput" class="hidden-validation" required />
+                      <input type="text" name="entity_role" id="visitorRoleInput" required tabindex="-1" />
                       <div class="role-select-trigger" id="roleSelectTrigger">
                         <span>Select your role</span>
-                        <div class="arrow-icon">燥</div>
+                        <div class="arrow-icon">👇</div>
                       </div>
                       <ul class="role-select-options" id="roleSelectOptions">
                         <li data-value="Recruiter">Recruiter / HR</li>
@@ -425,17 +440,17 @@
                   <div class="form-option-group">
                     <label class="form-option" for="respEmail">
                       <input type="radio" id="respEmail" name="preferred_comms_method" value="Email" required />
-                      <div class="option-icon">透</div>
+                      <div class="option-icon">📧</div>
                       <span class="custom-radio">Email</span>
                     </label>
                     <label class="form-option" for="respPhone">
                       <input type="radio" id="respPhone" name="preferred_comms_method" value="Phone" />
-                      <div class="option-icon">導</div>
+                      <div class="option-icon">📲</div>
                       <span class="custom-radio">Phone</span>
                     </label>
                     <label class="form-option" for="respMeet">
                       <input type="radio" id="respMeet" name="preferred_comms_method" value="In-Person Meeting" />
-                      <div class="option-icon">剌</div>
+                      <div class="option-icon">🤝</div>
                       <span class="custom-radio">In-Person Meeting</span>
                     </label>
                   </div>
@@ -497,31 +512,32 @@
 
       <div id="window-terminal" class="os-window window-terminal-size hidden pos-terminal">
         <div class="window-header">
-          <span><i class="fa-solid fa-angle-right"></i>_ PowerShell</span>
+          <span><i class="fa-solid fa-terminal"></i> console.sh</span>
           <div class="window-controls">
             <button class="win-btn red" onclick="toggleWindow('window-terminal')"></button>
           </div>
         </div>
-        <div class="window-content terminal-content-wrapper pwsh-theme" onclick="document.getElementById('cmd-input').focus()">
+        <div class="window-content terminal-content-wrapper kali-theme" onclick="document.getElementById('cmd-input').focus()">
           <div class="terminal-body terminal-output-container" id="interactive-terminal-output">
-            <p class="term-msg pwsh-msg">Loading personal and system profiles took 1262ms.</p>
-            <p class="term-msg-spaced pwsh-msg pwsh-msg-spaced">Type help for instructions on how to use Terminal</p>
+            <p class="term-msg kali-msg">Linux swapnadeep.cloud 6.1.0-kali3-amd64 #1 SMP PREEMPT_DYNAMIC x86_64</p>
+            <p class="term-msg-spaced kali-msg">Last login: <span id="login-time-display"></span> on tty1</p>
           </div>
-          <div class="terminal-input-line pwsh-input-line">
-            <div class="ps-prompt">
-              <div class="ps-seg orange"><i class="fa-brands fa-windows"></i> Swapnadeep</div>
-              <div class="ps-seg yellow">~</div>
-              <div class="ps-seg green"></div>
-              <div class="ps-time"><i class="fa-regular fa-clock"></i> <span id="live-prompt-time">00:00</span></div>
-              <div class="ps-arrow">➔</div>
+          <div class="terminal-input-line kali-input-line">
+            <div class="kali-prompt" style="width: 100%;">
+              <div class="kali-prompt-line1">
+                <span class="kali-blue">┌──(</span><span class="kali-green">swapnadeep㉿cloud</span><span class="kali-blue">)-[</span><span class="kali-white">~</span><span class="kali-blue">]</span>
+              </div>
+              <div class="kali-prompt-line2">
+                <span class="kali-blue">└─$</span>
+                <span id="cmd-text-display" class="kali-cmd-display"></span><span class="term-cursor kali-cursor">_</span>
+              </div>
             </div>
-            <span id="cmd-text-display" class="pwsh-cmd-display"></span><span class="term-cursor pwsh-cursor">_</span>
             <input type="text" id="cmd-input" class="hidden-cmd-input" autocomplete="off" spellcheck="false" autofocus />
           </div>
         </div>
       </div>
 
-      <div id="window-transmission-log" class="os-window window-terminal-size hidden pos-transmission">
+      <div id="window-transmission-log" class="os-window hidden pos-transmission" style="width: 498px; height: 268px;">
         <div class="window-header">
           <span>~/transmission_log.exe</span>
           <div class="window-controls">
@@ -544,9 +560,7 @@
         <span>Refresh</span>
         <span class="shortcut">Ctrl+R</span>
       </div>
-
       <div class="menu-divider"></div>
-
       <div class="menu-item" onclick="document.execCommand('copy')">
         <i class="fa-solid fa-copy"></i>
         <span>Copy</span>
@@ -557,9 +571,7 @@
         <span>Paste</span>
         <span class="shortcut">Ctrl+V</span>
       </div>
-
       <div class="menu-divider"></div>
-
       <div class="menu-item" onclick="toggleWindow('window-personalize')">
         <i class="fa-solid fa-palette"></i>
         <span>Personalize</span>
@@ -572,21 +584,17 @@
         <i class="fa-solid fa-terminal"></i>
         <span>Open Terminal</span>
       </div>
-
       <div class="menu-divider"></div>
-
       <div class="menu-item" onclick="window.print()">
         <i class="fa-solid fa-print"></i>
         <span>Print...</span>
         <span class="shortcut">Ctrl+P</span>
       </div>
-
       <div class="menu-item" onclick="window.open('https://github.com/meswapnadeeppal/meswapnadeeppal.github.io', '_blank')">
         <i class="fa-solid fa-code"></i>
         <span>View page source</span>
         <span class="shortcut">Ctrl+U</span>
       </div>
-
       <div class="menu-item" onclick="alert('[SYSTEM SECURITY] DOM Inspector requires manual hardware override.\n\nPlease press F12 or Ctrl+Shift+I.')">
         <i class="fa-solid fa-magnifying-glass"></i>
         <span>Inspect</span>

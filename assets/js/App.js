@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   /* ==========================================
      1. UPLINK LOADER (Initial Boot Sequence)
      ========================================== */
@@ -31,12 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let progress = 0;
     const simulateLoading = setInterval(() => {
       progress += Math.floor(Math.random() * 10) + 5;
+
       if (progress >= 100) {
         progress = 100;
         clearInterval(simulateLoading);
         progressBar.style.width = "100%";
         percentageText.innerText = "100%";
         statusText.innerText = loadingMessages[loadingMessages.length - 1];
+
         setTimeout(() => {
           loader.classList.add("uplink-hidden");
           document.body.classList.remove("locked");
@@ -61,37 +61,37 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         name: "Personal Portfolio",
         techStack: "HTML, CSS, JavaScript",
-        imageUrl: "/assets/images/project1.webp",
+        imageUrl: "/assets/images/background.webp",
       },
       {
         name: "C++ Algorithm Visualizer",
         techStack: "C++, Data Structures",
-        imageUrl: "/assets/images/project2.webp",
+        imageUrl: "/assets/images/background.webp",
       },
       {
         name: "AI / ML Data Model",
         techStack: "Python, Machine Learning",
-        imageUrl: "/assets/images/project3.webp",
+        imageUrl: "/assets/images/background.webp",
       },
       {
         name: "Webart Dashboard UI",
         techStack: "UI/UX, Front-End Design",
-        imageUrl: "/assets/images/project4.webp",
+        imageUrl: "/assets/images/background.webp",
       },
     ];
     projectsContainer.innerHTML = projects
       .map(
         (p) => `
-      <div class="project-card">
-        <img src="${p.imageUrl}" alt="${p.name}">
-        <div class="project-overlay">
-          <div class="project-data">
-            <h3 class="project-name">${p.name}</h3>
-            <div class="project-tech-info"><span>💻 ${p.techStack}</span></div>
+        <div class="project-card">
+          <img src="${p.imageUrl}" alt="${p.name}">
+          <div class="project-overlay">
+            <div class="project-data">
+              <h3 class="project-name">${p.name}</h3>
+              <div class="project-tech-info"><span>💻 ${p.techStack}</span></div>
+            </div>
           </div>
         </div>
-      </div>
-    `,
+      `,
       )
       .join("");
   }
@@ -107,16 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!win) return;
 
     if (win.classList.contains("hidden")) {
-      // Show window and bring to front
       win.classList.remove("hidden");
       win.style.zIndex = ++topZIndex;
 
-      // Calculate the exact center of the screen
       const leftPos = (window.innerWidth - win.offsetWidth) / 2;
       const topPos = (window.innerHeight - win.offsetHeight) / 2;
 
-      // Apply the centered coordinates
-      // Math.max(10, ...) ensures the window never spawns off-screen or under the top bar
       win.style.left = `${Math.max(10, leftPos)}px`;
       win.style.top = `${Math.max(80, topPos)}px`;
     } else {
@@ -160,14 +156,18 @@ document.addEventListener("DOMContentLoaded", () => {
         win.style.top = `${initialY + (e.clientY - startY)}px`;
       } else if (isResizing) {
         const dir = currentResizer.className.split(" ")[1];
+
         if (dir.includes("e"))
           win.style.width = initialW + (e.clientX - startX) + "px";
+
         if (dir.includes("s"))
           win.style.height = initialH + (e.clientY - startY) + "px";
+
         if (dir.includes("w")) {
           win.style.width = initialW - (e.clientX - startX) + "px";
           win.style.left = initialX + (e.clientX - startX) + "px";
         }
+
         if (dir.includes("n")) {
           win.style.height = initialH - (e.clientY - startY) + "px";
           win.style.top = initialY + (e.clientY - startY) + "px";
@@ -190,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
       startY = e.clientY;
       initialX = win.offsetLeft;
       initialY = win.offsetTop;
+
       document.body.style.userSelect = "none";
       document.addEventListener("mousemove", onMouseMove);
       document.addEventListener("mouseup", onMouseUp);
@@ -202,11 +203,13 @@ document.addEventListener("DOMContentLoaded", () => {
       startY = e.clientY;
       initialX = win.offsetLeft;
       initialY = win.offsetTop;
+
       initialW = parseInt(document.defaultView.getComputedStyle(win).width, 10);
       initialH = parseInt(
         document.defaultView.getComputedStyle(win).height,
         10,
       );
+
       document.body.style.userSelect = "none";
       document.addEventListener("mousemove", onMouseMove);
       document.addEventListener("mouseup", onMouseUp);
@@ -222,7 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgmPlayer = document.getElementById("bgm-player");
   const mediaLoadBar = document.getElementById("media-load-bar");
   const mediaProgressFill = document.getElementById("media-progress-fill");
-  const mantraText = document.getElementById("footer-mantra-text");
 
   if (ccToggleBtn && ccDropdown) {
     ccToggleBtn.addEventListener("click", () => {
@@ -250,6 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const allBgSwatches = document.querySelectorAll(
     "#grid-gradients .swatch, #grid-wallpapers .swatch",
   );
+
   const allBgClasses = [
     "bg-grad-1",
     "bg-grad-2",
@@ -350,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     6. CV DECRYPTOR LOGIC
+     6. CV DECRYPTOR LOGIC (Simulation)
      ========================================== */
   window.startCVDecrypt = () => {
     const idleState = document.getElementById("cv-idle-state");
@@ -402,28 +405,27 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ==========================================
-     7. INTERACTIVE TERMINAL LOGIC (POWERSHELL THEME)
+     7. INTERACTIVE TERMINAL LOGIC (KALI LINUX)
      ========================================== */
   const cmdInput = document.getElementById("cmd-input");
   const interactiveOutput = document.getElementById(
     "interactive-terminal-output",
   );
   const cmdDisplay = document.getElementById("cmd-text-display");
+  const loginTimeDisplay = document.getElementById("login-time-display");
 
-  // Keep the live prompt time updated
-  const updateTerminalTime = () => {
-    const timeEl = document.getElementById("live-prompt-time");
-    if (timeEl) {
-      const now = new Date();
-      timeEl.innerText = now.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
-    }
-  };
-  updateTerminalTime();
-  setInterval(updateTerminalTime, 60000);
+  if (loginTimeDisplay) {
+    const now = new Date();
+    loginTimeDisplay.innerText = now.toLocaleString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+  }
 
   if (cmdInput && interactiveOutput && cmdDisplay) {
     cmdInput.addEventListener("input", () => {
@@ -443,34 +445,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function processCommand(cmd) {
-    const now = new Date();
-    const timeStr = now.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
-
-    // 1. Create the echoed prompt line
     const echoLine = document.createElement("div");
     echoLine.style.display = "flex";
-    echoLine.style.alignItems = "center";
+    echoLine.style.alignItems = "flex-end";
     echoLine.style.marginBottom = "8px";
 
     echoLine.innerHTML = `
-      <div class="ps-prompt">
-        <div class="ps-seg orange"><i class="fa-brands fa-windows"></i> Swapnadeep</div>
-        <div class="ps-seg yellow">~</div>
-        <div class="ps-seg green"></div>
-        <div class="ps-time"><i class="fa-regular fa-clock"></i> <span>${timeStr}</span></div>
-        <div class="ps-arrow">➔</div>
+      <div class="kali-prompt" style="width: 100%;">
+        <div class="kali-prompt-line1"><span class="kali-blue">┌──(</span><span class="kali-green">swapnadeep㉿cloud</span><span class="kali-blue">)-[</span><span class="kali-white">~</span><span class="kali-blue">]</span></div>
+        <div class="kali-prompt-line2">
+          <span class="kali-blue">└─$</span>
+          <span class="kali-cmd-display" style="margin-left: 8px;">${cmd}</span>
+        </div>
       </div>
-      <span class="pwsh-cmd-display">${cmd}</span>
     `;
     interactiveOutput.appendChild(echoLine);
 
-    // 2. Process the command response
     const responseLine = document.createElement("p");
-    responseLine.style.fontFamily = "'Consolas', 'Courier New', monospace";
+    responseLine.style.fontFamily =
+      "'Fira Code', 'Consolas', 'Courier New', monospace";
     responseLine.style.marginBottom = "15px";
     responseLine.style.color = "#ccc";
 
@@ -483,20 +476,20 @@ document.addEventListener("DOMContentLoaded", () => {
           "Available commands:<br>- <span style='color: var(--cyberpunk-hyperlink)'>help</span>: Show this message<br>- <span style='color: var(--cyberpunk-hyperlink)'>whoami</span>: Display current user<br>- <span style='color: var(--cyberpunk-hyperlink)'>date</span>: Show current date/time<br>- <span style='color: var(--cyberpunk-hyperlink)'>clear</span>: Clear terminal output<br>- <span style='color: var(--cyberpunk-hyperlink)'>ls</span>: List directory contents<br>- <span style='color: var(--cyberpunk-hyperlink)'>pwd</span>: Print working directory<br>- <span style='color: var(--cyberpunk-hyperlink)'>echo [text]</span>: Print text<br>- <span style='color: var(--cyberpunk-hyperlink)'>cat [file]</span>: Read file contents";
         break;
       case "whoami":
-        responseLine.textContent = "swapnadeep@cloud";
+        responseLine.textContent = "swapnadeep";
         break;
       case "date":
         responseLine.textContent = new Date().toString();
         break;
       case "pwd":
-        responseLine.textContent = "C:\\Users\\Swapnadeep";
+        responseLine.textContent = "/home/swapnadeep";
         break;
       case "clear":
         interactiveOutput.innerHTML = "";
         return;
       case "ls":
         responseLine.innerHTML =
-          "<span style='color: var(--cyberpunk-hyperlink)'>projects/</span> &nbsp; <span style='color: var(--cyberpunk-hyperlink)'>contact/</span> &nbsp; about_me.txt &nbsp; resume.pdf";
+          "<span style='color: #2674e8; font-weight: bold;'>projects/</span> &nbsp; <span style='color: #2674e8; font-weight: bold;'>contact/</span> &nbsp; about_me.txt &nbsp; resume.pdf";
         break;
       case "echo":
         responseLine.textContent = args.slice(1).join(" ");
@@ -517,17 +510,16 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
       case "sudo":
         responseLine.textContent =
-          "The term 'sudo' is not recognized as the name of a cmdlet, function, script file, or operable program.";
+          "swapnadeep is not in the sudoers file. This incident will be reported.";
         responseLine.classList.add("error-msg");
         break;
       default:
-        responseLine.textContent = `${mainCmd} : The term '${mainCmd}' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.`;
+        responseLine.textContent = `bash: ${mainCmd}: command not found`;
         responseLine.classList.add("error-msg");
     }
 
     interactiveOutput.appendChild(responseLine);
 
-    // Auto-scroll to bottom
     const terminalContentWrapper = interactiveOutput.parentElement;
     terminalContentWrapper.scrollTop = terminalContentWrapper.scrollHeight;
   }
@@ -536,13 +528,29 @@ document.addEventListener("DOMContentLoaded", () => {
      8. MEDIA PLAYER & MANTRA
      ========================================== */
   if (bgmPlayer) {
+    bgmPlayer.volume = 0.1;
+
     if (ccPlayBtn) {
       ccPlayBtn.addEventListener("click", () => {
-        if (!bgmPlayer.src || bgmPlayer.src === window.location.href) return;
+        if (!bgmPlayer.src || bgmPlayer.src === window.location.href) {
+          console.error("Audio Error: No audio source file found in the HTML.");
+          return;
+        }
+
         if (bgmPlayer.paused) {
-          bgmPlayer.play();
-          ccPlayBtn.classList.remove("fa-play");
-          ccPlayBtn.classList.add("fa-pause");
+          bgmPlayer
+            .play()
+            .then(() => {
+              ccPlayBtn.classList.remove("fa-play");
+              ccPlayBtn.classList.add("fa-pause");
+            })
+            .catch((error) => {
+              console.error(
+                "Audio Error: Browser blocked playback or file missing.",
+                error,
+              );
+              alert("Could not play audio. Check the F12 Console for details.");
+            });
         } else {
           bgmPlayer.pause();
           ccPlayBtn.classList.remove("fa-pause");
@@ -571,13 +579,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const mantraText = document.getElementById("footer-mantra-text");
   if (mantraText) {
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
     const typeSequence = async (text, speed) => {
       for (let char of text) {
         mantraText.textContent += char;
         await sleep(speed);
       }
     };
+
     const backspaceSequence = async (text, speed) => {
       for (let i = text.length; i >= 0; i--) {
         mantraText.textContent = text.substring(0, i);
@@ -699,9 +711,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (form && submitBtn) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
       const dataObject = Object.fromEntries(new FormData(form).entries());
       const textSpan = submitBtn.querySelector(".btn-text");
       const originalText = textSpan.textContent;
+
       textSpan.textContent = "WAIT...";
       submitBtn.disabled = true;
 

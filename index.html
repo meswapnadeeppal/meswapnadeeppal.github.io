@@ -139,7 +139,6 @@
 
       <div class="cc-media">
         <div class="cc-media-header">
-          <!-- <i class="fa-solid fa-play cc-play-inline" id="cc-play-btn" title="Play / Pause"></i> -->
           <div class="cc-media-info">
             <span class="cc-media-title">Om Namo Bhagavate Vasudevaya</span>
             <span class="cc-media-artist">Hombale Films</span>
@@ -212,6 +211,74 @@
               <div class="swatch img-2" data-bg="bg-img-2" title="Night Town"></div>
               <div class="swatch img-3" data-bg="bg-img-3" title="Forest Sunset"></div>
               <div class="swatch img-4" data-bg="bg-img-4" title="Retro Truck"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="search-modal-overlay" class="search-overlay hidden">
+        <div class="search-modal">
+
+          <div class="search-modal-header">
+            <div class="search-input-wrapper">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input type="text" id="palette-search-input" placeholder="Search projects, skills, or commands..." spellcheck="false" autocomplete="off" />
+              <div class="search-shortcuts">
+                <span class="kbd-key">esc</span>
+              </div>
+              <i class="fa-brands fa-xing close-search-icon" onclick="closeSearchModal()"></i>
+            </div>
+          </div>
+
+          <div class="search-modal-body">
+            <div class="search-results-list">
+
+              <div class="search-result-item" onclick="toggleWindow('window-projects'); closeSearchModal();">
+                <div class="result-header">
+                  <div class="result-title"><i class="fa-solid fa-folder-open icon-mr-5"></i> View Web Design Projects</div>
+                  <div class="result-stats">
+                    <span title="Views"><i class="fa-regular fa-eye"></i> 14</span>
+                    <span title="Productivity Score"><i class="fa-solid fa-bolt"></i> 99</span>
+                  </div>
+                </div>
+                <div class="result-desc">Opens the directory containing MERN stack and HTML design portfolios.</div>
+                <div class="result-expand">Run Command <i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-left: 5px;"></i></div>
+              </div>
+
+              <div class="search-result-item" onclick="toggleWindow('window-terminal'); closeSearchModal();">
+                <div class="result-header">
+                  <div class="result-title"><i class="fa-solid fa-terminal icon-mr-5"></i> Launch Kali Linux WSL</div>
+                  <div class="result-stats">
+                    <span title="Views"><i class="fa-regular fa-eye"></i> 8</span>
+                    <span title="Productivity Score"><i class="fa-solid fa-bolt"></i> 42</span>
+                  </div>
+                </div>
+                <div class="result-desc">Initializes the interactive command line environment.</div>
+                <div class="result-expand">Run Command <i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-left: 5px;"></i></div>
+              </div>
+            </div>
+
+            <div class="search-sidebar">
+              <div class="sidebar-section">
+                <h4>RELATED TAGS</h4>
+                <div class="tag-cloud">
+                  <span class="search-tag"><i class="fa-brands fa-linux"></i> linux</span>
+                  <span class="search-tag"><i class="fa-solid fa-code"></i> web dev</span>
+                  <span class="search-tag">MERN Stack</span>
+                  <span class="search-tag">C++</span>
+                  <span class="search-tag">Kali</span>
+                </div>
+              </div>
+
+              <div class="sidebar-section mt-15">
+                <h4>RELATED LINKS</h4>
+                <div class="related-link-card">
+                  <a href="https://github.com/meswapnadeeppal" target="_blank" class="link-title">
+                    <i class="fa-solid fa-link icon-mr-5"></i> GitHub Repository
+                  </a>
+                  <p>View the source code for this Web OS.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

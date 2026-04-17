@@ -471,6 +471,64 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ==========================================
+     14. COMMAND PALETTE (SPOTLIGHT SEARCH)
+     ========================================== */
+  const searchOverlay = document.getElementById("search-modal-overlay");
+  const paletteInput = document.getElementById("palette-search-input");
+  const topBarInput = document.querySelector(".top-bar-input");
+
+  window.openSearchModal = function () {
+    if (searchOverlay) {
+      searchOverlay.classList.remove("hidden");
+      setTimeout(() => {
+        if (paletteInput) paletteInput.focus();
+      }, 100);
+    }
+  };
+
+  window.closeSearchModal = function () {
+    if (searchOverlay) {
+      searchOverlay.classList.add("hidden");
+      if (paletteInput) paletteInput.value = "";
+    }
+  };
+
+  document.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+      e.preventDefault();
+      if (searchOverlay && searchOverlay.classList.contains("hidden")) {
+        window.openSearchModal();
+      } else {
+        window.closeSearchModal();
+      }
+    }
+
+    if (
+      e.key === "Escape" &&
+      searchOverlay &&
+      !searchOverlay.classList.contains("hidden")
+    ) {
+      window.closeSearchModal();
+    }
+  });
+
+  if (topBarInput) {
+    topBarInput.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.openSearchModal();
+      topBarInput.blur();
+    });
+  }
+
+  if (searchOverlay) {
+    searchOverlay.addEventListener("click", (e) => {
+      if (e.target === searchOverlay) {
+        window.closeSearchModal();
+      }
+    });
+  }
+
+  /* ==========================================
      8. INTERACTIVE TERMINAL LOGIC (KALI LINUX)
      ========================================== */
   const cmdInput = document.getElementById("cmd-input");

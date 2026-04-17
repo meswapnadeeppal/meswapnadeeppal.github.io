@@ -97,7 +97,73 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     3. OMNIDIRECTIONAL WINDOW MANAGER
+     3. DRAGGABLE DESKTOP ICONS
+     ========================================== */
+  const desktopIcons = document.querySelectorAll(".desktop-shortcut");
+
+  desktopIcons.forEach((icon) => {
+    let isDragging = false;
+    let hasMoved = false; // Tracks if it's a drag or just a click
+    let startX, startY, initialLeft, initialTop;
+
+    icon.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      hasMoved = false;
+      startX = e.clientX;
+      startY = e.clientY;
+
+      // Get the current position of the icon
+      const style = window.getComputedStyle(icon);
+      initialLeft = parseInt(style.left, 10);
+      initialTop = parseInt(style.top, 10);
+
+      icon.style.zIndex = ++topZIndex; // Bring icon to front while dragging
+      document.body.style.userSelect = "none"; // Stop text from highlighting
+
+      const onMouseMove = (moveEvent) => {
+        if (!isDragging) return;
+
+        // Calculate how far the mouse has moved
+        const dx = moveEvent.clientX - startX;
+        const dy = moveEvent.clientY - startY;
+
+        // If moved more than 3 pixels, it's a drag, not a click
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+          hasMoved = true;
+        }
+
+        if (hasMoved) {
+          icon.style.left = `${initialLeft + dx}px`;
+          icon.style.top = `${initialTop + dy}px`;
+        }
+      };
+
+      const onMouseUp = () => {
+        isDragging = false;
+        document.body.style.userSelect = "";
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+      };
+
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+    });
+
+    // The Magic Trick: Intercept the click if the user dragged the icon
+    icon.addEventListener(
+      "click",
+      (e) => {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation(); // Stops the toggleWindow() inline function from firing
+        }
+      },
+      { capture: true }, // Runs this check BEFORE the HTML onclick attribute
+    );
+  });
+
+  /* ==========================================
+     4. OMNIDIRECTIONAL WINDOW MANAGER
      ========================================== */
   const windows = document.querySelectorAll(".os-window");
   let topZIndex = 100;
@@ -217,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ==========================================
-     4. CAELESTIA CONTROL CENTER
+     5. CAELESTIA CONTROL CENTER
      ========================================== */
   const ccToggleBtn = document.getElementById("cc-toggle-btn");
   const ccDropdown = document.getElementById("caelestia-cc");
@@ -243,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ==========================================
-     5. PERSONALIZATION CENTER & FX
+     6. PERSONALIZATION CENTER & FX
      ========================================== */
   const tabGradients = document.getElementById("tab-gradients");
   const tabWallpapers = document.getElementById("tab-wallpapers");
@@ -353,7 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     6. CV DECRYPTOR LOGIC (Simulation)
+     7. CV DECRYPTOR LOGIC (Simulation)
      ========================================== */
   window.startCVDecrypt = () => {
     const idleState = document.getElementById("cv-idle-state");
@@ -405,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ==========================================
-     7. INTERACTIVE TERMINAL LOGIC (KALI LINUX)
+     8. INTERACTIVE TERMINAL LOGIC (KALI LINUX)
      ========================================== */
   const cmdInput = document.getElementById("cmd-input");
   const interactiveOutput = document.getElementById(
@@ -473,7 +539,35 @@ document.addEventListener("DOMContentLoaded", () => {
     switch (mainCmd) {
       case "help":
         responseLine.innerHTML =
-          "Available commands:<br>- <span style='color: var(--cyberpunk-hyperlink)'>help</span>: Show this message<br>- <span style='color: var(--cyberpunk-hyperlink)'>whoami</span>: Display current user<br>- <span style='color: var(--cyberpunk-hyperlink)'>date</span>: Show current date/time<br>- <span style='color: var(--cyberpunk-hyperlink)'>clear</span>: Clear terminal output<br>- <span style='color: var(--cyberpunk-hyperlink)'>ls</span>: List directory contents<br>- <span style='color: var(--cyberpunk-hyperlink)'>pwd</span>: Print working directory<br>- <span style='color: var(--cyberpunk-hyperlink)'>echo [text]</span>: Print text<br>- <span style='color: var(--cyberpunk-hyperlink)'>cat [file]</span>: Read file contents";
+          "Available commands:<br>- <span style='color: var(--cyberpunk-hyperlink)'>help</span>: Show this message<br>- <span style='color: var(--cyberpunk-hyperlink)'>whoami</span>: Display current user<br>- <span style='color: var(--cyberpunk-hyperlink)'>neofetch</span>: A command-line system information tool<br>- <span style='color: var(--cyberpunk-hyperlink)'>date</span>: Show current date/time<br>- <span style='color: var(--cyberpunk-hyperlink)'>clear</span>: Clear terminal output<br>- <span style='color: var(--cyberpunk-hyperlink)'>ls</span>: List directory contents<br>- <span style='color: var(--cyberpunk-hyperlink)'>pwd</span>: Print working directory<br>- <span style='color: var(--cyberpunk-hyperlink)'>echo [text]</span>: Print text<br>- <span style='color: var(--cyberpunk-hyperlink)'>cat [file]</span>: Read file contents";
+        break;
+      case "neofetch":
+        responseLine.innerHTML = `
+          <div style="display: flex; gap: 20px; margin-top: 10px; margin-bottom: 10px;">
+            <div style="color: var(--cyberpunk-secondary); font-weight: bold; line-height: 1.2;">
+              <pre style="margin:0;">
+       .---.
+      /     \\
+      \\.@-@./
+      /\\_-_/\\
+     //  _  \\\\
+    | \\     / |
+    \\_\\_'_/_/_/
+               </pre>
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center; font-size: 13px;">
+              <span style="color: var(--cyberpunk-success); font-weight: bold;">swapnadeep@cloud</span>
+              <span>----------------</span>
+              <span><span style="color: var(--cyberpunk-secondary);">OS:</span> Linux Portfolio Web Edition</span>
+              <span><span style="color: var(--cyberpunk-secondary);">Host:</span> swapnadeep.cloud</span>
+              <span><span style="color: var(--cyberpunk-secondary);">Kernel:</span> 6.1.0-custom-amd64</span>
+              <span><span style="color: var(--cyberpunk-secondary);">Uptime:</span> 24/7/365</span>
+              <span><span style="color: var(--cyberpunk-secondary);">Packages:</span> 1337 (dpkg)</span>
+              <span><span style="color: var(--cyberpunk-secondary);">Shell:</span> zsh 5.9</span>
+              <span><span style="color: var(--cyberpunk-secondary);">Role:</span> UX Engineer / Developer</span>
+            </div>
+          </div>
+        `;
         break;
       case "whoami":
         responseLine.textContent = "swapnadeep";
@@ -525,7 +619,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     8. MEDIA PLAYER & MANTRA
+     9. MEDIA PLAYER & MANTRA
      ========================================== */
   if (bgmPlayer) {
     bgmPlayer.volume = 0.1;
@@ -601,9 +695,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const phrase1 =
         "[ 📡 UPLINK SECURED 🧬 ACKNOWLEDGING UNIVERSAL SOURCE 🌌 ]";
       const mantras = [
-        "[ 01001111 01001101 💠 ॐ नमो भगवते वासुदेवाय 💠 01010110 01000001 ]",
-        "[ 01001111 01001101 💠 ওঁ নমো ভগবতে বাসুদেবায় 💠 01010110 01000001 ]",
-        "[ 01001111 01001101 💠 OM NAMO BHAGAVATE VASUDEVAYA 💠 01010110 01000001 ]",
+        "[ 01001111 01001101 💠 ॐ नमो भगवते वासुदेवाय 💠 01010110 01000001 ]", // Devanagari (Hindi/Sanskrit)
+        "[ 01001111 01001101 💠 ওঁ নমো ভগবতে বাসুদেবায় 💠 01010110 01000001 ]", // Bengali
+        "[ 01001111 01001101 💠 ૐ નમો ભગવતે વાસુદેવાય 💠 01010110 01000001 ]", // Gujarati
+        "[ 01001111 01001101 💠 ଓଁ ନମୋ ଭଗବତେ ବାସୁଦେବାୟ 💠 01010110 01000001 ]", // Odia
+        "[ 01001111 01001101 💠 ఓం నమో భగవతే వాసుదేవాయ 💠 01010110 01000001 ]", // Telugu
+        "[ 01001111 01001101 💠 ಓಂ ನಮೋ ಭಗವತೇ ವಾಸುದೇವಾಯ 💠 01010110 01000001 ]", // Kannada
+        "[ 01001111 01001101 💠 ஓம் நமோ பகவதே வாசுதேவாய 💠 01010110 01000001 ]", // Tamil
+        "[ 01001111 01001101 💠 ഓം നമോ ഭഗവതേ വാസുദേവായ 💠 01010110 01000001 ]", // Malayalam
+        "[ 01001111 01001101 💠 ਓਮ ਨਮੋ ਭਗਵਤੇ ਵਾਸੁਦੇਵਾਯ 💠 01010110 01000001 ]", // Punjabi (Gurmukhi)
+        "[ 01001111 01001101 💠 OM NAMO BHAGAVATE VASUDEVAYA 💠 01010110 01000001 ]", // Latin (English)
       ];
       let currentIndex = 0;
       while (true) {
@@ -624,7 +725,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     9. FORM LOGIC & SECURITY
+     10. FORM LOGIC & SECURITY
      ========================================== */
   const wrapper = document.getElementById("roleSelectWrapper");
   const trigger = document.getElementById("roleSelectTrigger");
@@ -672,7 +773,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     10. WEB3FORMS TRANSMISSION LOGIC
+     11. WEB3FORMS TRANSMISSION LOGIC
      ========================================== */
   const form = document.getElementById("swapnadeep-form");
   const submitBtn = form?.querySelector('button[type="submit"]');
@@ -755,7 +856,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     11. WINDOWS 11 CUSTOM CONTEXT MENU
+     12. WINDOWS 11 CUSTOM CONTEXT MENU
      ========================================== */
   const contextMenu = document.getElementById("win11-context-menu");
 

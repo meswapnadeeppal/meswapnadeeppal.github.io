@@ -288,10 +288,20 @@ body[class*="bg-img-"]::before {
 }
 
 .cc-avatar {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 3px solid var(--cyberpunk-primary);
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .cc-user-info {
@@ -359,7 +369,7 @@ body[class*="bg-img-"]::before {
   gap: 15px;
   margin-bottom: 20px;
   background-color: var(--background-body);
-  padding: 15px;
+  padding: 18px;
   border-radius: 16px;
 }
 
@@ -405,7 +415,7 @@ body[class*="bg-img-"]::before {
 
 .cc-mantra {
   background-color: var(--background-body);
-  padding: 12px 15px;
+  padding: 12px 18px;
   border-radius: 16px;
   margin-bottom: 20px;
   font-family: var(--font-header);
@@ -426,7 +436,7 @@ body[class*="bg-img-"]::before {
   align-items: center;
   gap: 15px;
   background-color: var(--background-body);
-  padding: 15px;
+  padding: 18px;
   border-radius: 16px;
 }
 
@@ -441,6 +451,7 @@ body[class*="bg-img-"]::before {
   cursor: pointer;
   transition: color 0.3s ease;
   font-size: 16px;
+  margin-right: 6px;
 }
 
 .cc-play-inline:hover {
@@ -478,7 +489,82 @@ body[class*="bg-img-"]::before {
 }
 
 /* =========================================
-   4. WINDOW MANAGER (DRAG & RESIZE)
+   4. DESKTOP SHORTCUT ICONS
+   ========================================= */
+.desktop-shortcut-grid {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.desktop-shortcut {
+  position: absolute;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 85px;
+  gap: 10px;
+  cursor: grab;
+  border-radius: 8px;
+  padding: 12px 5px;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.desktop-shortcut:active {
+  cursor: grabbing;
+}
+
+.desktop-shortcut:nth-child(1) {
+  top: 90px;
+  left: 20px;
+}
+.desktop-shortcut:nth-child(2) {
+  top: 190px;
+  left: 20px;
+}
+.desktop-shortcut:nth-child(3) {
+  top: 290px;
+  left: 20px;
+}
+.desktop-shortcut:nth-child(4) {
+  top: 390px;
+  left: 20px;
+}
+
+.desktop-shortcut:hover {
+  transform: translateY(-2px);
+}
+
+.custom-os-icon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.shortcut-label {
+  font-family: var(--font-header);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--primary-text);
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   5. WINDOW MANAGER (DRAG & RESIZE)
    ========================================= */
 .os-window {
   position: absolute;
@@ -497,6 +583,21 @@ body[class*="bg-img-"]::before {
 
 .os-window.hidden {
   display: none !important;
+}
+
+.os-window:not(.hidden) {
+  animation: windowPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes windowPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .resizer {
@@ -635,7 +736,7 @@ body[class*="bg-img-"]::before {
 }
 
 /* =========================================
-   5. COMPONENT STYLES (THE CORE DESIGN)
+   6. COMPONENT STYLES (THE CORE DESIGN)
    ========================================= */
 
 .os-hero {
@@ -1216,7 +1317,7 @@ input[type="checkbox"] {
 }
 
 /* =========================================
-   6. LOADER & KEYFRAME ANIMATIONS
+   7. LOADER & KEYFRAME ANIMATIONS
    ========================================= */
 #uplink-loader {
   position: fixed;
@@ -1347,7 +1448,7 @@ input[type="checkbox"] {
 }
 
 /* =========================================
-   7. WINDOWS 11 STYLE CONTEXT MENU
+   8. WINDOWS 11 STYLE CONTEXT MENU
    ========================================= */
 .win11-context-menu {
   position: absolute;
@@ -1420,7 +1521,7 @@ input[type="checkbox"] {
 }
 
 /* =========================================
-   8. SYSTEM MANAGER WINDOW
+   9. SYSTEM MANAGER WINDOW
    ========================================= */
 .sys-manager-content {
   display: flex;
@@ -1629,7 +1730,7 @@ input[type="checkbox"] {
 }
 
 /* =========================================
-   9. PERSONALIZE WINDOW & VISUAL FX
+   10. PERSONALIZE WINDOW & VISUAL FX
    ========================================= */
 .personalize-section {
   background: rgba(30, 41, 59, 0.6);
@@ -1830,7 +1931,7 @@ body.crt-mode .crt-overlay {
 }
 
 /* =========================================
-   10. TERMINAL WINDOWS (Interactive & Log)
+   11. TERMINAL WINDOWS (Interactive & Log)
    ========================================= */
 .terminal-body {
   display: flex;
@@ -1876,7 +1977,7 @@ body.crt-mode .crt-overlay {
 }
 
 /* =========================================
-   11. INLINE UTILS & SPACING
+   12. INLINE UTILS & SPACING
    ========================================= */
 .hire-me-btn {
   font-family: var(--font-header);
@@ -2046,7 +2147,7 @@ body.crt-mode .crt-overlay {
 }
 
 /* =========================================
-   12. KALI LINUX TERMINAL THEME
+   13. KALI LINUX TERMINAL THEME
    ========================================= */
 .kali-theme {
   background-color: var(--background-slate);
@@ -2109,4 +2210,58 @@ body.crt-mode .crt-overlay {
 .kali-white {
   color: var(--cyberpunk-hyperlink);
   font-weight: bold;
+}
+
+/* =========================================
+   14. MOBILE RESPONSIVE ENGINE
+   ========================================= */
+@media screen and (max-width: 850px) {
+  .caelestia-bar {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .caelestia-pill {
+    gap: 10px;
+    padding: 6px 12px;
+  }
+
+  .sys-icon-group {
+    display: none;
+  }
+
+  .hire-me-btn {
+    margin-right: 0;
+  }
+
+  .os-window {
+    width: 95vw !important;
+    height: calc(100vh - 80px) !important;
+    left: 2.5vw !important;
+    top: 65px !important;
+    min-width: 0;
+  }
+
+  .sys-manager-content {
+    flex-direction: column;
+  }
+
+  .sys-right-panel {
+    width: 100%;
+  }
+
+  .form-group-collage {
+    flex-direction: column;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .cc-dropdown {
+    width: 90vw;
+    right: 5vw;
+    top: 65px;
+  }
 }

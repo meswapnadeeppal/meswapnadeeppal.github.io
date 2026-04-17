@@ -25,8 +25,8 @@
     <meta name="twitter:description" content="Explore my custom-built Web OS portfolio featuring C++ structures, UX design, and UI engineering." />
     <meta name="twitter:image" content="https://swapnadeep.cloud/assets/images/social-preview.webp" />
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/favicon.svg" />
     <meta name="theme-color" content="#11324d" />
 
     <script type="application/ld+json">
@@ -99,7 +99,7 @@
 
     <div id="caelestia-cc" class="cc-dropdown">
       <div class="cc-profile">
-        <img src="https://github.com/meswapnadeeppal.png" class="cc-avatar" alt="Profile" />
+        <img src="/assets/icons/chakra.svg" class="cc-avatar" alt="Profile" />
         <div class="cc-user-info">
           <span class="cc-name">swapnadeep@cloud</span>
           <p class="cc-bio">UX Engineer from Kolkata. Blending intuitive UI design with robust system engineering.</p>
@@ -139,11 +139,12 @@
 
       <div class="cc-media">
         <div class="cc-media-header">
-          <i class="fa-solid fa-play cc-play-inline" id="cc-play-btn" title="Play / Pause"></i>
+          <!-- <i class="fa-solid fa-play cc-play-inline" id="cc-play-btn" title="Play / Pause"></i> -->
           <div class="cc-media-info">
             <span class="cc-media-title">Om Namo Bhagavate Vasudevaya</span>
             <span class="cc-media-artist">Hombale Films</span>
           </div>
+          <i class="fa-solid fa-play cc-play-inline" id="cc-play-btn" title="Play / Pause"></i>
         </div>
         <div class="sys-load" title="Click to seek">
           <div class="load-bar media-load-bar" id="media-load-bar">
@@ -154,6 +155,28 @@
     </div>
 
     <main id="desktop">
+      <div class="desktop-shortcut-grid">
+        <div class="desktop-shortcut" onclick="toggleWindow('window-about')">
+          <img src="/assets/icons/manjaro.svg" alt="Whoami" class="custom-os-icon" draggable="false" />
+          <span class="shortcut-label">Whoami</span>
+        </div>
+        
+        <div class="desktop-shortcut" onclick="toggleWindow('window-projects')">
+          <img src="/assets/icons/folder-open.svg" alt="Whoami" class="custom-os-icon" draggable="false" />
+          <span class="shortcut-label">Projects</span>
+        </div>
+
+        <div class="desktop-shortcut" onclick="toggleWindow('window-system')">
+          <img src="/assets/icons/text-editor.svg" alt="Whoami" class="custom-os-icon" draggable="false" />
+          <span class="shortcut-label">Resume</span>
+        </div>
+
+        <div class="desktop-shortcut" onclick="toggleWindow('window-terminal')">
+          <img src="/assets/icons/utilities-terminal.svg" alt="Whoami" class="custom-os-icon" draggable="false" />
+          <span class="shortcut-label">Console</span>
+        </div>
+      </div>
+      
       <div id="window-personalize" class="os-window hidden pos-personalize" style="width: 550px; height: auto; max-height: 85vh;">
         <div class="window-header">
           <span>~/ personalize.sh</span>
@@ -519,7 +542,7 @@
         </div>
         <div class="window-content terminal-content-wrapper kali-theme" onclick="document.getElementById('cmd-input').focus()">
           <div class="terminal-body terminal-output-container" id="interactive-terminal-output">
-            <p class="term-msg kali-msg">Linux swapnadeep.cloud 6.1.0-kali3-amd64 #1 SMP PREEMPT_DYNAMIC x86_64</p>
+            <p class="term-msg kali-msg">Linux swapnadeep.cloud 6.1.0-Console-amd64 #1 SMP PREEMPT_DYNAMIC x86_64</p>
             <p class="term-msg-spaced kali-msg">Last login: <span id="login-time-display"></span> on tty1</p>
           </div>
           <div class="terminal-input-line kali-input-line">

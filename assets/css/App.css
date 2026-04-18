@@ -180,9 +180,9 @@ body[class*="bg-img-"]::before {
 }
 
 /* =========================================
-   3. CAELESTIA SHELL (TOP BAR & CONTROL CENTER)
+   3. CLOUDWEB SHELL (TOP BAR & CONTROL CENTER)
    ========================================= */
-.caelestia-bar {
+.cloudweb-bar {
   position: fixed;
   top: 15px;
   left: 15px;
@@ -194,7 +194,7 @@ body[class*="bg-img-"]::before {
   pointer-events: none;
 }
 
-.caelestia-pill {
+.cloudweb-pill {
   background-color: var(--background-slate);
   border: 3px solid var(--container-border);
   border-radius: 24px;
@@ -547,6 +547,11 @@ body[class*="bg-img-"]::before {
   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
   -webkit-user-drag: none;
   user-select: none;
+  transition: filter 0.25s ease;
+}
+
+.desktop-shortcut:hover .custom-os-icon {
+  filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.6));
 }
 
 .shortcut-label {
@@ -574,7 +579,7 @@ body[class*="bg-img-"]::before {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 10vh; /* Pushes it slightly down from the top */
+  padding-top: 10vh;
   z-index: 9999;
   opacity: 1;
   transition: opacity 0.2s ease;
@@ -654,15 +659,13 @@ body[class*="bg-img-"]::before {
   color: var(--window-close);
 }
 
-/* BODY (SPLIT LAYOUT) */
 .search-modal-body {
   display: grid;
-  grid-template-columns: 2fr 1fr; /* 2/3 for results, 1/3 for sidebar */
+  grid-template-columns: 2fr 1fr;
   min-height: 400px;
   max-height: 60vh;
 }
 
-/* LEFT COLUMN: RESULTS */
 .search-results-list {
   padding: 15px;
   overflow-y: auto;
@@ -718,7 +721,6 @@ body[class*="bg-img-"]::before {
   color: var(--cyberpunk-primary);
 }
 
-/* RIGHT COLUMN: SIDEBAR */
 .search-sidebar {
   padding: 20px;
   background: rgba(0, 0, 0, 0.1);
@@ -946,7 +948,6 @@ body[class*="bg-img-"]::before {
 /* =========================================
    7. COMPONENT STYLES (THE CORE DESIGN)
    ========================================= */
-
 .os-hero {
   min-height: auto;
   border: none;
@@ -958,7 +959,7 @@ body[class*="bg-img-"]::before {
 }
 
 .os-hero-features {
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
 .hero-main-text {
@@ -974,8 +975,8 @@ body[class*="bg-img-"]::before {
 
 .hero-subtitle {
   font-size: 18px;
-  line-height: 1.7;
-  margin-bottom: 40px;
+  line-height: 1.6;
+  margin-bottom: 30px;
 }
 
 .hero-features {
@@ -997,6 +998,12 @@ body[class*="bg-img-"]::before {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 12px;
+}
+
+.feature-text {
+  line-height: 1.6;
+  font-size: 14px;
+  margin: 0px;
 }
 
 .btn-hero-link {
@@ -1080,6 +1087,14 @@ body[class*="bg-img-"]::before {
 .os-project-container {
   border: none;
   padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 18px;
+  align-items: start;
+}
+
+.projects-main-view {
+  width: 100%;
 }
 
 .project-kicker {
@@ -1166,25 +1181,23 @@ body[class*="bg-img-"]::before {
 
 .features-flex {
   display: flex;
+  flex-direction: column;
   gap: 12px;
-  padding-top: 12px;
-  flex-wrap: wrap;
+  padding-top: 0;
+  position: sticky;
+  top: 0px;
 }
 
 .feature-block {
   display: flex;
   flex-direction: column;
-  flex: 1 1 320px;
   gap: 4px;
-  padding: 3%;
+  padding: 20px;
   background-color: rgba(30, 41, 59, 0.6);
   border: 3px solid var(--container-border);
   border-radius: 3px;
-}
-
-.feature-block > p {
-  font-size: 13px;
-  line-height: 1.6;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .feature-content {
@@ -2192,7 +2205,6 @@ body.crt-mode .crt-overlay {
   font-size: 13px;
   font-weight: 800;
   color: var(--cyberpunk-success);
-  margin-right: 12px;
   cursor: pointer;
   text-shadow: 0 0 8px rgba(75, 255, 33, 0.4);
 }
@@ -2355,29 +2367,25 @@ body.crt-mode .crt-overlay {
 }
 
 /* =========================================
-   14. KALI LINUX TERMINAL THEME
+   14. LINUX TERMINAL THEME
    ========================================= */
-.kali-theme {
+.console-theme {
   background-color: var(--background-slate);
   opacity: 0.9;
 }
 
-.kali-msg {
+.console-msg {
   color: var(--secondary-text);
   margin: 0 0 4px 0 !important;
 }
 
-.kali-msg-spaced {
-  margin-bottom: 25px !important;
-}
-
-.kali-input-line {
+.console-input-line {
   display: flex;
   align-items: flex-end;
   padding-top: 5px !important;
 }
 
-.kali-cmd-display {
+.console-cmd-display {
   color: var(--primary-text);
   margin-left: 8px;
   font-family: inherit;
@@ -2385,12 +2393,12 @@ body.crt-mode .crt-overlay {
   margin-bottom: 2px;
 }
 
-.kali-cursor {
+.console-cursor {
   color: var(--primary-text);
   margin-bottom: 2px;
 }
 
-.kali-prompt {
+.console-prompt {
   display: flex;
   flex-direction: column;
   user-select: none;
@@ -2399,23 +2407,23 @@ body.crt-mode .crt-overlay {
   line-height: 1.4;
 }
 
-.kali-prompt-line1,
-.kali-prompt-line2 {
+.console-prompt-line1,
+.console-prompt-line2 {
   display: flex;
   white-space: pre;
 }
 
-.kali-blue {
+.console-blue {
   color: var(--cyberpunk-secondary);
   font-weight: bold;
 }
 
-.kali-green {
+.console-green {
   color: var(--cyberpunk-success);
   font-weight: bold;
 }
 
-.kali-white {
+.console-white {
   color: var(--cyberpunk-hyperlink);
   font-weight: bold;
 }
@@ -2424,23 +2432,19 @@ body.crt-mode .crt-overlay {
    15. MOBILE RESPONSIVE ENGINE
    ========================================= */
 @media screen and (max-width: 850px) {
-  .caelestia-bar {
+  .cloudweb-bar {
     top: 10px;
     left: 10px;
     right: 10px;
   }
 
-  .caelestia-pill {
+  .cloudweb-pill {
     gap: 10px;
     padding: 6px 12px;
   }
 
   .sys-icon-group {
     display: none;
-  }
-
-  .hire-me-btn {
-    margin-right: 0;
   }
 
   .os-window {
@@ -2457,6 +2461,15 @@ body.crt-mode .crt-overlay {
 
   .sys-right-panel {
     width: 100%;
+  }
+
+  .os-project-container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .features-flex {
+    position: static;
   }
 
   .form-group-collage {

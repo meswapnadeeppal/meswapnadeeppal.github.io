@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   desktopIcons.forEach((icon) => {
     let isDragging = false;
-    let hasMoved = false; // Tracks if it's a drag or just a click
+    let hasMoved = false;
     let startX, startY, initialLeft, initialTop;
 
     icon.addEventListener("mousedown", (e) => {
@@ -112,22 +112,19 @@ document.addEventListener("DOMContentLoaded", () => {
       startX = e.clientX;
       startY = e.clientY;
 
-      // Get the current position of the icon
       const style = window.getComputedStyle(icon);
       initialLeft = parseInt(style.left, 10);
       initialTop = parseInt(style.top, 10);
 
-      icon.style.zIndex = ++topZIndex; // Bring icon to front while dragging
-      document.body.style.userSelect = "none"; // Stop text from highlighting
+      icon.style.zIndex = ++topZIndex;
+      document.body.style.userSelect = "none";
 
       const onMouseMove = (moveEvent) => {
         if (!isDragging) return;
 
-        // Calculate how far the mouse has moved
         const dx = moveEvent.clientX - startX;
         const dy = moveEvent.clientY - startY;
 
-        // If moved more than 3 pixels, it's a drag, not a click
         if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
           hasMoved = true;
         }
@@ -149,16 +146,15 @@ document.addEventListener("DOMContentLoaded", () => {
       document.addEventListener("mouseup", onMouseUp);
     });
 
-    // The Magic Trick: Intercept the click if the user dragged the icon
     icon.addEventListener(
       "click",
       (e) => {
         if (hasMoved) {
           e.preventDefault();
-          e.stopPropagation(); // Stops the toggleWindow() inline function from firing
+          e.stopPropagation();
         }
       },
-      { capture: true }, // Runs this check BEFORE the HTML onclick attribute
+      { capture: true },
     );
   });
 
@@ -283,10 +279,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ==========================================
-     5. CAELESTIA CONTROL CENTER
+     5. CLOUDWEB CONTROL CENTER
      ========================================== */
   const ccToggleBtn = document.getElementById("cc-toggle-btn");
-  const ccDropdown = document.getElementById("caelestia-cc");
+  const ccDropdown = document.getElementById("cloudweb-cc");
   const ccPlayBtn = document.getElementById("cc-play-btn");
   const bgmPlayer = document.getElementById("bgm-player");
   const mediaLoadBar = document.getElementById("media-load-bar");
@@ -529,7 +525,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     8. INTERACTIVE TERMINAL LOGIC (KALI LINUX)
+     8. INTERACTIVE TERMINAL LOGIC
      ========================================== */
   const cmdInput = document.getElementById("cmd-input");
   const interactiveOutput = document.getElementById(
@@ -575,11 +571,11 @@ document.addEventListener("DOMContentLoaded", () => {
     echoLine.style.marginBottom = "8px";
 
     echoLine.innerHTML = `
-      <div class="kali-prompt" style="width: 100%;">
-        <div class="kali-prompt-line1"><span class="kali-blue">┌──(</span><span class="kali-green">swapnadeep㉿cloud</span><span class="kali-blue">)-[</span><span class="kali-white">~</span><span class="kali-blue">]</span></div>
-        <div class="kali-prompt-line2">
-          <span class="kali-blue">└─$</span>
-          <span class="kali-cmd-display" style="margin-left: 8px;">${cmd}</span>
+      <div class="console-prompt" style="width: 100%;">
+        <div class="console-prompt-line1"><span class="console-blue">┌──(</span><span class="console-green">swapnadeep㉿cloud</span><span class="console-blue">)-[</span><span class="console-white">~</span><span class="console-blue">]</span></div>
+        <div class="console-prompt-line2">
+          <span class="console-blue">└─$</span>
+          <span class="console-cmd-display" style="margin-left: 8px;">${cmd}</span>
         </div>
       </div>
     `;

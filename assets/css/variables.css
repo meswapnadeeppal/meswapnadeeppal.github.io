@@ -1,0 +1,72 @@
+/* =========================================
+   1. GLOBAL VARIABLES & TYPOGRAPHY
+   ========================================= */
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  /* Typography */
+  --font-primary: "Roboto", sans-serif;
+  --font-header: "Exo 2", sans-serif;
+
+  /* Base Cyberpunk Theme Colors */
+  --background-body: rgba(17, 50, 77, 1);
+  --background-slate: rgba(30, 41, 59, 1);
+  --container-border: rgba(56, 62, 86, 1);
+
+  /* Cyberpunk Accents */
+  --cyberpunk-primary: rgba(153, 41, 234, 1);
+  --cyberpunk-secondary: rgba(237, 12, 239, 1);
+  --cyberpunk-hyperlink: rgba(255, 196, 0, 1);
+  --cyberpunk-select: rgba(73, 36, 62, 1);
+  --cyberpunk-success: rgba(75, 255, 33, 1);
+  --cyberpunk-glow: rgba(49, 225, 247, 1);
+
+  /* Text & OS Controls */
+  --primary-text: rgba(255, 255, 255, 1);
+  --secondary-text: rgba(248, 250, 252, 1);
+  --window-close: rgba(255, 95, 86, 1);
+  --window-maximize: rgba(43, 182, 115, 1);
+
+  /* Semantic Alpha Layers (Black/Dark) */
+  --black-alpha-10: rgba(0, 0, 0, 0.1);
+  --black-alpha-20: rgba(0, 0, 0, 0.2);
+  --black-alpha-25: rgba(0, 0, 0, 0.25);
+  --black-alpha-30: rgba(0, 0, 0, 0.3);
+  --black-alpha-40: rgba(0, 0, 0, 0.4);
+  --black-alpha-50: rgba(0, 0, 0, 0.5);
+  --black-alpha-60: rgba(0, 0, 0, 0.6);
+  --black-alpha-80: rgba(0, 0, 0, 0.8);
+  --black-alpha-90: rgba(0, 0, 0, 0.9);
+
+  /* Container Shadows */
+  --container-shadow: rgba(34, 34, 34, 0.8);
+  --shadow-success: rgba(75, 255, 33, 0.4);
+  --shadow-hyperlink: rgba(255, 196, 0, 0.4);
+  --shadow-secondary: rgba(237, 12, 239, 0.4);
+
+  /* Semantic Alpha Layers (White/Light) */
+  --white-alpha-05: rgba(255, 255, 255, 0.05);
+  --white-alpha-08: rgba(255, 255, 255, 0.08);
+  --white-alpha-10: rgba(255, 255, 255, 0.1);
+
+  /* Semantic Alpha Layers (Theme Specific) */
+  --slate-alpha-50: rgba(30, 41, 59, 0.5);
+  --slate-alpha-60: rgba(30, 41, 59, 0.6);
+  --slate-alpha-75: rgba(30, 41, 59, 0.75);
+  --slate-alpha-85: rgba(30, 41, 59, 0.85);
+
+  --body-alpha-35: rgba(17, 50, 77, 0.35);
+  --body-alpha-40: rgba(17, 50, 77, 0.4);
+  --body-alpha-50: rgba(17, 50, 77, 0.5);
+  --body-alpha-95: rgba(17, 50, 77, 0.95);
+
+  --primary-alpha-20: rgba(153, 41, 234, 0.2);
+  --custom-slate-dark: #2d2d32;
+
+  /* Z-Index Hierarchy */
+  --z-nav: 9000;
+  --z-dropdown: 8999;
+  --z-loader: 10000;
+  --z-context: 100000;
+  --z-crt: 999999;
+}

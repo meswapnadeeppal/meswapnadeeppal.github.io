@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://swapnadeep.cloud/sitemap.xml

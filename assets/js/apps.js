@@ -38,15 +38,12 @@ function processCommand(cmd, interactiveOutput) {
   const echoLine = document.createElement("div");
   echoLine.style.display = "flex";
   echoLine.style.alignItems = "flex-end";
-  echoLine.style.marginBottom = "8px";
   echoLine.innerHTML = `<div class="console-prompt" style="width: 100%;"><div class="console-prompt-line1"><span class="console-blue">┌──(</span><span class="console-green">swapnadeep㉿cloud</span><span class="console-blue">)-[</span><span class="console-white">~</span><span class="console-blue">]</span></div><div class="console-prompt-line2"><span class="console-blue">└─$</span><span class="console-cmd-display" style="margin-left: 8px;">${cmd}</span></div></div>`;
   interactiveOutput.appendChild(echoLine);
 
   const responseLine = document.createElement("p");
-  responseLine.style.fontFamily =
-    "'Fira Code', 'Consolas', 'Courier New', monospace";
-  responseLine.style.marginBottom = "15px";
-  responseLine.style.color = "#ccc";
+  responseLine.style.color = "var(--secondary-text)";
+  responseLine.style.marginBottom = "12px";
 
   const args = cmd.split(" ");
   const mainCmd = args[0].toLowerCase();

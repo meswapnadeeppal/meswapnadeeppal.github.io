@@ -61,7 +61,7 @@
   --body-alpha-95: rgba(17, 50, 77, 0.95);
 
   --primary-alpha-20: rgba(153, 41, 234, 0.2);
-  --custom-slate-dark: #2d2d32;
+  --custom-slate-dark: rgba(45, 45, 50, 1);
 
   /* Z-Index Hierarchy */
   --z-nav: 9000;

@@ -129,7 +129,7 @@ export function initFileSystem() {
       `<div class="code-block">${fileData.content.trim()}</div>`;
   };
 
-  // Spotlight Search Exports
+  /** Spotlight Search Exports */
   const searchOverlay = document.getElementById("search-modal-overlay");
   const paletteInput = document.getElementById("palette-search-input");
   window.openSearchModal = function () {
@@ -269,6 +269,12 @@ export function initSystemCV() {
           readyState.style.display = "block";
           document.getElementById("cv-status-footer").innerText =
             "Status: Interaction Required";
+          window.triggerAchievement(
+            "payload",
+            "The Payload",
+            "Successfully decrypted the system resume.",
+            "fa-solid fa-file-shield",
+          );
         }, 600);
       }
       document.getElementById("cv-progress-bar").style.width = `${progress}%`;

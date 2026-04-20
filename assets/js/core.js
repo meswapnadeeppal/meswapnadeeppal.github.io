@@ -62,14 +62,22 @@ export function initDraggableIcons() {
 export function initWindowManager() {
   const windows = document.querySelectorAll(".os-window");
 
-  // Expose to window object for inline HTML onclick handlers
   window.toggleWindow = (id) => {
     const win = document.getElementById(id);
     if (!win) return;
     if (win.classList.contains("hidden")) {
       win.classList.remove("hidden");
       win.style.zIndex = ++topZIndex;
-      // Prevent dynamic positioning on mobile to let CSS handle it
+
+      if (id === "window-terminal") {
+        window.triggerAchievement(
+          "root_access",
+          "Root Access",
+          "Initialized the command console.",
+          "fa-solid fa-terminal",
+        );
+      }
+
       if (window.innerWidth > 850) {
         const leftPos = (window.innerWidth - win.offsetWidth) / 2;
         const topPos = (window.innerHeight - win.offsetHeight) / 2;
@@ -189,6 +197,42 @@ export function initContextMenu() {
   });
 }
 
+/** Triggers an OS Achievement Notification */
+export function triggerAchievement(id, title, desc, iconClass) {
+  if (localStorage.getItem(`achieved_${id}`)) return;
+
+  localStorage.setItem(`achieved_${id}`, "true");
+
+  const container = document.getElementById("achievement-container");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = "achievement-toast";
+  toast.innerHTML = `
+    <div class="achievement-icon">
+      <i class="${iconClass}"></i>
+    </div>
+    <div class="achievement-content">
+      <span class="achievement-header">Achievement Unlocked</span>
+      <span class="achievement-title">${title}</span>
+      <span class="achievement-desc">${desc}</span>
+    </div>
+  `;
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("hiding");
+    setTimeout(() => {
+      if (container.contains(toast)) {
+        container.removeChild(toast);
+      }
+    }, 500);
+  }, 5000);
+}
+
+window.triggerAchievement = triggerAchievement;
+
 /** Private Core Utilities */
 function initPersonalization() {
   const tabGradients = document.getElementById("tab-gradients");
@@ -265,6 +309,7 @@ function initPersonalization() {
       e.target.classList.add("active");
       document.body.classList.remove(...allBgClasses);
       document.body.classList.add(newBg);
+
       if (newBg.includes("grad")) {
         savedGrad = newBg;
         localStorage.setItem("os-bg-grad", savedGrad);
@@ -272,6 +317,13 @@ function initPersonalization() {
         savedImg = newBg;
         localStorage.setItem("os-bg-img", savedImg);
       }
+
+      window.triggerAchievement(
+        "aesthetic",
+        "Aesthetic Override",
+        "Modified the system visuals.",
+        "fa-solid fa-palette",
+      );
     });
   });
 

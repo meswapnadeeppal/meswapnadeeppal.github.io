@@ -21,6 +21,18 @@
   --cyberpunk-success: rgba(75, 255, 33, 1);
   --cyberpunk-glow: rgba(49, 225, 247, 1);
 
+  /* Halloween Accents */
+  --halloween-purple: rgba(46, 8, 84, 1);
+  --halloween-blood-red: rgba(102, 0, 0, 1);
+  --halloween-burnt-ember: rgba(179, 63, 0, 1);
+  --halloween-slime: rgba(26, 74, 4, 1);
+
+  /* Dracula Accents */
+  --dracula-soul: rgba(224, 150, 12, 1);
+  --dracula-swamp: rgba(26, 128, 18, 1);
+  --dracula-ichor: rgba(102, 0, 0, 1);
+  --dracula-flare: rgba(179, 63, 0, 1);
+
   /* Text & OS Controls */
   --primary-text: rgba(255, 255, 255, 1);
   --secondary-text: rgba(248, 250, 252, 1);

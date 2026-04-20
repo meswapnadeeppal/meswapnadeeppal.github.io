@@ -246,6 +246,8 @@ function initPersonalization() {
   const allBgClasses = [
     "bg-grad-1",
     "bg-grad-2",
+    "bg-grad-3",
+    "bg-grad-4",
     "bg-img-1",
     "bg-img-2",
     "bg-img-3",

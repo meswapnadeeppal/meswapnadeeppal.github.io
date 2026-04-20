@@ -443,3 +443,54 @@ function initAudioAndMantra() {
     runMantraLoop();
   }
 }
+
+/** Initializes the BIOS Boot Sequence */
+export async function runBIOSBootSequence(onComplete) {
+  const biosScreen = document.getElementById("bios-boot-screen");
+  if (!biosScreen) {
+    onComplete();
+    return;
+  }
+
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const memory = navigator.deviceMemory
+    ? `${navigator.deviceMemory * 1024} MB`
+    : "16384 MB";
+  const userAgent = navigator.userAgent;
+
+  const lines = [
+    "SynthwaveBIOS 4.0 Release 6.0",
+    "Copyright 1999 - 2026 Synthwave Technologies Ltd.",
+    "All Rights Reserved",
+    "",
+    "CPU: Genuine Intel(R) Processor - Detecting... OK",
+    `Memory Testing: ${memory} Extended RAM... OK`,
+    "",
+    `Client Agent: ${userAgent}`,
+    "",
+    "Detecting Primary Master...   swapnadeep.cloud [ONLINE]",
+    "Detecting Primary Slave...    None",
+    "",
+    "Mounting file system...       SUCCESS",
+    "Loading UX_Engine.sys...      SUCCESS",
+    "Initializing GUI...",
+  ];
+
+  for (let line of lines) {
+    if (line === "") {
+      biosScreen.innerHTML += "<br>";
+    } else {
+      biosScreen.innerHTML += `<div>${line}</div>`;
+    }
+    await sleep(Math.floor(Math.random() * 110) + 40);
+  }
+
+  await sleep(600);
+  biosScreen.classList.add("fade-out");
+
+  setTimeout(() => {
+    biosScreen.remove();
+    onComplete();
+  }, 400);
+}

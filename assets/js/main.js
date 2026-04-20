@@ -2,6 +2,7 @@ import {
   initWindowManager,
   initDraggableIcons,
   initContextMenu,
+  runBIOSBootSequence,
 } from "./core.js";
 import {
   initTerminal,
@@ -11,19 +12,19 @@ import {
 } from "./apps.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Initialize Core System
-  initLoader();
-  initClock();
-  initWindowManager();
-  initDraggableIcons();
-  initContextMenu();
-  initTopBar();
+  runBIOSBootSequence(() => {
+    initLoader();
+    initClock();
+    initWindowManager();
+    initDraggableIcons();
+    initContextMenu();
+    initTopBar();
 
-  // 2. Initialize Applications
-  initTerminal();
-  initFileSystem();
-  initContactForm();
-  initSystemCV();
+    initTerminal();
+    initFileSystem();
+    initContactForm();
+    initSystemCV();
+  });
 });
 
 /** Handles the initial Uplink loading sequence */
@@ -37,7 +38,6 @@ function initLoader() {
 
   let loadingMessages = [];
 
-  // Check if we are on the 404 error page
   if (document.querySelector(".error-container")) {
     loadingMessages = [
       "Rerouting connection...",
@@ -47,7 +47,6 @@ function initLoader() {
       "Connection terminated.",
     ];
   } else {
-    // Standard homepage messages
     loadingMessages = [
       "Establishing secure connection...",
       "Bypassing mainframe security...",

@@ -1,3 +1,5 @@
+import { fileSystem } from "./data.js";
+
 /** Application: Interactive Terminal Console */
 export function initTerminal() {
   const cmdInput = document.getElementById("cmd-input");
@@ -64,7 +66,7 @@ function processCommand(cmd, interactiveOutput) {
       return;
     case "ls":
       responseLine.innerHTML =
-        "<span style='color: #2674e8; font-weight: bold;'>projects/</span> &nbsp; about_me.txt &nbsp; resume.pdf";
+        "<span style='color: var(--dracula-soul); font-weight: bold;'>projects/</span> &nbsp; about_me.txt &nbsp; resume.pdf";
       break;
     case "cat":
       if (args[1] === "about_me.txt") {
@@ -99,34 +101,47 @@ export function initFileSystem() {
     }
   };
 
-  const fileSystem = {
-    app_js: {
-      path: "~/ Ecosystem_WebOS / App.js",
-      type: "code",
-      content: `<span class="code-comment">// Modular Web OS</span>\n<span class="code-keyword">function</span> <span class="code-function">init</span>() {\n  console.log(<span class="code-string">"System Online"</span>);\n}`,
-    },
-    styles_css: {
-      path: "~/ Ecosystem_WebOS / App.css",
-      type: "code",
-      content: `<span class="code-comment">/* System Specs */</span>\n<span class="code-keyword">:root</span> {\n  --cyberpunk-primary: <span class="code-string">#9929ea</span>;\n}`,
-    },
-    sys_config: {
-      path: "~/ sys_config.yaml",
-      type: "code",
-      content: `<span class="code-comment"># Environment Vars</span>\n<span class="code-keyword">user</span>: swapnadeep\n<span class="code-keyword">role</span>: UX Engineer`,
-    },
-  };
-
   window.openFile = function (fileId, element) {
     document
       .querySelectorAll(".file-item")
       .forEach((el) => el.classList.remove("active"));
     element.classList.add("active");
+
     const fileData = fileSystem[fileId];
     if (!fileData) return;
-    document.getElementById("viewer-filepath").innerText = fileData.path;
-    document.getElementById("viewer-content").innerHTML =
-      `<div class="code-block">${fileData.content.trim()}</div>`;
+
+    if (fileData.type === "executable") {
+      document.getElementById("browser-title").innerHTML =
+        `<i class="fa-solid fa-microchip icon-mr-5"></i> ${fileData.title}`;
+      document.getElementById("browser-url").innerText =
+        `Executing remote payload: ${fileData.url}`;
+      document.getElementById("app-iframe").src = fileData.url;
+
+      document.getElementById("viewer-filepath").innerText = fileData.path;
+      document.getElementById("viewer-content").innerHTML = `
+        <div class="viewer-empty-state">
+          <i class="fa-solid fa-rocket browser-success-icon"></i>
+          <p class="browser-success-text">Process launched in new window.</p>
+        </div>`;
+
+      const browserWin = document.getElementById("window-browser");
+      if (browserWin && browserWin.classList.contains("hidden")) {
+        window.toggleWindow("window-browser");
+      }
+
+      if (window.triggerAchievement) {
+        window.triggerAchievement(
+          "runtime",
+          "Runtime Execution",
+          "Compiled and executed a live project payload.",
+          "fa-solid fa-bolt",
+        );
+      }
+    } else {
+      document.getElementById("viewer-filepath").innerText = fileData.path;
+      document.getElementById("viewer-content").innerHTML =
+        `<div class="code-block">${fileData.content.trim()}</div>`;
+    }
   };
 
   /** Spotlight Search Exports */

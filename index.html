@@ -380,32 +380,43 @@
         <div class="window-content no-padding explorer-layout">
           <div class="explorer-sidebar">
             <div class="directory-title">ROOT DIRECTORY</div>
-            <div class="folder-wrapper">
-              <div class="folder-item" onclick="toggleFolder('folder-webos')">
-                <i class="fa-solid fa-folder sys-color-folder"></i>
-                <span>Ecosystem_WebOS</span>
-                <i class="fa-solid fa-chevron-down folder-arrow"></i>
-              </div>
-              <div class="folder-children" id="folder-webos">
-                <div class="file-item" onclick="openFile('app_js', this)">
-                  <i class="fa-brands fa-js sys-color-js"></i>
-                  <span>App.js</span>
-                </div>
-                <div class="file-item" onclick="openFile('styles_css', this)">
-                  <i class="fa-brands fa-css3-alt sys-color-css"></i>
-                  <span>App.css</span>
-                </div>
-              </div>
-            </div>
             <div class="file-item" style="margin-top: 15px;" onclick="openFile('sys_config', this)">
               <i class="fa-solid fa-gear sys-color-config"></i>
               <span>sys_config.yaml</span>
+            </div>
+
+            <div class="directory-title" style="margin-top: 25px;">PROJECTS_DIRECTORY</div>
+  
+            <div class="folder-wrapper">
+              <div class="folder-item" onclick="toggleFolder('folder-portfolio')">
+                <i class="fa-solid fa-folder sys-color-folder"></i>
+                <span>WebOS_Portfolio</span>
+                <i class="fa-solid fa-chevron-down folder-arrow"></i>
+              </div>
+              <div class="folder-children" id="folder-portfolio">
+                <div class="file-item" onclick="openFile('portfolio_readme', this)">
+                  <i class="fa-brands fa-markdown sys-color-readme"></i>
+                  <span>readme.md</span>
+                </div>
+                <div class="file-item" onclick="openFile('portfolio_probs', this)">
+                  <i class="fa-solid fa-file-shield sys-color-log"></i>
+                  <span>problems_and_solutions.log</span>
+                </div>
+                <div class="file-item" onclick="openFile('portfolio_skills', this)">
+                  <i class="fa-solid fa-code sys-color-json"></i>
+                  <span>required_skills.json</span>
+                </div>
+                <div class="file-item" onclick="openFile('portfolio_AppImage', this)">
+                  <i class="fa-solid fa-bolt sys-color-appimage" style="color: var(--cyberpunk-success);"></i>
+                  <span>Launch_Project.AppImage</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="explorer-viewer">
             <div class="viewer-header">
-              <span id="viewer-filepath">~/ Welcome</span>
+              <span id="viewer-filepath">🎁 Welcome</span>
             </div>
             <div class="viewer-body" id="viewer-content">
               <div class="viewer-empty-state">
@@ -414,6 +425,22 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div id="window-browser" class="os-window hidden window-browser-size">
+        <div class="window-header">
+          <span id="browser-title"><i class="fa-solid fa-microchip icon-mr-5"></i> app_runner.exe</span>
+          <div class="window-controls">
+            <button class="win-btn red" onclick="toggleWindow('window-browser')"></button>
+          </div>
+        </div>
+        <div class="window-content no-padding browser-content-wrapper">
+          <div class="browser-address-bar">
+            <i class="fa-solid fa-rotate-right sys-icon browser-reload-btn" onclick="document.getElementById('app-iframe').src = document.getElementById('app-iframe').src" title="Reload Process"></i>
+            <div id="browser-url" class="browser-url-display">Waiting for payload...</div>
+          </div>
+          <iframe id="app-iframe" src="" class="browser-iframe"></iframe>
         </div>
       </div>
 
@@ -536,7 +563,7 @@
             <div class="theme-grid" id="grid-gradients">
               <div class="swatch grad-1 active" data-bg="bg-grad-1" title="Synthwave Cyberpunk"></div>
               <div class="swatch grad-2" data-bg="bg-grad-2" title="Hotline Matrix"></div>
-              <div class="swatch grad-3 active" data-bg="bg-grad-3" title="Cursed Twilight"></div>
+              <div class="swatch grad-3" data-bg="bg-grad-3" title="Cursed Twilight"></div>
               <div class="swatch grad-4" data-bg="bg-grad-4" title="Nocturnal Void"></div>
             </div>
             <div class="theme-grid grid-hidden" id="grid-wallpapers">

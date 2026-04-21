@@ -71,8 +71,6 @@ body.bg-grad-1 {
     var(--container-border),
     var(--cyberpunk-select)
   );
-  background-size: 400% 400%;
-  animation: liquidGradient 15s ease infinite;
 }
 
 body.bg-grad-2 {
@@ -83,8 +81,6 @@ body.bg-grad-2 {
     var(--window-maximize),
     var(--cyberpunk-success)
   );
-  background-size: 400% 400%;
-  animation: liquidGradient 15s ease infinite;
 }
 
 body.bg-grad-3 {
@@ -95,8 +91,6 @@ body.bg-grad-3 {
     var(--halloween-slime),
     var(--halloween-burnt-ember)
   );
-  background-size: 400% 400%;
-  animation: liquidGradient 15s ease infinite;
 }
 
 body.bg-grad-4 {
@@ -107,6 +101,9 @@ body.bg-grad-4 {
     var(--dracula-flare),
     var(--dracula-soul)
   );
+}
+
+body[class*="bg-grad-"] {
   background-size: 400% 400%;
   animation: liquidGradient 15s ease infinite;
 }
@@ -1335,6 +1332,10 @@ body[class*="bg-img-"]::before {
   border-left: 3px solid var(--cyberpunk-primary);
 }
 
+.folder-item > span {
+  font-family: var(--font-header);
+}
+
 .folder-arrow {
   margin-left: auto;
   font-size: 10px;
@@ -1357,20 +1358,28 @@ body[class*="bg-img-"]::before {
   max-height: 500px;
 }
 
+.sys-color-config {
+  color: var(--cyberpunk-hyperlink);
+}
+
 .sys-color-folder {
   color: var(--cyberpunk-hyperlink);
 }
 
-.sys-color-js {
-  color: var(--cyberpunk-hyperlink);
+.sys-color-readme {
+  color: var(--cyberpunk-primary);
 }
 
-.sys-color-css {
-  color: var(--cyberpunk-glow);
+.sys-color-log {
+  color: var(--halloween-burnt-ember);
 }
 
-.sys-color-config {
-  color: rgba(148, 163, 184, 1);
+.sys-color-json {
+  color: var(--dracula-soul);
+}
+
+.sys-color-appimage {
+  color: var(--cyberpunk-success);
 }
 
 .explorer-viewer {
@@ -1383,10 +1392,11 @@ body[class*="bg-img-"]::before {
 .viewer-header {
   padding: 10px 20px;
   background-color: var(--black-alpha-20);
-  border-bottom: 1px solid var(--white-alpha-05);
+  border-bottom: 2px solid var(--dracula-soul);
+  font-family: var(--font-header);
   font-size: 13px;
   color: var(--secondary-text);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .viewer-body {
@@ -1402,7 +1412,7 @@ body[class*="bg-img-"]::before {
   align-items: center;
   justify-content: center;
   color: var(--secondary-text);
-  opacity: 0.3;
+  opacity: 0.8;
 }
 
 .viewer-empty-state i {
@@ -1410,10 +1420,64 @@ body[class*="bg-img-"]::before {
   margin-bottom: 15px;
 }
 
+.window-browser-size {
+  width: 1280px;
+  height: 720px;
+}
+
+.browser-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.browser-address-bar {
+  background: var(--shadow-secondary);
+  margin: 15px;
+  padding: 8px 15px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  border: 2px solid var(--cyberpunk-primary);
+  border-radius: 3px;
+}
+
+.browser-reload-btn {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.browser-url-display {
+  background: var(--container-shadow);
+  flex-grow: 1;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--secondary-text);
+  border: 2px solid var(--cyberpunk-select);
+}
+
+.browser-iframe {
+  flex-grow: 1;
+  border: none;
+  width: 100%;
+}
+
+.browser-success-icon {
+  color: var(--cyberpunk-success);
+  font-size: 50px;
+}
+
+.browser-success-text {
+  color: var(--cyberpunk-success);
+  font-weight: bold;
+  margin-top: 15px;
+}
+
 .code-block {
   font-size: 14px;
   line-height: 1.6;
-  color: rgba(226, 232, 240, 1);
+  color: var(--secondary-text);
   white-space: pre-wrap;
 }
 

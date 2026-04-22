@@ -23,9 +23,9 @@ export const fileSystem = {
     content: `<span class="code-comment">// Tech Stack Payload</span>\n<span class="code-keyword">{</span>\n  <span class="code-string">"architecture"</span>: <span class="code-string">"Native Web (Vanilla JS, HTML5, CSS3)"</span>,\n  <span class="code-string">"features"</span>: [<span class="code-string">"Draggable GUI"</span>, <span class="code-string">"Live Terminal"</span>, <span class="code-string">"Custom File System"</span>],\n  <span class="code-string">"design_pattern"</span>: <span class="code-string">"Modular ES6 Imports"</span>\n<span class="code-keyword">}</span>`,
   },
   portfolio_AppImage: {
-    path: "📁 Projects 👉 WebOS_Portfolio 👉 Launch_Project.AppImage",
+    path: "📁 Projects 👉 WebOS_Portfolio 👉 Initialize_System.AppImage",
     type: "executable",
-    url: "swapnadeep.cloud",
-    title: "WebOS_Instance.AppImage",
+    url: "https://github.com/meswapnadeeppal/meswapnadeeppal.github.io",
+    title: "Initialize_System.AppImage",
   },
 };

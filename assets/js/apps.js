@@ -111,23 +111,24 @@ export function initFileSystem() {
     if (!fileData) return;
 
     if (fileData.type === "executable") {
-      document.getElementById("browser-title").innerHTML =
-        `<i class="fa-solid fa-microchip icon-mr-5"></i> ${fileData.title}`;
-      document.getElementById("browser-url").innerText =
-        `Executing remote payload: ${fileData.url}`;
-      document.getElementById("app-iframe").src = fileData.url;
-
       document.getElementById("viewer-filepath").innerText = fileData.path;
       document.getElementById("viewer-content").innerHTML = `
         <div class="viewer-empty-state">
-          <i class="fa-solid fa-rocket browser-success-icon"></i>
-          <p class="browser-success-text">Process launched in new window.</p>
+          <i class="fa-solid fa-satellite-dish browser-success-icon" style="color: var(--cyberpunk-success); animation: pulse 1s infinite;"></i>
+          <p class="browser-success-text">Establishing Secure Connection...</p>
+          <p style="font-size: 12px;">Rerouting visual interface to external display module.</p>
         </div>`;
 
-      const browserWin = document.getElementById("window-browser");
-      if (browserWin && browserWin.classList.contains("hidden")) {
-        window.toggleWindow("window-browser");
-      }
+      setTimeout(() => {
+        window.open(fileData.url, "_blank");
+
+        document.getElementById("viewer-content").innerHTML = `
+          <div class="viewer-empty-state">
+            <i class="fa-solid fa-rocket browser-success-icon" style="color: var(--cyberpunk-success);"></i>
+            <p class="browser-success-text">Payload Executed Successfully</p>
+            <p style="font-size: 12px;">Process is now running in an external tab.</p>
+          </div>`;
+      }, 1200);
 
       if (window.triggerAchievement) {
         window.triggerAchievement(

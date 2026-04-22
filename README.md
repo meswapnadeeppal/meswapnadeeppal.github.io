@@ -1,32 +1,66 @@
-# ⚡ Swapnadeep Pal [ // System Archive ]
+<h1 align="center">InteractivePortfolio.AppImage [ root@swapnadeep ]</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="Vanilla JS" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=cssdesignawards&logoColor=white" alt="CSS3" />
+  <img src="https://img.shields.io/badge/License_MIT-9929ea?style=for-the-badge&logo=github&logoColor=white" alt="License" />
+</p>
 
-> `swapnadeep@cloud:~$ ./execute_portfolio.sh --verbose`
-> `[ OK ] Establishing secure connection...`
-> `[ OK ] Rendering DOM nodes...`
-> `[ OK ] Welcome to the Grid.`
+<p align="center">
+  <b>A high-performance, framework-free digital operating system built entirely from scratch.</b><br>
+  <i>Showcasing advanced DOM manipulation, modular architecture, and immersive UX.</i>
+</p>
 
-Welcome to the core repository of my personal portfolio—a high-performance, framework-free digital experience built from the ground up. This space isn't just a gallery of my work; it's a living document of my journey across front-end systems, C++ architectures, and intelligent AI/ML models.
+<p align="center">
+  <a href="https://swapnadeep.cloud"><b>🚀 Initiate Uplink: swapnadeep.cloud</b></a>
+</p>
 
-**🚀 Initiate Uplink:** [swapnadeep.cloud](https://swapnadeep.cloud)
+<p align="center">
+  <img src="/assets/images/readme.webp" alt="WebOS Screenshot Placeholder" width="800" style="border-radius: 8px; box-shadow: 0 4px 8px var(--halloween-purple);">
+</p>
 
 ---
 
+```bash
+swapnadeep@cloud:~$ ./execute_portfolio.sh --verbose
+[ OK ] Initializing BIOS Boot Sequence...
+[ OK ] Mounting Virtual File System...
+[ OK ] Loading UX_Engine.sys...
+[ OK ] Welcome to the Grid.
+```
+
+Welcome to the core repository of my interactive WebOS portfolio. More than just a gallery of past projects, this repository serves as a **verifiable demonstration of native web engineering**. By stepping away from heavy frontend frameworks like React or Vue, this project highlights a deep understanding of browser mechanics, complex state management, and immersive UI/UX design.
+
 ## 🧠 A Philosophy of Craft
 
-In an ecosystem crowded with heavy frameworks and drag-and-drop builders, I engineered this archive entirely from scratch. This approach grants absolute control over every pixel, DOM node, and paint cycle.
+In an ecosystem crowded with bloated frameworks and templated drag-and-drop builders, I chose to engineer this operating system entirely from scratch using **Vanilla JavaScript, HTML5, and CSS3**.
 
-It features a custom-built "cyber-terminal" aesthetic, complete with a simulated uplink loader, dynamic JavaScript rendering, and native CSS variables.
+This approach grants absolute control over every pixel, DOM node, and paint cycle. The result? A lightweight, lightning-fast, and uniquely personalized digital environment that runs smoothly across all modern devices.
 
 ### ⚙️ System Specs
 
-!HTML5 !CSS3 !JavaScript
+- **Architecture:** Native Web (Vanilla JS, HTML5, CSS3)
+- **Design Pattern:** Modular ES6 Imports (`core.js`, `apps.js`, `data.js`)
+- **Dependencies:** `0` (Zero external libraries for core UI/UX)
 
 ## 🛠️ Core Architecture & Features
 
-- **Modern UI Design:** Custom-built layout system using CSS Flexbox and Grid to ensure a flawless layout across all devices, seamlessly integrated with custom CSS Variables to keep the design personalized and tailored.
-- **Dynamic DOM Injection:** Projects are managed as a data layer in `assets/js/main-components.js` and rendered dynamically. Adding a new project is as simple as appending an object to an array.
-- **Fluid & Responsive:** The UI natively scales across all viewports, ensuring the glassmorphism and terminal aesthetics remain crisp from mobile to ultrawide monitors.
-- **Optimized Metadata:** Fully equipped with Open Graph (`og:`) and Twitter card meta tags for seamless and professional social sharing.
+- **🪟 Draggable Window Manager:** A custom-built, responsive GUI with dynamic resizing across N, S, E, and W axes, complete with active-window Z-index layering.
+- **⌨️ Interactive Terminal Console:** A fully functional, custom-built command-line interface. Try commands like `help`, `whoami`, `neofetch`, `ls`, and `cat [file]`.
+- **📁 Virtual File System:** Seamless integration of dynamic content payloads, managed purely as a data layer (`data.js`). Includes a spotlight-style quick search accessible via `Ctrl+K`.
+- **🏆 Gamified User Experience:** A custom, `localStorage`-backed achievement system that tracks interactions (e.g., unlocking "Root Access").
+- **🎨 Personalization Engine:** Real-time aesthetic overrides featuring custom wallpapers, dynamic gradients, and an immersive retro CRT scanline mode.
+- **💾 Encrypted CV Decryptor:** A simulated brute-force payload extraction animation for decrypting and viewing the system resume.
+- **🖱️ Context Menus:** Custom Windows 11-style right-click desktop overrides for intuitive navigation.
+
+## 🌐 Browser Support
+
+| Browser                      | Status                    |
+| :--------------------------- | :------------------------ |
+| **Chrome / Edge (Chromium)** | ✔️ Supported              |
+| **Firefox**                  | ✔️ Supported              |
+| **Safari**                   | ✔️ Supported              |
+| **Mobile Browsers**          | ✔️ Supported (Responsive) |
 
 ## 📂 Directory Map
 
@@ -34,30 +68,18 @@ It features a custom-built "cyber-terminal" aesthetic, complete with a simulated
 [ ~/meswapnadeeppal.github.io ]
 ├── assets/
 │   ├── css/
-│   │   ├── 404.css
-│   │   ├── contact.css
-│   │   ├── global-components.css
-│   │   ├── main-components.css
-│   │   ├── page-transitions.css
-│   │   └── theme-variables.css
-│   ├── images/
-│   │   ├── background.webp
-│   │   ├── error.png
-│   │   ├── contact/
-│   │   │   └── contact-illustration.png
-│   │   └── index/
-│   │       ├── decor-programmer.webp
-│   │       └── project-data-breach.webp
+│   │   ├── 404.css               # Error page styles
+│   │   ├── main.css              # Core OS Window UI and components
+│   │   └── variables.css         # Dynamic theme custom properties
+│   ├── images/                   # Static assets, icons, and wallpapers
 │   └── js/
-│       ├── contact.js
-│       ├── main-components.js
-│       └── page-transitions.js
-├── 404.html
-├── contact.html
-├── index.html
-├── LICENSE
-├── README.md
-└── vercel.json
+│       ├── apps.js               # App logic (Terminal, File System, CV Decryptor)
+│       ├── core.js               # OS Engine (Window Manager, Context Menu, Boot)
+│       └── data.js               # Virtual file system & project payloads
+│       └── main.js               # Primary JS module entry point
+├── index.html                    # Main Entry Point
+├── LICENSE                       # MIT License
+└── README.md                     # System Documentation
 ```
 
 ## 💻 Local Boot Sequence
@@ -73,11 +95,12 @@ Want to run this system locally? No node modules or build steps required.
    cd meswapnadeeppal.github.io
    ```
 3. **Initialize the environment:**
-   To execute the project locally, open the index.html file within a web browser. Alternatively, for an optimal development experience with automatic reloading, it is recommended to use the Live Server extension in Visual Studio Code.
+   Simply open the `index.html` file in your preferred web browser. <br>
+   _Tip: For an optimal development experience with automatic hot-reloading, use the **Live Server** extension in Visual Studio Code._
 
 ---
 
 <div align="center">
-  <i>"Explore the code behind the digital experience."</i><br>
+  <i>"Explore the code behind the digital experience."</i><br><br>
   <b><a href="https://www.linkedin.com/in/meswapnadeeppal/">LinkedIn</a></b> • <b><a href="https://github.com/meswapnadeeppal">GitHub</a></b>
 </div>

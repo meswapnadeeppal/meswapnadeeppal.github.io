@@ -148,18 +148,25 @@ export function initFileSystem() {
   /** Spotlight Search Exports */
   const searchOverlay = document.getElementById("search-modal-overlay");
   const paletteInput = document.getElementById("palette-search-input");
+  const searchResultsContainer = document.getElementById(
+    "search-results-container",
+  );
+
   window.openSearchModal = function () {
     if (searchOverlay) {
       searchOverlay.classList.remove("hidden");
       setTimeout(() => paletteInput?.focus(), 100);
     }
   };
+
   window.closeSearchModal = function () {
     if (searchOverlay) {
       searchOverlay.classList.add("hidden");
       if (paletteInput) paletteInput.value = "";
+      if (searchResultsContainer) searchResultsContainer.innerHTML = "";
     }
   };
+
   document.addEventListener("keydown", (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === "k") {
       e.preventDefault();
@@ -173,6 +180,79 @@ export function initFileSystem() {
     )
       window.closeSearchModal();
   });
+
+  if (paletteInput) {
+    paletteInput.addEventListener("input", (e) => {
+      const searchTerm = e.target.value.toLowerCase().trim();
+
+      const searchResultsContainer = document.querySelector(
+        ".search-results-list",
+      );
+
+      if (!searchResultsContainer) return;
+
+      searchResultsContainer.innerHTML = "";
+
+      if (searchTerm === "") return;
+
+      for (const [fileId, fileData] of Object.entries(fileSystem)) {
+        if (
+          fileId.toLowerCase().includes(searchTerm) ||
+          (fileData.path && fileData.path.toLowerCase().includes(searchTerm)) ||
+          (fileData.title && fileData.title.toLowerCase().includes(searchTerm))
+        ) {
+          let iconHTML = "";
+          let typeDesc = "";
+
+          if (fileData.type === "executable") {
+            iconHTML =
+              '<i class="fa-solid fa-bolt icon-mr-5" style="color: var(--cyberpunk-success);"></i>';
+            typeDesc = "Executable System Payload";
+          } else if (fileData.type === "code") {
+            iconHTML =
+              '<i class="fa-solid fa-file-code icon-mr-5" style="color: var(--cyberpunk-primary);"></i>';
+            typeDesc = "System Configuration File";
+          } else {
+            iconHTML = '<i class="fa-solid fa-file icon-mr-5"></i>';
+            typeDesc = "Standard Document";
+          }
+
+          const views = Math.floor(Math.random() * 50) + 1;
+          const score = Math.floor(Math.random() * 100) + 1;
+
+          const resultElement = document.createElement("div");
+          resultElement.className = "search-result-item";
+
+          resultElement.innerHTML = `
+            <div class="result-header">
+              <div class="result-title">${iconHTML} ${fileData.title || fileId}</div>
+              <div class="result-stats">
+                <span title="Views"><i class="fa-regular fa-eye"></i> ${views}</span>
+                <span title="Productivity Score"><i class="fa-solid fa-bolt"></i> ${score}</span>
+              </div>
+            </div>
+            <div class="result-desc">${fileData.path || typeDesc}</div>
+            <div class="result-expand">Run Command <i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-left: 5px;"></i></div>
+          `;
+
+          resultElement.onclick = () => {
+            const dummyElement = document.createElement("div");
+
+            const projectsWindow = document.getElementById("window-projects");
+            if (projectsWindow && projectsWindow.classList.contains("hidden")) {
+              window.toggleWindow("window-projects");
+            }
+
+            window.openFile(fileId, dummyElement);
+
+            window.closeSearchModal();
+          };
+
+          searchResultsContainer.appendChild(resultElement);
+        }
+      }
+    });
+  }
 }
 
 /** Application: Contact Form (Web3Forms) */

@@ -1,0 +1,157 @@
+/* ==========================================================================
+   BASE STYLES & RESETS
+   ========================================================================== */
+@import url("variables.css");
+
+::selection {
+  color: var(--cyberpunk-select);
+  background: var(--cyberpunk-hyperlink);
+}
+
+a {
+  font-family: var(--font-header);
+  color: var(--cyberpunk-hyperlink);
+}
+
+.text-hyperlink {
+  color: var(--cyberpunk-hyperlink);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-header);
+  color: var(--primary-text);
+  margin-top: 0;
+}
+
+p {
+  font-family: var(--font-primary);
+  color: var(--secondary-text);
+  opacity: 0.8;
+  margin-top: 0;
+}
+
+body.locked {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  color: var(--primary-text);
+  overflow: hidden;
+  box-shadow: inset 0 0 100px var(--container-shadow);
+  background-color: var(--background-slate);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background-color: var(--black-alpha-30);
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+body.bg-grad-1 {
+  background: linear-gradient(
+    -45deg,
+    var(--cyberpunk-secondary),
+    var(--cyberpunk-primary),
+    var(--container-border),
+    var(--cyberpunk-select)
+  );
+}
+
+body.bg-grad-2 {
+  background: linear-gradient(
+    -45deg,
+    var(--cyberpunk-glow),
+    var(--cyberpunk-hyperlink),
+    var(--window-maximize),
+    var(--cyberpunk-success)
+  );
+}
+
+body.bg-grad-3 {
+  background: linear-gradient(
+    -45deg,
+    var(--halloween-blood-red),
+    var(--halloween-purple),
+    var(--halloween-slime),
+    var(--halloween-burnt-ember)
+  );
+}
+
+body.bg-grad-4 {
+  background: linear-gradient(
+    -45deg,
+    var(--dracula-ichor),
+    var(--dracula-swamp),
+    var(--dracula-flare),
+    var(--dracula-soul)
+  );
+}
+
+body[class*="bg-grad-"] {
+  background-size: 400% 400%;
+  animation: liquidGradient 15s ease infinite;
+}
+
+@keyframes liquidGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body.bg-img-1 {
+  background: url("/assets/images/desktop-background/bg-new-worlds.webp") center
+    center / cover no-repeat fixed;
+  animation: none;
+}
+
+body.bg-img-2 {
+  background: url("/assets/images/desktop-background/bg-night-town.webp") center
+    center / cover no-repeat fixed;
+  animation: none;
+}
+
+body.bg-img-3 {
+  background: url("/assets/images/desktop-background/bg-forest-sunset.webp")
+    center center / cover no-repeat fixed;
+  animation: none;
+}
+
+body.bg-img-4 {
+  background: url("/assets/images/desktop-background/bg-retro-truck.webp")
+    center center / cover no-repeat fixed;
+  animation: none;
+}
+
+body[class*="bg-img-"]::before {
+  opacity: 0.1;
+}
+
+#desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}

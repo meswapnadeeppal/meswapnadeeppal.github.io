@@ -1,0 +1,396 @@
+/* ==========================================================================
+   COMPONENT: LOADERS & UTILITIES
+   ========================================================================== */
+#uplink-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: var(--z-loader);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: progress;
+  background: linear-gradient(
+    to right,
+    var(--black-alpha-80) 0%,
+    var(--background-slate) 100%
+  );
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s ease;
+  backdrop-filter: blur(69px);
+}
+
+.uplink-interface {
+  width: 250px;
+  padding: 30px;
+  border: 3px solid var(--cyberpunk-primary);
+  border-radius: 4px;
+  background-color: var(--background-body);
+  opacity: 0.95;
+  box-shadow: var(--cyberpunk-secondary) 0px 0px 5px 0px;
+}
+
+#uplink-status-log {
+  display: block;
+  font-family: var(--font-header);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.uplink-progress-track {
+  width: 100%;
+  height: 4px;
+  background-color: var(--cyberpunk-primary);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.uplink-progress-fill {
+  width: 0%;
+  height: 100%;
+  background-color: var(--cyberpunk-hyperlink);
+  transition: width 0.1s linear;
+}
+
+.uplink-metrics {
+  text-align: right;
+}
+
+.uplink-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.grid-hidden {
+  display: none;
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.m-b-0 {
+  margin-bottom: 0;
+}
+
+.icon-mr-5 {
+  margin-right: 5px;
+}
+
+.sys-label-padding {
+  padding-bottom: 10px;
+}
+
+.sys-margin-top-15 {
+  margin-top: 15px;
+}
+
+.sys-margin-top-20 {
+  margin-top: 20px;
+}
+
+.sys-survey-text {
+  font-family: var(--font-header);
+  font-weight: 600;
+  color: var(--secondary-text);
+}
+
+.hidden-trap {
+  display: none;
+}
+
+.term-msg {
+  color: var(--secondary-text);
+}
+
+.term-msg-spaced {
+  margin-bottom: 18px !important;
+}
+
+.media-load-bar {
+  cursor: pointer;
+}
+
+.media-progress-fill {
+  width: 0%;
+  background-color: var(--cyberpunk-hyperlink);
+  transition: width 0.1s linear;
+}
+
+.error-msg {
+  color: var(--window-close);
+}
+
+/* ==========================================================================
+   COMPONENT: BIOS BOOT SEQUENCE & CRT
+   ========================================================================== */
+.bios-boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-slate);
+  font-family: var(--font-header);
+  color: var(--secondary-text);
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 20px;
+  z-index: 9999999;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.bios-boot-screen.fade-out {
+  opacity: 0;
+}
+
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: var(--z-crt);
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, var(--black-alpha-25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06)
+    );
+  background-size:
+    100% 2px,
+    3px 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+
+body.crt-mode .crt-overlay {
+  opacity: 1;
+  visibility: visible;
+  animation: crt-flicker 0.15s infinite;
+}
+
+@keyframes crt-flicker {
+  0% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.98;
+  }
+}
+
+#toggle-crt {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: var(--black-alpha-50);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid var(--container-border);
+  transition: 0.3s;
+  opacity: 1 !important;
+}
+
+#toggle-crt::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  top: 1px;
+  left: 2px;
+  background: var(--secondary-text);
+  transition: 0.3s;
+}
+
+#toggle-crt:checked {
+  background: var(--cyberpunk-success);
+  border-color: var(--cyberpunk-success);
+}
+
+#toggle-crt:checked::before {
+  left: 20px;
+  background: var(--background-body);
+}
+
+/* ==========================================================================
+   COMPONENT: ACHIEVEMENT NOTIFICATIONS
+   ========================================================================== */
+.achievement-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999999;
+  pointer-events: none;
+}
+
+.achievement-toast {
+  background: var(--slate-alpha-85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid var(--cyberpunk-primary);
+  border-radius: 8px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow:
+    0 10px 30px var(--black-alpha-60),
+    0 0 15px var(--primary-alpha-20);
+  transform: translateX(120%);
+  opacity: 0;
+  animation: slideInRight 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  pointer-events: auto;
+  width: 300px;
+}
+
+.achievement-toast.hiding {
+  animation: slideOutRight 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.achievement-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: var(--black-alpha-40);
+  border-radius: 50%;
+  border: 2px solid var(--cyberpunk-hyperlink);
+  color: var(--cyberpunk-hyperlink);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.achievement-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.achievement-header {
+  font-family: var(--font-header);
+  font-size: 10px;
+  color: var(--cyberpunk-success);
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+.achievement-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--primary-text);
+  margin-bottom: 2px;
+}
+
+.achievement-desc {
+  font-size: 11px;
+  color: var(--secondary-text);
+  opacity: 0.7;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE ENGINE
+   ========================================================================== */
+@media screen and (max-width: 850px) {
+  .cloudweb-bar {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .cloudweb-pill {
+    gap: 10px;
+    padding: 6px 12px;
+  }
+
+  .sys-icon-group {
+    display: none;
+  }
+
+  .os-window {
+    width: 95vw !important;
+    height: calc(100vh - 80px) !important;
+    left: 2.5vw !important;
+    top: 65px !important;
+    min-width: 0;
+  }
+
+  .sys-manager-content {
+    flex-direction: column;
+  }
+
+  .sys-right-panel {
+    width: 100%;
+  }
+
+  .form-group-collage {
+    flex-direction: column;
+  }
+
+  .cc-dropdown {
+    width: 90vw;
+    right: 5vw;
+    top: 65px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 20px;
+  }
+
+  .bento-item {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+
+  .explorer-sidebar {
+    display: none;
+  }
+}

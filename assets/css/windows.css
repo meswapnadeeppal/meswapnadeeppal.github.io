@@ -1,0 +1,166 @@
+/* ==========================================================================
+   COMPONENT: WINDOW MANAGER (DRAG & RESIZE)
+   ========================================================================== */
+.os-window {
+  position: absolute;
+  background-color: var(--body-alpha-35);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 3px solid var(--cyberpunk-primary);
+  border-radius: 8px;
+  box-shadow: 0 15px 40px var(--container-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 400px;
+  min-height: 300px;
+}
+
+.os-window.hidden {
+  display: none !important;
+}
+
+.os-window:not(.hidden) {
+  animation: windowPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes windowPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.resizer {
+  position: absolute;
+  z-index: 10;
+}
+
+.resizer.n {
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  cursor: n-resize;
+}
+
+.resizer.s {
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  cursor: s-resize;
+}
+
+.resizer.e {
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  width: 6px;
+  cursor: e-resize;
+}
+
+.resizer.w {
+  top: 0;
+  left: -3px;
+  bottom: 0;
+  width: 6px;
+  cursor: w-resize;
+}
+
+.resizer.ne {
+  top: -3px;
+  right: -3px;
+  width: 10px;
+  height: 10px;
+  cursor: ne-resize;
+  z-index: 11;
+}
+
+.resizer.nw {
+  top: -3px;
+  left: -3px;
+  width: 10px;
+  height: 10px;
+  cursor: nw-resize;
+  z-index: 11;
+}
+
+.resizer.se {
+  bottom: -3px;
+  right: -3px;
+  width: 10px;
+  height: 10px;
+  cursor: se-resize;
+  z-index: 11;
+}
+
+.resizer.sw {
+  bottom: -3px;
+  left: -3px;
+  width: 10px;
+  height: 10px;
+  cursor: sw-resize;
+  z-index: 11;
+}
+
+.window-header {
+  background-color: var(--slate-alpha-75);
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--container-border);
+  cursor: grab;
+  font-family: var(--font-header);
+  user-select: none;
+}
+
+.window-header:active {
+  cursor: grabbing;
+}
+
+.window-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.win-btn {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.win-btn.red {
+  background-color: var(--window-close);
+}
+
+.window-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: var(--slate-alpha-50);
+  position: relative;
+}
+
+.window-content.no-padding {
+  padding: 0 !important;
+}
+
+.window-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.window-content::-webkit-scrollbar-track {
+  background: var(--black-alpha-20);
+}
+
+.window-content::-webkit-scrollbar-thumb {
+  background: var(--cyberpunk-primary);
+  border-radius: 4px;
+}

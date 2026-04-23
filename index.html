@@ -710,6 +710,33 @@
           </div>
         </div>
       </div>
+
+      <div id="window-ai-vision" class="os-window ai-vision-window hidden">
+        <div class="window-header">
+          <span><i class="fa-solid fa-eye icon-mr-5"></i> neural_vision.exe</span>
+          <div class="window-controls">
+            <button class="win-btn red" onclick="toggleWindow('window-ai-vision')"></button>
+          </div>
+        </div>
+        <div class="window-content no-padding ai-vision-content">
+    
+          <div class="vision-left-panel">
+            <div id="vision-drop-zone" class="vision-drop-zone">
+              <i class="fa-solid fa-cloud-arrow-up vision-upload-icon"></i>
+              <h3 class="vision-title">Initialize Visual Scan</h3>
+              <p class="vision-subtitle">Drag & Drop an image payload here</p>
+              <input type="file" id="vision-file-input" class="hidden-input" accept="image/*" />
+            </div>
+          </div>
+
+          <div class="vision-right-panel">
+            <div class="vision-output-header">> OUTPUT_STREAM</div>
+            <div id="vision-output" class="vision-output-body">
+              <span class="vision-muted-text">Awaiting visual data...</span><span class="term-cursor"> _</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <div id="win11-context-menu" class="win11-context-menu">

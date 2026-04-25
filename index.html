@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Swapnadeep Pal | UX Engineer & System Developer</title>
     
-    <meta name="title" content="Swapnadeep Pal | WebOS Portfolio" />
+    <meta name="title" content="Swapnadeep Pal | SynthwaveOS Portfolio" />
     <meta name="description" content="Portfolio of Swapnadeep Pal, a UX Engineer and Interaction Designer from Kolkata. Specializing in MERN stack, C++ architectures, and verifiable privacy systems." />
     <meta name="keywords" content="Swapnadeep Pal, UX Engineer Kolkata, MERN Stack Developer, Interaction Designer, C++ Developer, Web OS Portfolio, JavaScript, React, UI/UX" />
     <meta name="author" content="Swapnadeep Pal" />
@@ -219,6 +219,16 @@
                 <div class="result-desc">Opens the directory containing MERN stack and HTML design portfolios.</div>
                 <div class="result-expand">Run Command <i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-left: 5px;"></i></div>
               </div>
+
+              <div class="search-result-item" onclick="toggleWindow('window-ai-vision'); closeSearchModal();">
+                <div class="result-header">
+                  <div class="result-title"><i class="fa-solid fa-eye icon-mr-5" style="color: var(--cyberpunk-primary);"></i> Initialize AI Vision</div>
+                  <div class="result-stats"><span title="Views"><i class="fa-regular fa-eye"></i> 12</span><span title="Productivity Score"><i class="fa-solid fa-bolt"></i> 99</span></div>
+                </div>
+                <div class="result-desc">Launches the Neural Net image scanner and poetry generator.</div>
+                <div class="result-expand">Run Command <i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-left: 5px;"></i></div>
+              </div>
+
               <div class="search-result-item" onclick="toggleWindow('window-terminal'); closeSearchModal();">
                 <div class="result-header">
                   <div class="result-title"><i class="fa-solid fa-terminal icon-mr-5"></i> Launch Linux Terminal</div>
@@ -233,8 +243,9 @@
                 <h4>RELATED TAGS</h4>
                 <div class="tag-cloud">
                   <span class="search-tag"><i class="fa-brands fa-linux"></i> linux</span>
-                  <span class="search-tag"><i class="fa-solid fa-code"></i> web dev</span>
                   <span class="search-tag">MERN Stack</span>
+                  <span class="search-tag"><i class="fa-solid fa-brain"></i> AI / ML</span>
+                  <span class="search-tag"><i class="fa-solid fa-network-wired"></i> Neural Net</span>
                 </div>
               </div>
             </div>
@@ -380,7 +391,13 @@
         <div class="window-content no-padding explorer-layout">
           <div class="explorer-sidebar">
             <div class="directory-title">ROOT DIRECTORY</div>
-            <div class="file-item" style="margin-top: 15px;" onclick="openFile('sys_config', this)">
+
+            <div class="file-item" style="margin-bottom: 4px;" onclick="toggleWindow('window-ai-vision')">
+              <i class="fa-solid fa-bolt sys-color-neuralv"></i>
+              <span>neural_vision.AppImage</span>
+            </div>
+
+            <div class="file-item" onclick="openFile('sys_config', this)">
               <i class="fa-solid fa-gear sys-color-config"></i>
               <span>sys_config.yaml</span>
             </div>
@@ -390,7 +407,7 @@
             <div class="folder-wrapper">
               <div class="folder-item" onclick="toggleFolder('folder-portfolio')">
                 <i class="fa-solid fa-folder sys-color-folder"></i>
-                <span>WebOS_Portfolio</span>
+                <span>SynthwaveOS_Portfolio</span>
                 <i class="fa-solid fa-chevron-down folder-arrow"></i>
               </div>
               <div class="folder-children" id="folder-portfolio">
@@ -713,7 +730,7 @@
 
       <div id="window-ai-vision" class="os-window ai-vision-window hidden">
         <div class="window-header">
-          <span><i class="fa-solid fa-eye icon-mr-5"></i> neural_vision.exe</span>
+          <span><i class="fa-solid fa-eye icon-mr-5"></i> neural_vision.AppImage</span>
           <div class="window-controls">
             <button class="win-btn red" onclick="toggleWindow('window-ai-vision')"></button>
           </div>

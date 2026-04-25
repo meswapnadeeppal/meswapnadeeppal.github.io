@@ -434,6 +434,10 @@
   max-height: 500px;
 }
 
+.sys-color-neuralv {
+  color: var(--cyberpunk-glow);
+}
+
 .sys-color-config {
   color: var(--cyberpunk-hyperlink);
 }

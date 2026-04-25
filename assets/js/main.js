@@ -9,6 +9,7 @@ import {
   initFileSystem,
   initContactForm,
   initSystemCV,
+  initNeuralVision,
 } from "./apps.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initFileSystem();
     initContactForm();
     initSystemCV();
+    initNeuralVision();
   });
 });
 

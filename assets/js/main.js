@@ -9,8 +9,9 @@ import {
   initFileSystem,
   initContactForm,
   initSystemCV,
-  initNeuralVision,
 } from "./apps.js";
+
+import { initNeuralVision } from "./vision.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   runBIOSBootSequence(() => {

@@ -1,6 +1,15 @@
+/**
+ * @file core.js
+ * @description Serves as the core kernel of the WebOS.
+ * Manages window dragging, z-index layering, boot sequences, and global achievements.
+ */
+
 let topZIndex = 100;
 
-/** Initializes draggable shortcuts on the desktop. */
+/** * @function initDraggableIcons
+ * @description Binds native drag-and-drop mechanics to the desktop shortcuts.
+ * Incorporates a movement threshold to prevent accidental clicks while dragging.
+ */
 export function initDraggableIcons() {
   const desktopIcons = document.querySelectorAll(".desktop-shortcut");
   desktopIcons.forEach((icon) => {
@@ -20,6 +29,7 @@ export function initDraggableIcons() {
       initialLeft = parseInt(style.left, 10);
       initialTop = parseInt(style.top, 10);
 
+      // Elevate z-index on interaction
       icon.style.zIndex = ++topZIndex;
       document.body.style.userSelect = "none";
 
@@ -27,6 +37,7 @@ export function initDraggableIcons() {
         if (!isDragging) return;
         const dx = moveEvent.clientX - startX;
         const dy = moveEvent.clientY - startY;
+        // Threshold check: Prevent micro-movements from canceling a click
         if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasMoved = true;
         if (hasMoved) {
           icon.style.left = `${initialLeft + dx}px`;
@@ -45,6 +56,7 @@ export function initDraggableIcons() {
       document.addEventListener("mouseup", onMouseUp);
     });
 
+    // Cancel click event if the element was actually dragged
     icon.addEventListener(
       "click",
       (e) => {
@@ -58,10 +70,14 @@ export function initDraggableIcons() {
   });
 }
 
-/** Initializes the Window Manager (Drag, Resize, Focus). */
+/** * @function initWindowManager
+ * @description Manages all native OS Windows. Hooks up close/open triggers,
+ * active-state z-index elevation, and edge-resizing mechanics.
+ */
 export function initWindowManager() {
   const windows = document.querySelectorAll(".os-window");
 
+  // Global window toggler attached to the window object for HTML access
   window.toggleWindow = (id) => {
     const win = document.getElementById(id);
     if (!win) return;
@@ -69,6 +85,7 @@ export function initWindowManager() {
       win.classList.remove("hidden");
       win.style.zIndex = ++topZIndex;
 
+      // Special case: Trigger achievement on first terminal open
       if (id === "window-terminal") {
         window.triggerAchievement(
           "root_access",
@@ -78,6 +95,7 @@ export function initWindowManager() {
         );
       }
 
+      // Auto-center newly opened windows
       if (window.innerWidth > 850) {
         const leftPos = (window.innerWidth - win.offsetWidth) / 2;
         const topPos = (window.innerHeight - win.offsetHeight) / 2;
@@ -89,9 +107,12 @@ export function initWindowManager() {
     }
   };
 
+  // Bind drag and resize events to every window
   windows.forEach((win) => {
     const header = win.querySelector(".window-header");
     const dirs = ["n", "s", "e", "w", "ne", "nw", "se", "sw"];
+
+    // Inject resize handles
     dirs.forEach((dir) => {
       const resizer = document.createElement("div");
       resizer.className = `resizer ${dir}`;
@@ -99,6 +120,7 @@ export function initWindowManager() {
       resizer.addEventListener("mousedown", initResize, false);
     });
 
+    // Elevate window on any click
     win.addEventListener("mousedown", () => {
       win.style.zIndex = ++topZIndex;
     });
@@ -137,6 +159,7 @@ export function initWindowManager() {
       document.removeEventListener("mouseup", onMouseUp);
     };
 
+    // Header drag init
     header.addEventListener("mousedown", (e) => {
       if (e.target.classList.contains("win-btn")) return;
       isDragging = true;
@@ -149,6 +172,7 @@ export function initWindowManager() {
       document.addEventListener("mouseup", onMouseUp);
     });
 
+    // Resizer init
     function initResize(e) {
       isResizing = true;
       currentResizer = e.target;
@@ -171,7 +195,9 @@ export function initWindowManager() {
   initAudioAndMantra();
 }
 
-/** Initializes the Win11 style Context Menu */
+/** * @function initContextMenu
+ * @description Replaces default right-click behavior with a custom Windows 11 style GUI.
+ */
 export function initContextMenu() {
   const contextMenu = document.getElementById("win11-context-menu");
   if (!contextMenu) return;
@@ -182,10 +208,13 @@ export function initContextMenu() {
       y = e.clientY;
     const menuWidth = 250;
     const menuHeight = contextMenu.offsetHeight || 200;
+
+    // Bounds checking to prevent menu clipping off-screen
     if (x + menuWidth > window.innerWidth)
       x = window.innerWidth - menuWidth - 5;
     if (y + menuHeight > window.innerHeight)
       y = window.innerHeight - menuHeight - 5;
+
     contextMenu.style.left = `${x}px`;
     contextMenu.style.top = `${y}px`;
     contextMenu.classList.add("active");
@@ -197,10 +226,12 @@ export function initContextMenu() {
   });
 }
 
-/** Triggers an OS Achievement Notification */
+/** * @function triggerAchievement
+ * @description Fires an Xbox/Steam style popup notification for specific user events.
+ * Writes to localStorage to ensure achievements only fire once per visitor.
+ */
 export function triggerAchievement(id, title, desc, iconClass) {
   if (localStorage.getItem(`achieved_${id}`)) return;
-
   localStorage.setItem(`achieved_${id}`, "true");
 
   const container = document.getElementById("achievement-container");
@@ -209,9 +240,7 @@ export function triggerAchievement(id, title, desc, iconClass) {
   const toast = document.createElement("div");
   toast.className = "achievement-toast";
   toast.innerHTML = `
-    <div class="achievement-icon">
-      <i class="${iconClass}"></i>
-    </div>
+    <div class="achievement-icon"><i class="${iconClass}"></i></div>
     <div class="achievement-content">
       <span class="achievement-header">Achievement Unlocked</span>
       <span class="achievement-title">${title}</span>
@@ -224,16 +253,16 @@ export function triggerAchievement(id, title, desc, iconClass) {
   setTimeout(() => {
     toast.classList.add("hiding");
     setTimeout(() => {
-      if (container.contains(toast)) {
-        container.removeChild(toast);
-      }
+      if (container.contains(toast)) container.removeChild(toast);
     }, 500);
   }, 5000);
 }
 
 window.triggerAchievement = triggerAchievement;
 
-/** Private Core Utilities */
+/** * @function initPersonalization
+ * @description Internal Core utility managing OS aesthetic configurations and local storage states.
+ */
 function initPersonalization() {
   const tabGradients = document.getElementById("tab-gradients");
   const tabWallpapers = document.getElementById("tab-wallpapers");
@@ -347,6 +376,9 @@ function initPersonalization() {
   }
 }
 
+/** * @function initAudioAndMantra
+ * @description Internal Core utility for the audio player and typing loop logic in the Taskbar Control Center.
+ */
 function initAudioAndMantra() {
   const ccPlayBtn = document.getElementById("cc-play-btn");
   const bgmPlayer = document.getElementById("bgm-player");
@@ -407,23 +439,14 @@ function initAudioAndMantra() {
       const phrase1 =
         "[ 📡 UPLINK SECURED 🧬 ACKNOWLEDGING UNIVERSAL SOURCE 🌌 ]";
       const mantras = [
-        /** Devanagari (Sanskrit/Hindi/Marathi) */
         "[ SYS.KERN 💠 ॐ नमो भगवते वासुदेवाय 💠 OMNIVERSAL_FREQ : ???Hz ]",
-        /** Bengali / Assamese */
         "[ ROOT_ACCESS 💠 ওঁ নমো ভগবতে বাসুদেবায় 💠 OVERRIDE_0x00 ]",
-        /** Telugu */
         "[ THREAD_EXEC 💠 ఓం నమో భగవతే వాసుదేవాయ 💠 PAYLOAD_SECURE ]",
-        /** Tamil */
         "[ BIO_METRICS 💠 ஓம் நமோ பகவதே வாசுதேவாய 💠 VITAL_STABLE ]",
-        /** Gujarati */
         "[ NEURAL_LINK 💠 ૐ નમો ભગવતે વાસુદેવાય 💠 SYNC_ACTIVE ]",
-        /** Kannada */
         "[ QUANTUM_STATE 💠 ಓಂ ನಮೋ ಭಗವತೇ ವಾಸುದೇವಾಯ 💠 OBSERVED ]",
-        /** Malayalam */
         "[ SYSTEM_UPTIME 💠 ഓം നമോ ഭഗവതേ വാസുദേവായ 💠 INFINITE ]",
-        /** Odia */
         "[ CLUSTER_NODE 💠 ଓଁ ନମୋ ଭଗବତେ ବାସୁଦେବାୟ 💠 CONNECTED ]",
-        /** English Transliteration */
         "[ DECRYPTING_SOUL 💠 OM NAMO BHAGAVATE VASUDEVAYA 💠 ALIGN_OK ]",
       ];
       let currentIndex = 0;
@@ -444,7 +467,10 @@ function initAudioAndMantra() {
   }
 }
 
-/** Initializes the BIOS Boot Sequence */
+/** * @function runBIOSBootSequence
+ * @description Animates the retro terminal bootloader sequence before unlocking the DOM.
+ * @param {Function} onComplete - Callback executed once animation completes.
+ */
 export async function runBIOSBootSequence(onComplete) {
   const biosScreen = document.getElementById("bios-boot-screen");
   if (!biosScreen) {
@@ -453,7 +479,6 @@ export async function runBIOSBootSequence(onComplete) {
   }
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   const memory = navigator.deviceMemory
     ? `${navigator.deviceMemory * 1024} MB`
     : "16384 MB";

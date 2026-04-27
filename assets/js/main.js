@@ -1,3 +1,9 @@
+/**
+ * @file main.js
+ * @description Entry point for the WebOS. Initializes all core modules, apps, and GUI components
+ * strictly after the retro BIOS boot sequence resolves.
+ */
+
 import {
   initWindowManager,
   initDraggableIcons,
@@ -10,7 +16,6 @@ import {
   initContactForm,
   initSystemCV,
 } from "./apps.js";
-
 import { initNeuralVision } from "./vision.js";
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -370,7 +370,7 @@
 }
 
 .explorer-sidebar {
-  width: 260px;
+  min-width: 240px;
   background-color: var(--black-alpha-20);
   border-right: 1px solid var(--white-alpha-05);
   padding: 15px 10px;
@@ -446,7 +446,7 @@
 }
 
 .sys-color-neuralv {
-  color: var(--cyberpunk-glow);
+  color: var(--cyberpunk-secondary);
 }
 
 .sys-color-config {
@@ -530,12 +530,16 @@
 }
 
 .code-comment {
+  font-family: var(--font-header);
   color: rgba(100, 116, 139, 1);
   font-style: italic;
+  font-weight: 600;
 }
 
 .code-keyword {
+  font-family: var(--font-header);
   color: rgba(198, 120, 221, 1);
+  font-weight: 600;
 }
 
 .code-string {
@@ -1466,7 +1470,7 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
    ========================================================================== */
 .ai-vision-window {
   width: 800px;
-  height: 500px;
+  height: 600px;
 }
 
 .ai-vision-content {
@@ -1498,14 +1502,14 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   justify-content: center;
   align-items: center;
   background: var(--body-alpha-35);
-  border: 2px dashed var(--cyberpunk-primary);
+  border: 3px solid var(--container-border);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .vision-drop-zone:hover,
 .vision-drop-zone.dragover {
-  border-color: var(--cyberpunk-secondary);
+  border-color: var(--dracula-swamp);
 }
 
 .vision-upload-icon {
@@ -1522,7 +1526,7 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 .vision-subtitle {
   color: var(--secondary-text);
   font-size: 13px;
-  margin-top: 5px;
+  margin-top: 12px;
 }
 
 .hidden-input {
@@ -1549,13 +1553,14 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 .vision-output-body {
   flex: 1;
   overflow-y: auto;
-  color: var(--cyberpunk-success);
+  font-family: var(--font-header);
   font-size: 14px;
-  line-height: 1.6;
+  font-weight: 700;
+  line-height: 1.8;
 }
 
 .vision-muted-text {
-  color: var(--secondary-text);
+  color: var(--cyberpunk-success);
 }
 
 /* ==========================================================================

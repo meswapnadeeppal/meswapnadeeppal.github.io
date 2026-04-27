@@ -1,6 +1,15 @@
+/**
+ * @file apps.js
+ * @description Handles the initialization and event logic for individual OS applications.
+ * Includes the Interactive Terminal, File System Explorer, Web3Forms, and system decryptors.
+ */
+
 import { fileSystem } from "./data.js";
 
-/** Application: Interactive Terminal Console */
+/** * @function initTerminal
+ * @description Bootstraps the interactive command line interface.
+ * Binds keydown events and passes commands to the processing engine.
+ */
 export function initTerminal() {
   const cmdInput = document.getElementById("cmd-input");
   const interactiveOutput = document.getElementById(
@@ -9,6 +18,7 @@ export function initTerminal() {
   const cmdDisplay = document.getElementById("cmd-text-display");
   const loginTimeDisplay = document.getElementById("login-time-display");
 
+  // Format and set initial login timestamp
   if (loginTimeDisplay) {
     loginTimeDisplay.innerText = new Date().toLocaleString("en-US", {
       weekday: "short",
@@ -21,6 +31,7 @@ export function initTerminal() {
     });
   }
 
+  // Bind input tracking and execution
   if (cmdInput && interactiveOutput && cmdDisplay) {
     cmdInput.addEventListener("input", () => {
       cmdDisplay.textContent = cmdInput.value;
@@ -36,6 +47,12 @@ export function initTerminal() {
   }
 }
 
+/**
+ * @function processCommand
+ * @description Parses string input and outputs the appropriate terminal response or triggers OS events.
+ * @param {string} cmd - The raw user input command.
+ * @param {HTMLElement} interactiveOutput - The DOM container for terminal history.
+ */
 function processCommand(cmd, interactiveOutput) {
   const echoLine = document.createElement("div");
   echoLine.style.display = "flex";
@@ -56,7 +73,7 @@ function processCommand(cmd, interactiveOutput) {
         "Available commands:<br>- <span style='color: var(--cyberpunk-hyperlink)'>help</span>: Show this message<br>- <span style='color: var(--cyberpunk-hyperlink)'>whoami</span>: Display current user<br>- <span style='color: var(--cyberpunk-hyperlink)'>neofetch</span>: A command-line system information tool<br>- <span style='color: var(--cyberpunk-hyperlink)'>clear</span>: Clear terminal output<br>- <span style='color: var(--cyberpunk-hyperlink)'>ls</span>: List directory contents<br>- <span style='color: var(--cyberpunk-hyperlink)'>cat [file]</span>: Read file contents";
       break;
     case "neofetch":
-      responseLine.innerHTML = `<div style="display: flex; gap: 20px; margin-top: 10px; margin-bottom: 10px;"><div style="color: var(--cyberpunk-secondary); font-weight: bold; line-height: 1.2;"><pre style="margin:0;">   .--.\n  /    \\\n  \\.@-@./\n  /\\_-_/\\\n //  _  \\\\\n| \\     / |\n\\_\\_'_/_/_/</pre></div><div style="display: flex; flex-direction: column; justify-content: center; font-size: 13px;"><span style="color: var(--cyberpunk-success); font-weight: bold;">swapnadeep@cloud</span><span>----------------</span><span><span style="color: var(--cyberpunk-secondary);">OS:</span> Linux Portfolio Web Edition</span><span><span style="color: var(--cyberpunk-secondary);">Host:</span> swapnadeep.cloud</span><span><span style="color: var(--cyberpunk-secondary);">Role:</span> UX Engineer</span></div></div>`;
+      responseLine.innerHTML = `<div style="display: flex; gap: 20px; margin-top: 10px; margin-bottom: 10px;"><div style="color: var(--cyberpunk-secondary); font-weight: bold; line-height: 1.2;"><pre style="margin:0;">   .--.\n  /    \\\n  \\.@-@./\n  /\\_-_/\\\n //  _  \\\\\n| \\     / |\n\\_\\_'_/_/_/</pre></div><div style="display: flex; flex-direction: column; justify-content: center; font-size: 13px;"><span style="color: var(--cyberpunk-success); font-weight: bold;">swapnadeep@cloud</span><span>----------------</span><span><span style="color: var(--cyberpunk-secondary);">OS:</span> Linux Portfolio Web Edition</span><span><span style="color: var(--cyberpunk-secondary);">Host:</span> swapnadeep.cloud</span><span><span style="color: var(--cyberpunk-secondary);">Role:</span> System Architect</span></div></div>`;
       break;
     case "whoami":
       responseLine.textContent = "swapnadeep";
@@ -91,7 +108,10 @@ function processCommand(cmd, interactiveOutput) {
     interactiveOutput.parentElement.scrollHeight;
 }
 
-/** Application: File Explorer */
+/** * @function initFileSystem
+ * @description Binds file explorer UI to the data.js virtual hard drive.
+ * Also initializes the global Spotlight Search (Ctrl+K) interface.
+ */
 export function initFileSystem() {
   window.toggleFolder = function (folderId) {
     const folder = document.getElementById(folderId);
@@ -110,6 +130,7 @@ export function initFileSystem() {
     const fileData = fileSystem[fileId];
     if (!fileData) return;
 
+    // Handles external payload routing
     if (fileData.type === "executable") {
       document.getElementById("viewer-filepath").innerText = fileData.path;
       document.getElementById("viewer-content").innerHTML = `
@@ -121,7 +142,6 @@ export function initFileSystem() {
 
       setTimeout(() => {
         window.open(fileData.url, "_blank");
-
         document.getElementById("viewer-content").innerHTML = `
           <div class="viewer-empty-state">
             <i class="fa-solid fa-rocket browser-success-icon" style="color: var(--cyberpunk-success);"></i>
@@ -138,14 +158,20 @@ export function initFileSystem() {
           "fa-solid fa-bolt",
         );
       }
+    } else if (fileData.type === "package") {
+      // Specialized rendering for internal AppImages (e.g., Neural Vision)
+      document.getElementById("viewer-filepath").innerHTML =
+        `<i class="fa-solid fa-bolt sys-color-neuralv" style="margin-right: 8px;"></i> ${fileData.path}`;
+      document.getElementById("viewer-content").innerHTML = fileData.content;
     } else {
+      // Standard rendering for parsed code and raw text files
       document.getElementById("viewer-filepath").innerText = fileData.path;
       document.getElementById("viewer-content").innerHTML =
         `<div class="code-block">${fileData.content.trim()}</div>`;
     }
   };
 
-  /** Spotlight Search Exports */
+  /** --- Spotlight Search Implementation --- */
   const searchOverlay = document.getElementById("search-modal-overlay");
   const paletteInput = document.getElementById("palette-search-input");
   const searchResultsContainer = document.getElementById(
@@ -167,6 +193,7 @@ export function initFileSystem() {
     }
   };
 
+  // Global hotkey binding (Ctrl+K / Cmd+K)
   document.addEventListener("keydown", (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === "k") {
       e.preventDefault();
@@ -177,22 +204,20 @@ export function initFileSystem() {
       e.key === "Escape" &&
       searchOverlay &&
       !searchOverlay.classList.contains("hidden")
-    )
+    ) {
       window.closeSearchModal();
+    }
   });
 
   if (paletteInput) {
     paletteInput.addEventListener("input", (e) => {
       const searchTerm = e.target.value.toLowerCase().trim();
-
       const searchResultsContainer = document.querySelector(
         ".search-results-list",
       );
 
       if (!searchResultsContainer) return;
-
       searchResultsContainer.innerHTML = "";
-
       if (searchTerm === "") return;
 
       for (const [fileId, fileData] of Object.entries(fileSystem)) {
@@ -205,13 +230,14 @@ export function initFileSystem() {
           let typeDesc = "";
 
           if (fileData.type === "executable") {
-            iconHTML =
-              '<i class="fa-solid fa-bolt icon-mr-5" style="color: var(--cyberpunk-success);"></i>';
+            iconHTML = '<i class="fa-solid fa-bolt icon-mr-5"></i>';
             typeDesc = "Executable System Payload";
           } else if (fileData.type === "code") {
-            iconHTML =
-              '<i class="fa-solid fa-file-code icon-mr-5" style="color: var(--cyberpunk-primary);"></i>';
+            iconHTML = '<i class="fa-solid fa-file-code icon-mr-5"></i>';
             typeDesc = "System Configuration File";
+          } else if (fileData.type === "package") {
+            iconHTML = '<i class="fa-solid fa-bolt icon-mr-5"></i>';
+            typeDesc = "Application Package";
           } else {
             iconHTML = '<i class="fa-solid fa-file icon-mr-5"></i>';
             typeDesc = "Standard Document";
@@ -237,14 +263,11 @@ export function initFileSystem() {
 
           resultElement.onclick = () => {
             const dummyElement = document.createElement("div");
-
             const projectsWindow = document.getElementById("window-projects");
             if (projectsWindow && projectsWindow.classList.contains("hidden")) {
               window.toggleWindow("window-projects");
             }
-
             window.openFile(fileId, dummyElement);
-
             window.closeSearchModal();
           };
 
@@ -255,7 +278,10 @@ export function initFileSystem() {
   }
 }
 
-/** Application: Contact Form (Web3Forms) */
+/** * @function initContactForm
+ * @description Bootstraps the Web3Forms API connection for the Contact UI.
+ * Handles custom dropdowns and simulated security toggles.
+ */
 export function initContactForm() {
   const wrapper = document.getElementById("roleSelectWrapper");
   const trigger = document.getElementById("roleSelectTrigger");
@@ -335,7 +361,9 @@ export function initContactForm() {
   }
 }
 
-/** Application: System CV Decryptor */
+/** * @function initSystemCV
+ * @description Simulates a cryptographic decryption sequence before revealing the CV download link.
+ */
 export function initSystemCV() {
   window.startCVDecrypt = () => {
     const idleState = document.getElementById("cv-idle-state");

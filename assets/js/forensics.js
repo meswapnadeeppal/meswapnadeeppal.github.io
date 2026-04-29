@@ -4,10 +4,6 @@
  */
 
 export function initForensics() {
-  const API_KEY = "PASTE_YOUR_NEW_API_KEY_HERE";
-  const API_ENDPOINT =
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
-
   const inputArea = document.getElementById("forge-input");
   const outputArea = document.getElementById("forge-output");
   const analysisPanel = document.getElementById("forge-analysis");
@@ -15,7 +11,7 @@ export function initForensics() {
   const btnScan = document.getElementById("btn-forge-scan");
   const btnRewrite = document.getElementById("btn-forge-rewrite");
   const btnHumanize = document.getElementById("btn-forge-humanize");
-  const btnCopy = document.getElementById("btn-forge-copy"); // <--- New Button
+  const btnCopy = document.getElementById("btn-forge-copy");
 
   if (!inputArea || !btnScan) return;
 
@@ -26,7 +22,6 @@ export function initForensics() {
     btnCopy.addEventListener("click", () => {
       let textToCopy = outputArea.innerText;
 
-      // Prevent copying the default placeholder text
       if (
         textToCopy.includes("// Output buffer ready") ||
         textToCopy.includes("Processing payload")
@@ -38,12 +33,10 @@ export function initForensics() {
         .writeText(textToCopy)
         .then(() => {
           const originalHTML = btnCopy.innerHTML;
-          // Visual confirmation
           btnCopy.innerHTML = '<i class="fa-solid fa-check"></i> COPIED!';
           btnCopy.style.color = "var(--cyberpunk-success)";
           btnCopy.style.borderColor = "var(--cyberpunk-success)";
 
-          // Reset after 2 seconds
           setTimeout(() => {
             btnCopy.innerHTML = originalHTML;
             btnCopy.style.color = "";
@@ -56,24 +49,40 @@ export function initForensics() {
     });
   }
 
+  // ==========================================
+  // API ROUTING (LOCAL VS PRODUCTION)
+  // ==========================================
   async function callAI(promptText) {
     const requestBody = {
       contents: [{ parts: [{ text: promptText }] }],
     };
 
     try {
-      const response = await fetch(`${API_ENDPOINT}?key=${API_KEY}`, {
+      /* // --- 🔴 LOCALHOST MODE ---
+      // (Remember to scramble the key before committing!)
+      const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
+      const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
+      const response = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
       });
+      */
+
+      // --- 🟢 PRODUCTION MODE (Vercel) ---
+      const response = await fetch(`/api/gemini`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      });
+
       const data = await response.json();
       return (
         data.candidates?.[0]?.content?.parts?.[0]?.text ||
         "Error processing payload."
       );
     } catch (error) {
-      return "Network failure. Check API key and connection.";
+      return "Network failure. Check connection.";
     }
   }
 

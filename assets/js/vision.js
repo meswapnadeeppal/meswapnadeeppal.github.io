@@ -4,13 +4,6 @@
  */
 
 export function initNeuralVision() {
-  // ==========================================
-  // 1. CONFIGURATION & STATE
-  // ==========================================
-  const API_KEY = "PASTE_YOUR_NEW_API_KEY_HERE";
-  const API_ENDPOINT =
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
-
   const DOM = {
     dropZone: document.getElementById("vision-drop-zone"),
     fileInput: document.getElementById("vision-file-input"),
@@ -19,12 +12,7 @@ export function initNeuralVision() {
 
   if (!DOM.dropZone || !DOM.fileInput || !DOM.terminal) return;
 
-  // Mutex lock to prevent overlapping API calls or race conditions
   let isScannerLocked = false;
-
-  // ==========================================
-  // 2. INITIALIZATION & EVENT LISTENERS
-  // ==========================================
 
   DOM.dropZone.addEventListener("click", () => {
     if (!isScannerLocked) DOM.fileInput.click();
@@ -46,7 +34,6 @@ export function initNeuralVision() {
     DOM.dropZone.classList.remove("dragover");
     const file = e.dataTransfer.files[0];
 
-    // Payload Validation Check
     if (file && file.type.startsWith("image/")) {
       isScannerLocked = true;
       processImagePayload(file);
@@ -66,15 +53,6 @@ export function initNeuralVision() {
     }
   });
 
-  // ==========================================
-  // 3. CORE LOGIC & STATE HANDLING
-  // ==========================================
-
-  /**
-   * @function processImagePayload
-   * @description Converts visual data to base64, builds the UI container, and triggers the fake scan delay.
-   * @param {File} file - The raw uploaded image file.
-   */
   function processImagePayload(file) {
     const reader = new FileReader();
 
@@ -96,7 +74,6 @@ export function initNeuralVision() {
           () => {
             const spinner = startTerminalSpinner("var(--cyberpunk-primary)");
 
-            // Simulated processing delay (Saves API Quota)
             setTimeout(() => {
               stopTerminalSpinner(
                 spinner,
@@ -121,27 +98,11 @@ export function initNeuralVision() {
     reader.readAsDataURL(file);
   }
 
-  /**
-   * @function executeAIProtocol
-   * @description Formats the system prompt based on user selection and triggers the fetch request.
-   * @param {File} file - Original file object.
-   * @param {string} fileDataUrl - Base64 encoded string of the image.
-   * @param {string} protocolType - Key representing which preset prompt to use.
-   */
   async function executeAIProtocol(file, fileDataUrl, protocolType) {
     printToTerminal(
       `<br><span style="color: var(--cyberpunk-success);"><span class="fa-solid fa-terminal"></span> Establishing Neural Net connection ...</span>`,
       true,
     );
-
-    if (API_KEY === "PASTE_YOUR_NEW_API_KEY_HERE" || !API_KEY) {
-      typewriterEffect(
-        "[ERR] AUTH FAILURE: Missing API Key",
-        40,
-        "var(--window-close)",
-      );
-      return;
-    }
 
     printToTerminal(
       `<span style="color: var(--cyberpunk-primary);"><span class="fa-solid fa-terminal"></span> Processing Data Request ... </span>`,
@@ -152,7 +113,6 @@ export function initNeuralVision() {
     const base64Data = fileDataUrl.split(",")[1];
     let systemPrompt = "";
 
-    // --- PROTOCOL PROMPTS ---
     if (protocolType === "poem") {
       systemPrompt =
         "Analyze this image and write a highly detailed, original sonnet (14 lines, ABAB CDCD EFEF GG rhyme scheme) about exactly what you see. The tone should be evocative and poetic. End the response with '> Analysis Complete.'";
@@ -181,7 +141,6 @@ export function initNeuralVision() {
 
     const data = await callNeuralNet(systemPrompt, base64Data, file.type);
 
-    // API Error Handling
     if (!data || data.error) {
       stopTerminalSpinner(spinner, "[ FAILED ]", "var(--window-close)");
       const errMsg =
@@ -196,7 +155,6 @@ export function initNeuralVision() {
       "[ERR] Corrupted data packet received.";
 
     setTimeout(() => {
-      // Guardrails check to ensure failed protocols print in red styling
       if (
         aiResponse.includes("[NON-EDIBLE MATERIAL DETECTED]") ||
         aiResponse.includes("[NO VISIBLE TEXT DETECTED]") ||
@@ -211,14 +169,8 @@ export function initNeuralVision() {
   }
 
   // ==========================================
-  // 4. EXTERNAL API ROUTING
+  // API ROUTING (LOCAL VS PRODUCTION)
   // ==========================================
-
-  /**
-   * @function callNeuralNet
-   * @description Handles the asynchronous POST request to the Gemini API.
-   * @returns {Promise<Object>} The parsed JSON response.
-   */
   async function callNeuralNet(promptText, base64Data, mimeType) {
     const requestBody = {
       contents: [
@@ -232,11 +184,24 @@ export function initNeuralVision() {
     };
 
     try {
-      const response = await fetch(`${API_ENDPOINT}?key=${API_KEY}`, {
+      /* // --- 🔴 LOCALHOST MODE ---
+      // (Remember to scramble the key before committing!)
+      const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
+      const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
+      const response = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
       });
+      */
+
+      // --- 🟢 PRODUCTION MODE (Vercel) ---
+      const response = await fetch(`/api/gemini`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      });
+
       return await response.json();
     } catch (error) {
       console.error("API Request Failed:", error);
@@ -244,11 +209,6 @@ export function initNeuralVision() {
     }
   }
 
-  // ==========================================
-  // 5. UI & DOM BUILDERS
-  // ==========================================
-
-  /** Generates the image preview container and replaces the dropzone */
   function buildScannerUI(imageSrc) {
     Array.from(DOM.dropZone.children).forEach((child) => {
       if (child.id !== "vision-file-input") child.style.display = "none";
@@ -260,7 +220,7 @@ export function initNeuralVision() {
     const imgPreview = document.createElement("img");
     imgPreview.id = "vision-image-preview";
     imgPreview.style.cssText =
-      "width: 100%; max-height: 55%; object-fit: contain; border-radius: 6px; padding: 10px; box-sizing: border-box; filter: drop-shadow(0 0 15px var(--cyberpunk-primary)); animation: windowPopIn 0.3s ease forwards;";
+      "box-sizing: border-box; object-fit: contain; width: 90%; max-height: 55%; border: 4px solid var(--container-border); border-radius: 3px; margin: 10px 0px; filter: drop-shadow(0 0 15px var(--cyberpunk-primary)); animation: windowPopIn 0.3s ease forwards;";
     imgPreview.src = imageSrc;
     DOM.dropZone.appendChild(imgPreview);
 
@@ -270,28 +230,27 @@ export function initNeuralVision() {
     DOM.dropZone.appendChild(controlsContainer);
   }
 
-  /** Renders the 2x4 protocol selection grid */
   function renderActionButtons(file, fileDataUrl) {
     const container = document.getElementById("vision-controls");
     if (!container) return;
 
     container.style.cssText =
-      "width: 90%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; animation: windowPopIn 0.5s ease forwards;";
+      "width: 90%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 5px; animation: windowPopIn 0.5s ease forwards;";
 
     const btnStyle =
-      "padding: 8px; border-radius: 4px; cursor: pointer; width: 100%; transition: 0.2s; font-family: var(--font-header); font-weight: bold; font-size: 11px; text-transform: uppercase;";
+      "font-family: var(--font-header); font-weight: bold; font-size: 12px; text-transform: uppercase; border-radius: 3px; cursor: pointer; padding: 12px; width: 100%; transition: 0.2s;";
 
     const html = `
-      <button id="btn-protocol-poem" style="background: rgba(255, 215, 0, 0.05); border: 1px solid #ffd700; color: #ffd700; ${btnStyle}">Write a Poem</button>
-      <button id="btn-protocol-recipe" style="background: rgba(255, 140, 0, 0.05); border: 1px solid #ff8c00; color: #ff8c00; ${btnStyle}">Extract Recipe</button>
-      <button id="btn-protocol-desc" style="background: rgba(0, 255, 0, 0.05); border: 1px solid #00ff00; color: #00ff00; ${btnStyle}">Describe Image</button>
-      <button id="btn-protocol-text" style="background: rgba(176, 38, 255, 0.05); border: 1px solid #b026ff; color: #b026ff; ${btnStyle}">Extract Text</button>
-      <button id="btn-protocol-json" style="background: rgba(0, 229, 255, 0.05); border: 1px solid #00e5ff; color: #00e5ff; ${btnStyle}">Extract Raw Data</button>
-      <button id="btn-protocol-memory" style="background: rgba(255, 51, 102, 0.05); border: 1px solid #ff3366; color: #ff3366; ${btnStyle}">Write a Story</button>
-      <button id="btn-protocol-ui" style="background: rgba(0, 255, 204, 0.05); border: 1px solid #00ffcc; color: #00ffcc; ${btnStyle}">Get Website Code</button>
-      <button id="btn-protocol-decrypt" style="background: rgba(255, 255, 255, 0.05); border: 1px solid #ffffff; color: #ffffff; ${btnStyle}">Translate & Explain</button>
+      <button id="btn-protocol-poem" style="background: rgba(255, 215, 0, 0.05); border: 2px solid var(--cyberpunk-hyperlink); color: var(--cyberpunk-hyperlink); ${btnStyle}">Generate Poem</button>
+      <button id="btn-protocol-recipe" style="background: rgba(255, 140, 0, 0.05); border: 2px solid var(--dracula-soul); color: var(--dracula-soul); ${btnStyle}">Extract Recipe</button>
+      <button id="btn-protocol-desc" style="background: rgba(0, 255, 0, 0.05); border: 2px solid var(--window-maximize); color: var(--window-maximize); ${btnStyle}">Describe Image</button>
+      <button id="btn-protocol-text" style="background: rgba(176, 38, 255, 0.05); border: 2px solid var(--cyberpunk-primary); color: var(--cyberpunk-primary); ${btnStyle}">Extract Text</button>
+      <button id="btn-protocol-json" style="background: rgba(0, 128, 255, 0.05); border: 2px solid var(--cyberpunk-neon); color: var(--cyberpunk-neon); ${btnStyle}">Extract Raw Data</button>
+      <button id="btn-protocol-memory" style="background: rgba(150, 255, 0, 0.05); border: 2px solid var(--cyberpunk-circuit); color: var(--cyberpunk-circuit); ${btnStyle}">Write a Story</button>
+      <button id="btn-protocol-ui" style="background: rgba(255, 0, 128, 0.05); border: 2px solid var(--cyberpunk-secondary); color: var(--cyberpunk-secondary); ${btnStyle}">Get Website Code</button>
+      <button id="btn-protocol-decrypt" style="background: rgba(255, 130, 0, 0.05); border: 2px solid var(--system-spice); color: var(--system-spice); ${btnStyle}">Translate & Explain</button>
       
-      <button id="btn-vision-reset" style="grid-column: 1 / -1; background: rgba(255, 0, 60, 0.05); border: 2px solid var(--window-close); color: var(--window-close); padding: 8px; border-radius: 4px; cursor: pointer; width: 100%; transition: 0.2s; font-family: var(--font-header); font-weight: bold; font-size: 11px; margin-top: 4px;">
+      <button id="btn-vision-reset" style="grid-column: 1 / -1; font-family: var(--font-header); font-weight: bold; font-size: 13px; color: var(--window-close); background: rgba(255, 0, 60, 0.05); border: 2px solid var(--window-close); border-radius: 4px; cursor: pointer; padding: 12px; margin-top: 4px; margin-bottom: 10px; width: 100%; transition: 0.2s;">
         ABORT & RESET SCANNER
       </button>`;
 
@@ -301,21 +260,16 @@ export function initNeuralVision() {
     attachButtonBehaviors(file, fileDataUrl);
   }
 
-  /** Binds hover mechanics and execution logic to the dynamic grid */
   function attachButtonBehaviors(file, fileDataUrl) {
     const buttons = [
       { id: "btn-protocol-poem", color: "255, 215, 0", protocol: "poem" },
       { id: "btn-protocol-recipe", color: "255, 140, 0", protocol: "recipe" },
       { id: "btn-protocol-desc", color: "0, 255, 0", protocol: "description" },
       { id: "btn-protocol-text", color: "176, 38, 255", protocol: "text" },
-      { id: "btn-protocol-json", color: "0, 229, 255", protocol: "json" },
-      { id: "btn-protocol-memory", color: "255, 51, 102", protocol: "memory" },
-      { id: "btn-protocol-ui", color: "0, 255, 204", protocol: "ui" },
-      {
-        id: "btn-protocol-decrypt",
-        color: "255, 255, 255",
-        protocol: "decrypt",
-      },
+      { id: "btn-protocol-json", color: "0, 128, 255", protocol: "json" },
+      { id: "btn-protocol-memory", color: "150, 255, 0", protocol: "memory" },
+      { id: "btn-protocol-ui", color: "255, 0, 128", protocol: "ui" },
+      { id: "btn-protocol-decrypt", color: "255, 130, 0", protocol: "decrypt" },
     ];
 
     buttons.forEach((btnInfo) => {
@@ -335,7 +289,6 @@ export function initNeuralVision() {
           btn.innerText = "[ PROCESSING... ]";
           btn.style.pointerEvents = "none";
 
-          // Expand active button and hide siblings
           Array.from(
             document.getElementById("vision-controls").children,
           ).forEach((child) => {
@@ -362,7 +315,6 @@ export function initNeuralVision() {
     }
   }
 
-  /** Wipes state and clears DOM to await next payload */
   function resetScannerUI() {
     isScannerLocked = false;
     DOM.fileInput.value = "";
@@ -379,10 +331,6 @@ export function initNeuralVision() {
     DOM.terminal.innerHTML =
       '<span class="vision-muted-text">Awaiting visual data ...</span><span class="term-cursor"> _</span>';
   }
-
-  // ==========================================
-  // 6. TERMINAL ANIMATION HELPERS
-  // ==========================================
 
   function startTerminalSpinner(color, appendToLastLine = false) {
     const span = document.createElement("span");

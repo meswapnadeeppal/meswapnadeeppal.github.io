@@ -12,7 +12,7 @@ export const fileSystem = {
     content: `
       <div style="padding: 20px; animation: windowPopIn 0.4s ease forwards;">
         <h2 style="display: flex; align-items: center; gap: 10px; font-size: 24px; color: var(--cyberpunk-primary);">
-          <span class="fa-solid fa-bolt"></span> Neural_vision.AppImage
+          <span class="fa-solid fa-bolt" style="color: var(--cyberpunk-secondary)"></span> Neural_vision.AppImage
         </h2>
         
         <p style="font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
@@ -24,17 +24,17 @@ export const fileSystem = {
         </p>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-family: var(--font-header); font-size: 13px; color: var(--secondary-text); background: var(--background-slate); padding: 15px; margin-bottom: 30px; border-radius: 8px; border: 2px solid var(--container-border);">
-          <div><strong style="color: #ffd700;">[1]</strong> Write a Poem - <em style="font-family: var(--font-primary); opacity: 0.8;">Evocative Sonnet Gen.</em></div>
-          <div><strong style="color: #ff8c00;">[2]</strong> Extract Recipe - <em style="font-family: var(--font-primary); opacity: 0.8;">Culinary Reverse Eng.</em></div>
-          <div><strong style="color: #00ff00;">[3]</strong> Describe Image - <em style="font-family: var(--font-primary); opacity: 0.8;">Visual Matrix Scan</em></div>
-          <div><strong style="color: #b026ff;">[4]</strong> Extract Text - <em style="font-family: var(--font-primary); opacity: 0.8;">High-Fidelity OCR</em></div>
-          <div><strong style="color: #00e5ff;">[5]</strong> Extract Raw Data - <em style="font-family: var(--font-primary); opacity: 0.8;">JSON Entity Dump</em></div>
-          <div><strong style="color: #ff3366;">[6]</strong> Write a Story - <em style="font-family: var(--font-primary); opacity: 0.8;">Memory Recovery</em></div>
-          <div><strong style="color: #00ffcc;">[7]</strong> Get Website Code - <em style="font-family: var(--font-primary); opacity: 0.8;">UI Wireframe Ext.</em></div>
-          <div><strong style="color: #ffffff;">[8]</strong> Translate & Explain - <em style="font-family: var(--font-primary); opacity: 0.8;">Symbol Decryption</em></div>
+          <div><strong style="color: var(--cyberpunk-hyperlink);">[1]</strong> Write a Poem - <em style="font-family: var(--font-primary); opacity: 0.8;">Evocative Sonnet Gen.</em></div>
+          <div><strong style="color: var(--dracula-soul);">[2]</strong> Extract Recipe - <em style="font-family: var(--font-primary); opacity: 0.8;">Culinary Reverse Eng.</em></div>
+          <div><strong style="color: var(--window-maximize);">[3]</strong> Describe Image - <em style="font-family: var(--font-primary); opacity: 0.8;">Visual Matrix Scan</em></div>
+          <div><strong style="color: var(--cyberpunk-primary);">[4]</strong> Extract Text - <em style="font-family: var(--font-primary); opacity: 0.8;">High-Fidelity OCR</em></div>
+          <div><strong style="color: var(--cyberpunk-neon);">[5]</strong> Extract Raw Data - <em style="font-family: var(--font-primary); opacity: 0.8;">JSON Entity Dump</em></div>
+          <div><strong style="color: var(--dracula-flare);">[6]</strong> Write a Story - <em style="font-family: var(--font-primary); opacity: 0.8;">Memory Recovery</em></div>
+          <div><strong style="color: var(--cyberpunk-secondary);">[7]</strong> Get Website Code - <em style="font-family: var(--font-primary); opacity: 0.8;">UI Wireframe Ext.</em></div>
+          <div><strong style="color: var(--system-spice);">[8]</strong> Translate & Explain - <em style="font-family: var(--font-primary); opacity: 0.8;">Symbol Decryption</em></div>
         </div>
         
-        <button onclick="toggleWindow('window-ai-vision')" style="background: rgba(0, 255, 128, 0.1); border: 2px solid var(--cyberpunk-success); font-family: var(--font-header); font-weight: bold; font-size: 14px; color: var(--cyberpunk-success); text-transform: uppercase; letter-spacing: 1px; padding: 14px 20px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: 100%; box-shadow: 0 0 10px rgba(0,255,128,0.1);">
+        <button onclick="toggleWindow('window-ai-vision')" style="background: rgba(255, 0, 128, 0.1); border: 2px solid var(--cyberpunk-secondary); font-family: var(--font-header); font-weight: bold; font-size: 14px; color: var(--cyberpunk-hyperlink); text-transform: uppercase; letter-spacing: 1px; padding: 14px 20px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: 100%; box-shadow: 0 0 10px rgba(255, 0, 128, 0.1);">
           [ INITIATE NEURAL SCANNER ]
         </button>
       </div>`,
@@ -45,21 +45,21 @@ export const fileSystem = {
     type: "package",
     content: `
       <div style="padding: 20px; animation: windowPopIn 0.4s ease forwards;">
-        <h2 style="color: var(--cyberpunk-primary); font-family: var(--font-header); margin-top: 0; display: flex; align-items: center; gap: 10px; font-size: 24px;">
-          <span class="fa-solid fa-file-signature"></span> Text_Forge.AppImage
+        <h2 style="display: flex; align-items: center; gap: 10px; color: var(--cyberpunk-primary); font-size: 24px;">
+          <span class="fa-solid fa-file-signature" style="color: var(--cyberpunk-neon)"></span> Text_Forge.AppImage
         </h2>
         
-        <p style="opacity: 0.8; line-height: 1.7; font-size: 14px; margin-bottom: 20px;">
+        <p style="font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
           <strong>Text Forge</strong> is a forensic linguistics and text transformation suite. It analyzes text payloads for AI generation footprints and plagiarism. It also includes protocols to rewrite, humanize, and restructure text to bypass automated detection systems.
         </p>
 
         <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 30px; font-family: var(--font-header); font-size: 13px; color: var(--secondary-text); background: var(--background-slate); padding: 15px; border-radius: 8px; border: 2px solid var(--container-border);">
-          <div><strong style="color: #3b82f6;">[1]</strong> Plagiarism & AI Scan</div>
-          <div><strong style="color: #10b981;">[2]</strong> Restructure / Rewrite</div>
-          <div><strong style="color: #f59e0b;">[3]</strong> Humanize Payload</div>
+          <div><strong style="color: var(--cyberpunk-neon);">[1]</strong> Plagiarism & AI Scan</div>
+          <div><strong style="color: var(--window-maximize);">[2]</strong> Restructure / Rewrite</div>
+          <div><strong style="color: var(--dracula-soul);">[3]</strong> Humanize Payload</div>
         </div>
         
-        <button onclick="toggleWindow('window-text-forge')" style="background: rgba(59, 130, 246, 0.1); border: 1px solid #3b82f6; color: #3b82f6; padding: 14px 20px; border-radius: 4px; cursor: pointer; font-family: var(--font-header); font-weight: bold; font-size: 14px; text-transform: uppercase; transition: all 0.3s ease; width: 100%; letter-spacing: 1px;">
+        <button onclick="toggleWindow('window-text-forge')" style="background: rgba(0, 128, 255, 0.1); border: 2px solid var(--cyberpunk-neon); font-family: var(--font-header); font-weight: bold; font-size: 14px; color: var(--cyberpunk-success); text-transform: uppercase; letter-spacing: 1px; padding: 14px 20px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: 100%; box-shadow: 0 0 10px rgba(0, 128, 255, 0.1);">
           [ INITIATE TEXT FORGE ]
         </button>
       </div>`,

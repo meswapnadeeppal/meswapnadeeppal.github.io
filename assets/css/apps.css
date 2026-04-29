@@ -1471,8 +1471,8 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
    COMPONENT: NEURAL VISION.EXE (AI MODULE)
    ========================================================================== */
 .ai-vision-window {
-  width: 800px;
-  height: 600px;
+  width: 890px;
+  height: 660px;
 }
 
 .ai-vision-content {

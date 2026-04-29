@@ -791,7 +791,8 @@
 }
 
 @keyframes terminal-blink {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -1561,6 +1562,209 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 
 .vision-muted-text {
   color: var(--cyberpunk-success);
+}
+
+/* ==========================================================================
+   COMPONENT: TEXT FORGE PDA (FORENSICS TOOL)
+   ========================================================================== */
+.pda-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 15px;
+  padding: 15px !important;
+  background-color: #0b1120; /* Deep navy background */
+  height: calc(100% - 40px);
+  box-sizing: border-box;
+}
+
+.pda-left-panel, .pda-right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pda-card {
+  background-color: #111827; /* Darker card background */
+  border: 1px solid #1e293b;
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pda-input-card {
+  flex: 1; 
+}
+
+.pda-notepad-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pda-analysis-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.pda-card-title {
+  color: #94a3b8;
+  font-family: var(--font-header);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.pda-textarea {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  color: #f8fafc;
+  border-radius: 4px;
+  padding: 12px;
+  flex-grow: 1;
+  resize: none;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.pda-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+
+.pda-analysis-content {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 4px;
+  padding: 15px;
+  flex-grow: 1;
+  overflow-y: auto;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.pda-action-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pda-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  border-radius: 4px;
+  font-family: var(--font-header);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.pda-btn-primary {
+  background: linear-gradient(to bottom, #4f8cf6, #2563eb);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.4);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.pda-btn-primary:hover {
+  background: linear-gradient(to bottom, #60a5fa, #3b82f6);
+}
+
+.pda-btn-secondary {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+}
+
+.pda-btn-secondary:hover {
+  background-color: #334155;
+  color: #fff;
+}
+
+/* Copy Button */
+.forge-copy-btn {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--secondary-text);
+  font-family: var(--font-header);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.forge-copy-btn:hover {
+  background: var(--cyberpunk-primary);
+  color: var(--primary-text);
+  border-color: var(--cyberpunk-primary);
+}
+
+.pda-notepad-container {
+  background-color: #fef3c7; /* Pale yellow paper color */
+  border-radius: 4px;
+  flex-grow: 1;
+  padding: 15px;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Notebook lined paper effect */
+.pda-notepad {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: #1f2937;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 28px;
+  overflow-y: auto;
+  background-image: linear-gradient(transparent 27px, #cbd5e1 28px);
+  background-size: 100% 28px;
+  background-attachment: local;
+}
+
+/* Analysis Bar Styles */
+.forge-metric {
+  margin-bottom: 15px;
+}
+
+.forge-metric-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.forge-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #1e293b;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.forge-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* ==========================================================================

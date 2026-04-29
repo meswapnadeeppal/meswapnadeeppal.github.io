@@ -40,6 +40,31 @@ export const fileSystem = {
       </div>`,
   },
 
+  text_forge: {
+    path: "Package Info",
+    type: "package",
+    content: `
+      <div style="padding: 20px; animation: windowPopIn 0.4s ease forwards;">
+        <h2 style="color: var(--cyberpunk-primary); font-family: var(--font-header); margin-top: 0; display: flex; align-items: center; gap: 10px; font-size: 24px;">
+          <span class="fa-solid fa-file-signature"></span> Text_Forge.AppImage
+        </h2>
+        
+        <p style="opacity: 0.8; line-height: 1.7; font-size: 14px; margin-bottom: 20px;">
+          <strong>Text Forge</strong> is a forensic linguistics and text transformation suite. It analyzes text payloads for AI generation footprints and plagiarism. It also includes protocols to rewrite, humanize, and restructure text to bypass automated detection systems.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 30px; font-family: var(--font-header); font-size: 13px; color: var(--secondary-text); background: var(--background-slate); padding: 15px; border-radius: 8px; border: 2px solid var(--container-border);">
+          <div><strong style="color: #3b82f6;">[1]</strong> Plagiarism & AI Scan</div>
+          <div><strong style="color: #10b981;">[2]</strong> Restructure / Rewrite</div>
+          <div><strong style="color: #f59e0b;">[3]</strong> Humanize Payload</div>
+        </div>
+        
+        <button onclick="toggleWindow('window-text-forge')" style="background: rgba(59, 130, 246, 0.1); border: 1px solid #3b82f6; color: #3b82f6; padding: 14px 20px; border-radius: 4px; cursor: pointer; font-family: var(--font-header); font-weight: bold; font-size: 14px; text-transform: uppercase; transition: all 0.3s ease; width: 100%; letter-spacing: 1px;">
+          [ INITIATE TEXT FORGE ]
+        </button>
+      </div>`,
+  },
+
   sys_config: {
     path: "~/ sys_config.yaml",
     type: "code",

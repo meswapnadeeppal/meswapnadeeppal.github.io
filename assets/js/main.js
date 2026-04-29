@@ -17,6 +17,7 @@ import {
   initSystemCV,
 } from "./apps.js";
 import { initNeuralVision } from "./vision.js";
+import { initForensics } from "./forensics.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   runBIOSBootSequence(() => {
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initContactForm();
     initSystemCV();
     initNeuralVision();
+    initForensics();
   });
 });
 

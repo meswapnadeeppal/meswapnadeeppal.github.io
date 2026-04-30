@@ -114,7 +114,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid var(--container-border);
+  border-bottom: 3px solid var(--cyberpunk-neon);
   cursor: grab;
   font-family: var(--font-header);
   user-select: none;
@@ -146,10 +146,6 @@
   overflow-y: auto;
   background-color: var(--slate-alpha-50);
   position: relative;
-}
-
-.window-content.no-padding {
-  padding: 0 !important;
 }
 
 .window-content::-webkit-scrollbar {

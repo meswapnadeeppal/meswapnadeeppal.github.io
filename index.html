@@ -416,7 +416,7 @@
             </div>
 
             <div class="file-item" style="margin-bottom: 4px;" onclick="openFile('text_forge', this)">
-              <i class="fa-solid fa-file-signature sys-color-signature" style="color: #3b82f6;"></i>
+              <i class="fa-solid fa-file-signature sys-color-signature"></i>
               <span title="Forensics.AppImage">Forensics.AppImage</span>
             </div>
 
@@ -460,7 +460,7 @@
             </div>
             <div class="viewer-body" id="viewer-content">
               <div class="viewer-empty-state">
-                <i class="fa-regular fa-folder-open"></i>
+                <i class="fa-solid fa-mask"></i>
                 <p>Select a file from the directory to view its contents.</p>
               </div>
             </div>
@@ -758,7 +758,7 @@
             <button class="win-btn red" onclick="toggleWindow('window-ai-vision')" aria-label="Close Neural Vision"></button>
           </div>
         </div>
-        <div class="window-content no-padding ai-vision-content">
+        <div class="window-content ai-vision-content">
           <div class="vision-left-panel">
             <div id="vision-drop-zone" class="vision-drop-zone">
               <i class="fa-solid fa-cloud-arrow-up vision-upload-icon"></i>
@@ -776,8 +776,8 @@
         </div>
       </div>
 
-      <div id="window-text-forge" class="os-window hidden" style="width: 950px; height: 650px; border-color: #1e293b; background-color: #0b1120;">
-        <div class="window-header" style="background-color: #0f172a; border-bottom: 2px solid #1e293b;">
+      <div id="window-text-forge" class="os-window hidden" style="width: 950px; height: 650px;">
+        <div class="window-header">
           <span><i class="fa-solid fa-tablet-screen-button icon-mr-5"></i> POLICE PDA - FORENSICS</span>
           <div class="window-controls">
             <button class="win-btn red" onclick="toggleWindow('window-text-forge')" aria-label="Close Forensics"></button>

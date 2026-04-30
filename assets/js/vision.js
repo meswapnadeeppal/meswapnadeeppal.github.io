@@ -248,7 +248,7 @@ export function initNeuralVision() {
       <button id="btn-protocol-json" style="background: rgba(0, 128, 255, 0.05); border: 2px solid var(--cyberpunk-neon); color: var(--cyberpunk-neon); ${btnStyle}">Extract Raw Data</button>
       <button id="btn-protocol-memory" style="background: rgba(150, 255, 0, 0.05); border: 2px solid var(--cyberpunk-circuit); color: var(--cyberpunk-circuit); ${btnStyle}">Write a Story</button>
       <button id="btn-protocol-ui" style="background: rgba(255, 0, 128, 0.05); border: 2px solid var(--cyberpunk-secondary); color: var(--cyberpunk-secondary); ${btnStyle}">Get Website Code</button>
-      <button id="btn-protocol-decrypt" style="background: rgba(255, 130, 0, 0.05); border: 2px solid var(--system-spice); color: var(--system-spice); ${btnStyle}">Translate & Explain</button>
+      <button id="btn-protocol-decrypt" style="background: rgba(255, 130, 0, 0.05); border: 2px solid var(--synthwave-brass); color: var(--synthwave-brass); ${btnStyle}">Translate & Explain</button>
       
       <button id="btn-vision-reset" style="grid-column: 1 / -1; font-family: var(--font-header); font-weight: bold; font-size: 13px; color: var(--window-close); background: rgba(255, 0, 60, 0.05); border: 2px solid var(--window-close); border-radius: 4px; cursor: pointer; padding: 12px; margin-top: 4px; margin-bottom: 10px; width: 100%; transition: 0.2s;">
         ABORT & RESET SCANNER

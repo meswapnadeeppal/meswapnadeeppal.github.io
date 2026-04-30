@@ -31,7 +31,7 @@ export const fileSystem = {
           <div><strong style="color: var(--cyberpunk-neon);">[5]</strong> Extract Raw Data - <em style="font-family: var(--font-primary); opacity: 0.8;">JSON Entity Dump</em></div>
           <div><strong style="color: var(--dracula-flare);">[6]</strong> Write a Story - <em style="font-family: var(--font-primary); opacity: 0.8;">Memory Recovery</em></div>
           <div><strong style="color: var(--cyberpunk-secondary);">[7]</strong> Get Website Code - <em style="font-family: var(--font-primary); opacity: 0.8;">UI Wireframe Ext.</em></div>
-          <div><strong style="color: var(--system-spice);">[8]</strong> Translate & Explain - <em style="font-family: var(--font-primary); opacity: 0.8;">Symbol Decryption</em></div>
+          <div><strong style="color: var(--synthwave-brass);">[8]</strong> Translate & Explain - <em style="font-family: var(--font-primary); opacity: 0.8;">Symbol Decryption</em></div>
         </div>
         
         <button onclick="toggleWindow('window-ai-vision')" style="background: rgba(255, 0, 128, 0.1); border: 2px solid var(--cyberpunk-secondary); font-family: var(--font-header); font-weight: bold; font-size: 14px; color: var(--cyberpunk-hyperlink); text-transform: uppercase; letter-spacing: 1px; padding: 14px 20px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: 100%; box-shadow: 0 0 10px rgba(255, 0, 128, 0.1);">

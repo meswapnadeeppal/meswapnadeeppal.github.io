@@ -366,13 +366,12 @@
 .explorer-layout {
   display: flex;
   height: 100%;
-  background-color: var(--background-slate);
 }
 
 .explorer-sidebar {
   min-width: 240px;
-  background-color: var(--black-alpha-20);
-  border-right: 1px solid var(--white-alpha-05);
+  background-color: var(--black-alpha-30);
+  border-right: 2px solid var(--white-alpha-10);
   padding: 15px 10px;
   overflow-y: auto;
 }
@@ -449,6 +448,10 @@
   color: var(--cyberpunk-secondary);
 }
 
+.sys-color-signature {
+  color: var(--cyberpunk-neon);
+}
+
 .sys-color-config {
   color: var(--cyberpunk-hyperlink);
 }
@@ -477,12 +480,12 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: rgba(15, 23, 42, 0.6);
+  background-color: var(--black-alpha-30);
 }
 
 .viewer-header {
   padding: 10px 20px;
-  background-color: var(--black-alpha-20);
+  background-color: var(--background-body);
   border-bottom: 2px solid var(--dracula-soul);
   font-family: var(--font-header);
   font-size: 13px;
@@ -503,13 +506,21 @@
   flex-direction: column;
   color: var(--secondary-text);
   height: 100%;
-  opacity: 0.4;
+  opacity: 0.8;
   transform: scale(0.8);
 }
 
 .viewer-empty-state i {
-  font-size: 40px;
-  margin-bottom: 15px;
+  font-size: 60px;
+  color: var(--cyberpunk-circuit);
+  margin-bottom: 25px;
+}
+
+.viewer-empty-state p {
+  font-family: var(--font-header);
+  color: var(--cyberpunk-hyperlink);
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .browser-success-icon {
@@ -1477,10 +1488,9 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 
 .ai-vision-content {
   display: flex;
+  gap: 18px;
   height: calc(100% - 30px);
-  background: rgba(10, 10, 12, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding: 20px;
 }
 
 .vision-left-panel {
@@ -1490,21 +1500,18 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 20px;
-  background-color: var(--background-slate);
-  border-right: 2px solid var(--white-alpha-05);
 }
 
 .vision-drop-zone {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
   background: var(--body-alpha-35);
   border: 3px solid var(--container-border);
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -1540,14 +1547,16 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  background-color: var(--background-slate);
+  background: var(--body-alpha-35);
+  border: 3px solid var(--container-border);
+  border-radius: 8px;
 }
 
 .vision-output-header {
   color: var(--cyberpunk-secondary);
   font-family: var(--font-header);
   font-weight: bold;
-  border-bottom: 2px solid var(--white-alpha-05);
+  border-bottom: 2px solid var(--cyberpunk-circuit);
   padding-bottom: 10px;
   margin-bottom: 15px;
 }
@@ -1571,11 +1580,10 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 .pda-layout {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
+  box-sizing: border-box;
   gap: 15px;
   padding: 15px !important;
-  background-color: #0b1120; /* Deep navy background */
   height: calc(100% - 40px);
-  box-sizing: border-box;
 }
 
 .pda-left-panel,
@@ -1588,10 +1596,10 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 .pda-card {
   display: flex;
   flex-direction: column;
-  background-color: #111827; /* Darker card background */
-  border: 1px solid #1e293b;
-  border-radius: 4px;
-  padding: 12px;
+  background: var(--body-alpha-35);
+  border: 3px solid var(--container-border);
+  border-radius: 8px;
+  padding: 15px;
 }
 
 .pda-input-card,
@@ -1615,10 +1623,10 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 }
 
 .pda-textarea {
-  background-color: #0f172a;
-  border: 1px solid #1e293b;
-  color: #f8fafc;
-  border-radius: 4px;
+  background: var(--body-alpha-10);
+  border: 3px solid var(--container-border);
+  color: var(--secondary-text);
+  border-radius: 8px;
   padding: 12px;
   flex-grow: 1;
   resize: none;
@@ -1629,19 +1637,18 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 
 .pda-textarea:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: var(--shadow-secondary);
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
 }
 
 .pda-analysis-content {
-  background-color: #0f172a;
-  border: 1px solid #1e293b;
-  border-radius: 4px;
-  padding: 15px;
-  flex-grow: 1;
-  overflow-y: auto;
+  background: var(--body-alpha-10);
+  border: 3px solid var(--container-border);
   font-size: 13px;
-  color: #cbd5e1;
+  border-radius: 4px;
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
 }
 
 .pda-action-stack {
@@ -1667,7 +1674,11 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 }
 
 .pda-btn-primary {
-  background: linear-gradient(to bottom, #4f8cf6, #2563eb);
+  background: linear-gradient(
+    to right,
+    var(--cyberpunk-neon),
+    var(--cyberpunk-hyperlink)
+  );
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     0 2px 4px rgba(0, 0, 0, 0.4);
@@ -1675,17 +1686,22 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 }
 
 .pda-btn-primary:hover {
-  background: linear-gradient(to bottom, #60a5fa, #3b82f6);
+  background: linear-gradient(
+    to right,
+    var(--dracula-swamp),
+    var(--cyberpunk-circuit)
+  );
 }
 
 .pda-btn-secondary {
   background-color: #1e293b;
-  border: 1px solid #334155;
+  border: 2px solid var(--dracula-swamp);
   color: #cbd5e1;
 }
 
 .pda-btn-secondary:hover {
-  background-color: #334155;
+  background-color: rgba(150, 255, 0, 0.05);
+  border: 2px solid var(--cyberpunk-circuit);
   color: #fff;
 }
 
@@ -1700,10 +1716,10 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   font-size: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--container-border);
   border-radius: 4px;
   cursor: pointer;
-  padding: 4px 10px;
+  padding: 8px 12px;
   margin-left: auto;
   transition: all 0.2s ease;
 }

@@ -1637,7 +1637,7 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 
 .pda-textarea:focus {
   outline: none;
-  border-color: var(--shadow-secondary);
+  border-color: var(--shadow-hyperlink);
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
 }
 
@@ -1694,15 +1694,27 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 }
 
 .pda-btn-secondary {
-  background-color: #1e293b;
+  background-color: var(--background-slate);
   border: 2px solid var(--dracula-swamp);
-  color: #cbd5e1;
+  color: var(--primary-text);
 }
 
 .pda-btn-secondary:hover {
-  background-color: rgba(150, 255, 0, 0.05);
-  border: 2px solid var(--cyberpunk-circuit);
-  color: #fff;
+  background-color: rgba(150, 255, 0, 0.29);
+  border-color: var(--cyberpunk-circuit);
+  color: var(--secondary-text);
+}
+
+.pda-btn-tertiary {
+  background-color: var(--background-slate);
+  border: 2px solid var(--synthwave-brass);
+  color: var(--primary-text);
+}
+
+.pda-btn-tertiary:hover {
+  background-color: rgba(255, 140, 0, 0.29);
+  border-color: var(--cyberpunk-hyperlink);
+  color: var(--secondary-text);
 }
 
 /* Copy Button */
@@ -1710,7 +1722,7 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--shadow-hyperlink);
   font-family: var(--font-header);
   color: var(--secondary-text);
   font-size: 10px;
@@ -1725,13 +1737,12 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 }
 
 .forge-copy-btn:hover {
-  background: var(--cyberpunk-primary);
+  background: var(--shadow-secondary);
   color: var(--primary-text);
-  border-color: var(--cyberpunk-primary);
 }
 
 .pda-notepad-container {
-  background-color: #fef3c7; /* Pale yellow paper color */
+  background-color: var(--primary-alpha-20);
   border-radius: 4px;
   flex-grow: 1;
   padding: 15px;
@@ -1745,15 +1756,21 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   width: 100%;
   height: 100%;
   border: none;
-  background: transparent;
-  color: #1f2937;
-  font-family: monospace;
-  font-size: 14px;
-  line-height: 28px;
+  font-size: 13px;
+  line-height: 26px;
   overflow-y: auto;
-  background-image: linear-gradient(transparent 27px, #cbd5e1 28px);
+  background: transparent;
+  background-image: linear-gradient(
+    transparent 27px,
+    var(--primary-alpha-20) 28px
+  );
   background-size: 100% 28px;
   background-attachment: local;
+}
+
+.pda-notepad > span {
+  color: var(--secondary-text);
+  opacity: 0.9;
 }
 
 /* Analysis Bar Styles */

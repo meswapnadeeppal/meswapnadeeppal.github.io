@@ -56,7 +56,7 @@ export const fileSystem = {
         <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 30px; font-family: var(--font-header); font-size: 13px; color: var(--secondary-text); background: var(--background-slate); padding: 15px; border-radius: 8px; border: 2px solid var(--container-border);">
           <div><strong style="color: var(--cyberpunk-neon);">[1]</strong> Plagiarism & AI Scan</div>
           <div><strong style="color: var(--window-maximize);">[2]</strong> Restructure / Rewrite</div>
-          <div><strong style="color: var(--dracula-soul);">[3]</strong> Humanize Payload</div>
+          <div><strong style="color: var(--synthwave-brass);">[3]</strong> Humanize Payload</div>
         </div>
         
         <button onclick="toggleWindow('window-text-forge')" style="background: rgba(0, 128, 255, 0.1); border: 2px solid var(--cyberpunk-neon); font-family: var(--font-header); font-weight: bold; font-size: 14px; color: var(--cyberpunk-success); text-transform: uppercase; letter-spacing: 1px; padding: 14px 20px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: 100%; box-shadow: 0 0 10px rgba(0, 128, 255, 0.1);">

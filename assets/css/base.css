@@ -13,10 +13,6 @@ a {
   color: var(--cyberpunk-hyperlink);
 }
 
-.text-hyperlink {
-  color: var(--cyberpunk-hyperlink);
-}
-
 h1,
 h2,
 h3,
@@ -154,4 +150,8 @@ body[class*="bg-img-"]::before {
   width: 100vw;
   height: 100vh;
   display: block;
+}
+
+.text-hyperlink {
+  color: var(--cyberpunk-hyperlink);
 }

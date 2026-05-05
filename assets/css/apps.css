@@ -902,13 +902,6 @@
   padding: 40px;
 }
 
-.form-panel {
-  background-color: var(--body-alpha-50);
-  border: 3px solid var(--container-border);
-  border-radius: 3px;
-  padding: 35px;
-}
-
 .contact-form-heading {
   font-size: 24px;
   margin-bottom: 20px;
@@ -980,6 +973,14 @@ textarea:focus {
   border-color: var(--cyberpunk-primary);
 }
 
+.form-label-input {
+  background-color: var(--background-slate);
+  border: 3px solid var(--container-border);
+  border-radius: 3px;
+  font-size: 14px;
+  padding: 15px 20px 18px;
+}
+
 .form-label-input p {
   font-family: var(--font-header);
   font-weight: 600;
@@ -1002,13 +1003,9 @@ textarea:focus {
   color: var(--secondary-text);
 }
 
-.option-icon {
-  font-size: 16px;
-}
-
 .custom-radio {
   position: relative;
-  padding-left: 28px;
+  padding-left: 26px;
   cursor: pointer;
   user-select: none;
 }
@@ -1110,11 +1107,12 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 13px;
   background-color: var(--background-slate);
   border: 3px solid var(--container-border);
   padding: 15px 20px;
-  border-radius: 3px;
-  margin-bottom: 20px;
+  border-radius: 12px;
+  margin: 15px 0px;
 }
 
 .encryption-status {
@@ -1125,7 +1123,6 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 }
 
 .encryption-text {
-  font-size: 13px;
   color: var(--window-close);
   animation: pulse-text-red 2.5s infinite;
   transition: color 0.3s ease;

@@ -600,7 +600,7 @@
         </div>
       </div>
 
-      <div id="window-contact" class="os-window hidden" style="width: 760px; height: auto; max-height: 85vh;">
+      <div id="window-contact" class="os-window hidden" style="width: 640px; height: auto; max-height: 85vh;">
         <div class="window-header">
           <span>~/ transmission.sh</span>
           <div class="window-controls">
@@ -609,128 +609,123 @@
         </div>
         <div class="window-content">
           <section class="contact-main">
-            <div class="form-panel">
-              <h2 class="contact-form-heading">Initialize Contact Sequence</h2>
-              <form id="swapnadeep-form">
-                <input type="hidden" name="access_key" value="19cc922c-99f3-4b41-a7c5-3b10aced2717" />
-                <input type="checkbox" name="botcheck" class="hidden-trap" />
+            <h2 class="contact-form-heading">Initialize Contact Sequence</h2>
+            <form id="swapnadeep-form">
+              <input type="hidden" name="access_key" value="19cc922c-99f3-4b41-a7c5-3b10aced2717" />
+              <input type="checkbox" name="botcheck" class="hidden-trap" />
 
+              <div class="form-group">
+                <div class="information-required">
+                  <label for="fullName">Your Full Name</label>
+                  <span class="required-badge">required</span>
+                </div>
+                <input type="text" id="fullName" name="sender_identity" placeholder="Identify yourself..." required />
+              </div>
+
+              <div class="form-group-collage">
+                <div class="form-group">
+                  <label for="contactNumber">Contact Number</label>
+                  <input type="tel" id="contactNumber" name="uplink_phone" placeholder="(555) 123-4567" />
+                </div>
                 <div class="form-group">
                   <div class="information-required">
-                    <label for="fullName">Your Full Name</label>
+                    <label for="email">Email</label>
                     <span class="required-badge">required</span>
                   </div>
-                  <input type="text" id="fullName" name="sender_identity" placeholder="Identify yourself..." required />
+                  <input type="email" id="email" name="email" autocomplete="email" placeholder="hello@example.node" required />
                 </div>
+              </div>
 
-                <div class="form-group-collage">
-                  <div class="form-group">
-                    <label for="contactNumber">Contact Number</label>
-                    <input type="tel" id="contactNumber" name="uplink_phone" placeholder="(555) 123-4567" />
-                  </div>
-                  <div class="form-group">
-                    <div class="information-required">
-                      <label for="email">Email</label>
-                      <span class="required-badge">required</span>
-                    </div>
-                    <input type="email" id="email" name="email" autocomplete="email" placeholder="hello@example.node" required />
-                  </div>
+              <div class="form-group">
+                <div class="information-required">
+                  <label for="subjectInquiry">Reason for Contact</label>
+                  <span class="required-badge">required</span>
                 </div>
+                <input type="text" id="subjectInquiry" name="subject" placeholder="How can I help you?" required />
+              </div>
 
+              <div class="form-group-collage">
                 <div class="form-group">
                   <div class="information-required">
-                    <label for="subjectInquiry">Reason for Contact</label>
+                    <label for="visitorRoleInput">Who is reaching out?</label>
                     <span class="required-badge">required</span>
                   </div>
-                  <input type="text" id="subjectInquiry" name="subject" placeholder="How can I help you?" required />
-                </div>
-
-                <div class="form-group-collage">
-                  <div class="form-group">
-                    <div class="information-required">
-                      <label for="visitorRoleInput">Who is reaching out?</label>
-                      <span class="required-badge">required</span>
+                  <div class="role-select-wrapper" id="roleSelectWrapper">
+                    <input type="text" name="entity_role" id="visitorRoleInput" required tabindex="-1" />
+                    <div class="role-select-trigger" id="roleSelectTrigger">
+                      <span>Select your role</span>
+                      <div class="arrow-icon">👇</div>
                     </div>
-                    <div class="role-select-wrapper" id="roleSelectWrapper">
-                      <input type="text" name="entity_role" id="visitorRoleInput" required tabindex="-1" />
-                      <div class="role-select-trigger" id="roleSelectTrigger">
-                        <span>Select your role</span>
-                        <div class="arrow-icon">👇</div>
-                      </div>
-                      <ul class="role-select-options" id="roleSelectOptions">
-                        <li data-value="Recruiter">Recruiter / HR</li>
-                        <li data-value="Client">Potential Client</li>
-                        <li data-value="Developer">Fellow Developer</li>
-                        <li data-value="Other">Other</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="companyLink" class="sys-label-padding">Website / LinkedIn</label>
-                    <input type="url" id="companyLink" name="external_link" placeholder="https://..." />
+                    <ul class="role-select-options" id="roleSelectOptions">
+                      <li data-value="Recruiter">Recruiter / HR</li>
+                      <li data-value="Client">Potential Client</li>
+                      <li data-value="Developer">Fellow Developer</li>
+                      <li data-value="Other">Other</li>
+                    </ul>
                   </div>
                 </div>
-
                 <div class="form-group">
-                  <div class="information-required">
-                    <label for="message">Message / Project Details</label>
-                    <span class="required-badge">required</span>
-                  </div>
-                  <textarea id="message" name="payload_content" rows="4" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
+                  <label for="companyLink" class="sys-label-padding">Website / LinkedIn</label>
+                  <input type="url" id="companyLink" name="external_link" placeholder="https://..." />
                 </div>
+              </div>
 
-                <div class="form-label-input">
-                  <div class="information-required">
-                    <p>How should I reach you?</p>
-                    <span class="required-badge">required</span>
-                  </div>
-                  <div class="form-option-group">
-                    <label class="form-option" for="respEmail">
-                      <input type="radio" id="respEmail" name="preferred_comms_method" value="Email" required />
-                      <div class="option-icon">📧</div>
-                      <span class="custom-radio">Email</span>
-                    </label>
-                    <label class="form-option" for="respPhone">
-                      <input type="radio" id="respPhone" name="preferred_comms_method" value="Phone" />
-                      <div class="option-icon">📲</div>
-                      <span class="custom-radio">Phone</span>
-                    </label>
-                    <label class="form-option" for="respMeet">
-                      <input type="radio" id="respMeet" name="preferred_comms_method" value="In-Person Meeting" />
-                      <div class="option-icon">🤝</div>
-                      <span class="custom-radio">In-Person Meeting</span>
-                    </label>
-                  </div>
+              <div class="form-group">
+                <div class="information-required">
+                  <label for="message">Message / Project Details</label>
+                  <span class="required-badge">required</span>
                 </div>
+                <textarea id="message" name="payload_content" rows="6" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
+              </div>
 
-                <div class="advanced-security-module sys-margin-top-20">
-                  <label class="encryption-status">
-                    <input type="checkbox" id="humanToggle" required />
-                    <span class="encryption-text" id="encryptionText"></span>
+              <div class="form-label-input">
+                <div class="information-required">
+                  <p>How should I reach you?</p>
+                  <span class="required-badge">required</span>
+                </div>
+                <div class="form-option-group">
+                  <label class="form-option" for="respEmail">
+                    <input type="radio" id="respEmail" name="preferred_comms_method" value="Email" required />
+                    <span class="custom-radio">📧 Email</span>
                   </label>
-                  <div class="captcha-logo"></div>
+                  <label class="form-option" for="respPhone">
+                    <input type="radio" id="respPhone" name="preferred_comms_method" value="Phone" />
+                    <span class="custom-radio">📲 Phone</span>
+                  </label>
+                  <label class="form-option" for="respMeet">
+                    <input type="radio" id="respMeet" name="preferred_comms_method" value="In-Person Meeting" />
+                    <span class="custom-radio">🤝 In-Person Meeting</span>
+                  </label>
                 </div>
+              </div>
 
-                <button type="submit" class="btn-cyber-solid" id="submit-btn">
-                  <span class="btn-text">Transmit Request</span>
-                  <div class="btn-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="8" cy="6" r="1.5" />
-                      <circle cx="12" cy="6" r="1.5" />
-                      <circle cx="12" cy="10" r="1.5" />
-                      <circle cx="16" cy="10" r="1.5" />
-                      <circle cx="20" cy="12" r="1.5" />
-                      <circle cx="16" cy="14" r="1.5" />
-                      <circle cx="12" cy="14" r="1.5" />
-                      <circle cx="12" cy="18" r="1.5" />
-                      <circle cx="8" cy="18" r="1.5" />
-                      <circle cx="8" cy="10" r="1.5" />
-                      <circle cx="8" cy="14" r="1.5" />
-                    </svg>
-                  </div>
-                </button>
-              </form>
-            </div>
+              <div class="advanced-security-module sys-margin-top-20">
+                <label class="encryption-status">
+                  <input type="checkbox" id="humanToggle" required />
+                  <span class="encryption-text" id="encryptionText"></span>
+                </label>
+                <div class="captcha-logo"></div>
+              </div>
+
+              <button type="submit" class="btn-cyber-solid" id="submit-btn">
+                <span class="btn-text">Transmit Request</span>
+                <div class="btn-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="6" r="1.5" />
+                    <circle cx="12" cy="6" r="1.5" />
+                    <circle cx="12" cy="10" r="1.5" />
+                    <circle cx="16" cy="10" r="1.5" />
+                    <circle cx="20" cy="12" r="1.5" />
+                    <circle cx="16" cy="14" r="1.5" />
+                    <circle cx="12" cy="14" r="1.5" />
+                    <circle cx="12" cy="18" r="1.5" />
+                    <circle cx="8" cy="18" r="1.5" />
+                    <circle cx="8" cy="10" r="1.5" />
+                    <circle cx="8" cy="14" r="1.5" />
+                  </svg>
+                </div>
+              </button>
+            </form>
           </section>
         </div>
       </div>

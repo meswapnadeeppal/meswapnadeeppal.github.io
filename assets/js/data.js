@@ -24,7 +24,7 @@ export const fileSystem = {
         </p>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-family: var(--font-header); font-size: 13px; color: var(--secondary-text); background: var(--background-slate); padding: 15px; margin-bottom: 30px; border-radius: 8px; border: 2px solid var(--container-border);">
-          <div><strong style="color: var(--cyberpunk-hyperlink);">[1]</strong> Write a Poem - <em style="font-family: var(--font-primary); opacity: 0.8;">Evocative Sonnet Gen.</em></div>
+          <div><strong style="color: var(--cyberpunk-hyperlink);">[1]</strong> Generate Poem - <em style="font-family: var(--font-primary); opacity: 0.8;">Evocative Sonnet Gen.</em></div>
           <div><strong style="color: var(--dracula-soul);">[2]</strong> Extract Recipe - <em style="font-family: var(--font-primary); opacity: 0.8;">Culinary Reverse Eng.</em></div>
           <div><strong style="color: var(--window-maximize);">[3]</strong> Describe Image - <em style="font-family: var(--font-primary); opacity: 0.8;">Visual Matrix Scan</em></div>
           <div><strong style="color: var(--cyberpunk-primary);">[4]</strong> Extract Text - <em style="font-family: var(--font-primary); opacity: 0.8;">High-Fidelity OCR</em></div>

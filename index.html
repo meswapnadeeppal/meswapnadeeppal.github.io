@@ -678,7 +678,7 @@
                 <textarea id="message" name="payload_content" rows="6" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
               </div>
 
-              <div class="form-label-input">
+              <div class="form-label-input" style="margin-bottom: 15px;">
                 <div class="information-required">
                   <p>How should I reach you?</p>
                   <span class="required-badge">required</span>
@@ -689,12 +689,40 @@
                     <span class="custom-radio">📧 Email</span>
                   </label>
                   <label class="form-option" for="respPhone">
+                    <input type="radio" id="respPhone" name="preferred_comms_method" value="Messaging" />
+                    <span class="custom-radio">💬 Messaging</span>
+                  </label>
+                  <label class="form-option" for="respPhone">
                     <input type="radio" id="respPhone" name="preferred_comms_method" value="Phone" />
                     <span class="custom-radio">📲 Phone</span>
                   </label>
                   <label class="form-option" for="respMeet">
                     <input type="radio" id="respMeet" name="preferred_comms_method" value="In-Person Meeting" />
                     <span class="custom-radio">🤝 In-Person Meeting</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-label-input">
+                <div class="information-required">
+                  <p>How did you hear about me?</p>
+                </div>
+                <div class="form-option-group">
+                  <label class="form-option" for="hearLinkedIn">
+                    <input type="checkbox" id="hearLinkedIn" name="referral_source" value="LinkedIn" />
+                    <span class="custom-checkbox">💼 LinkedIn</span>
+                  </label>
+                  <label class="form-option" for="hearGitHub">
+                    <input type="checkbox" id="hearGitHub" name="referral_source" value="GitHub" />
+                    <span class="custom-checkbox">💻 GitHub</span>
+                  </label>
+                  <label class="form-option" for="hearTwitter">
+                    <input type="checkbox" id="hearTwitter" name="referral_source" value="Twitter/X" />
+                    <span class="custom-checkbox">🐦 Twitter / X</span>
+                  </label>
+                  <label class="form-option" for="hearOther">
+                    <input type="checkbox" id="hearOther" name="referral_source" value="Other" />
+                    <span class="custom-checkbox">🌐 Other</span>
                   </label>
                 </div>
               </div>
@@ -804,13 +832,13 @@
               <div class="pda-card-title"><i class="fa-solid fa-bolt icon-mr-5"></i> Quick Actions</div>
               <div class="pda-action-stack">
                 <button class="pda-btn pda-btn-primary" id="btn-forge-scan">
-                  <i class="fa-solid fa-magnifying-glass icon-mr-5"></i> FORENSIC SCAN
+                  <i class="fa-solid fa-magnifying-glass icon-mr-5"></i> Plagiarism & AI Scan
                 </button>
                 <button class="pda-btn pda-btn-secondary" id="btn-forge-rewrite">
-                  <i class="fa-solid fa-pen-nib icon-mr-5"></i> REWRITE
+                  <i class="fa-solid fa-pen-nib icon-mr-5"></i> Restructure / Rewrite
                 </button>
                 <button class="pda-btn pda-btn-tertiary" id="btn-forge-humanize">
-                  <i class="fa-solid fa-user icon-mr-5"></i> HUMANIZE
+                  <i class="fa-solid fa-user icon-mr-5"></i> Humanize Payload
                 </button>
               </div>
             </div>

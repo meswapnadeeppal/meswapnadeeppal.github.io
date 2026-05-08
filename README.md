@@ -64,22 +64,60 @@ This approach grants absolute control over every pixel, DOM node, and paint cycl
 
 ## 📂 Directory Map
 
-```text
-[ ~/meswapnadeeppal.github.io ]
-├── assets/
-│   ├── css/
-│   │   ├── 404.css               # Error page styles
-│   │   ├── main.css              # Core OS Window UI and components
-│   │   └── variables.css         # Dynamic theme custom properties
-│   ├── images/                   # Static assets, icons, and wallpapers
-│   └── js/
-│       ├── apps.js               # App logic (Terminal, File System, CV Decryptor)
-│       ├── core.js               # OS Engine (Window Manager, Context Menu, Boot)
-│       └── data.js               # Virtual file system & project payloads
-│       └── main.js               # Primary JS module entry point
-├── index.html                    # Main Entry Point
-├── LICENSE                       # MIT License
-└── README.md                     # System Documentation
+```
+📦 [[ MESWAPNADEEPPAL.GITHUB.IO ]]
+ ┣ 📂 api                       # Vercel Serverless Functions
+ ┃ ┗ 📜 gemini.js               # Secure backend route for Gemini AI
+ ┣ 📂 assets                    # System resources and core logic
+ ┃ ┣ 📂 audio                   # Media files
+ ┃ ┃ ┗ 🎵 om-namo-bhagavate-vasudevay...
+ ┃ ┣ 📂 css                     # Modular stylesheet architecture
+ ┃ ┃ ┣ 🎨 404.css
+ ┃ ┃ ┣ 🎨 apps.css              # App-specific UI (Terminal, Vision, Forge)
+ ┃ ┃ ┣ 🎨 base.css              # Global resets and CSS background gradients
+ ┃ ┃ ┣ 🎨 layout.css            # Desktop, taskbar, and context menus
+ ┃ ┃ ┣ 🎨 main.css              # Central import hub
+ ┃ ┃ ┣ 🎨 utilities.css         # Animations, keyframes, and loaders
+ ┃ ┃ ┣ 🎨 variables.css         # Global design tokens and color palettes
+ ┃ ┃ ┗ 🎨 windows.css           # OS window dragging and resizing mechanics
+ ┃ ┣ 📂 icons                   # Native SVG system icons
+ ┃ ┃ ┣ 🖼️ accessories-notes.svg
+ ┃ ┃ ┣ 🖼️ applications-interface-design.svg
+ ┃ ┃ ┣ 🖼️ atom.svg
+ ┃ ┃ ┣ 🖼️ bug.svg
+ ┃ ┃ ┣ 🖼️ chakra.svg
+ ┃ ┃ ┣ 🖼️ debian.svg
+ ┃ ┃ ┣ 🖼️ favicon.svg
+ ┃ ┃ ┣ 🖼️ folder-open.svg
+ ┃ ┃ ┣ 🖼️ manjaro.svg
+ ┃ ┃ ┣ 🖼️ text-editor.svg
+ ┃ ┃ ┣ 🖼️ utilities-system-monitor.svg
+ ┃ ┃ ┣ 🖼️ utilities-terminal.svg
+ ┃ ┃ ┗ 🖼️ weather.svg
+ ┃ ┣ 📂 images                  # Static visual assets
+ ┃ ┃ ┣ 📂 desktop-background    # Wallpaper system graphics
+ ┃ ┃ ┃ ┣ 🖼️ bg-forest-sunset.webp
+ ┃ ┃ ┃ ┣ 🖼️ bg-new-worlds.webp
+ ┃ ┃ ┃ ┣ 🖼️ bg-night-town.webp
+ ┃ ┃ ┃ ┗ 🖼️ bg-retro-truck.webp
+ ┃ ┃ ┣ 🖼️ background.webp
+ ┃ ┃ ┣ 🖼️ error.png
+ ┃ ┃ ┗ 🖼️ readme.webp
+ ┃ ┗ 📂 js                      # Vanilla ES6 JavaScript Engine
+ ┃   ┣ 📜 apps.js               # GUI apps, file explorer, Web3Forms
+ ┃   ┣ 📜 core.js               # Window manager, boot sequence, dragging
+ ┃   ┣ 📜 data.js               # Simulated virtual hard drive (JSON payloads)
+ ┃   ┣ 📜 forensics.js          # Text Forge AI application logic
+ ┃   ┣ 📜 main.js               # Initialization bootstrapper
+ ┃   ┗ 📜 vision.js             # Neural Vision Multimodal AI logic
+ ┣ 📜 404.html                  # Custom Halt/Error screen
+ ┣ 📜 index.html                # Main OS DOM structure
+ ┣ 📜 LICENSE                   # Open source licensing
+ ┣ 📜 package.json              # Node config (forces modern ES modules)
+ ┣ 📜 README.md                 # Project documentation
+ ┣ 📜 robots.txt                # Search engine crawler instructions
+ ┣ 📜 sitemap.xml               # SEO mapping
+ ┗ 📜 vercel.json               # Serverless API routing rules
 ```
 
 ## 💻 Local Boot Sequence

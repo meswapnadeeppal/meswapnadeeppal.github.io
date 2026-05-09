@@ -17,13 +17,17 @@ export function initForensics() {
 
   let isProcessing = false;
 
+  // ==========================================
+  // COPY BUTTON LOGIC
+  // ==========================================
   if (btnCopy && outputArea) {
     btnCopy.addEventListener("click", () => {
       let textToCopy = outputArea.innerText;
 
       if (
         textToCopy.includes("// Output buffer ready") ||
-        textToCopy.includes("Processing payload")
+        textToCopy.includes("Processing payload") ||
+        textToCopy.includes("[SYS_ERR]")
       ) {
         return;
       }
@@ -49,7 +53,7 @@ export function initForensics() {
   }
 
   // ==========================================
-  // API ROUTING (LOCAL VS PRODUCTION)
+  // API ROUTING & ADVANCED ERROR HANDLING
   // ==========================================
   async function callAI(promptText) {
     const requestBody = {
@@ -74,12 +78,23 @@ export function initForensics() {
       });
 
       const data = await response.json();
+
+      if (!response.ok) {
+        const errorMsg = data.error?.message || data.error || "Unknown Error";
+        return `[SYS_ERR] API Connection Failed: ${errorMsg}`;
+      }
+
+      const candidate = data.candidates?.[0];
+      if (candidate?.finishReason === "SAFETY") {
+        return "[SYS_ERR] The Neural Net blocked this payload due to strict safety/content filters.";
+      }
+
       return (
-        data.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Error processing payload."
+        candidate?.content?.parts?.[0]?.text ||
+        "[SYS_ERR] The Neural Net returned an empty response."
       );
     } catch (error) {
-      return "Network failure. Check connection.";
+      return "[SYS_ERR] Network failure. Check your internet connection.";
     }
   }
 
@@ -91,11 +106,13 @@ export function initForensics() {
 
     if (active) {
       outputArea.innerHTML =
-        "<span style='color: #666;'>Processing payload...</span>";
+        "<span style='color: var(--cyberpunk-hyperlink); font-weight:600;'>Processing payload...</span>";
     }
   }
 
+  // ==========================================
   // PROTOCOL 1: FORENSIC SCAN
+  // ==========================================
   btnScan.addEventListener("click", async () => {
     const text = inputArea.value.trim();
     if (!text || isProcessing) return;
@@ -104,22 +121,32 @@ export function initForensics() {
     analysisPanel.innerHTML =
       "<div class='text-center' style='opacity:0.5; margin-top: 20px;'><p>Scanning text matrix...</p></div>";
 
-    const prompt = `Act as a forensic linguistic analyzer. Evaluate the following text for AI generation and plagiarism. Output ONLY a strict JSON object with this exact format, nothing else:
+    const prompt = `Act as a forensic linguistic analyzer. Evaluate the following text for AI generation and plagiarism. Output ONLY a strict JSON object with this exact format, nothing else. Do not use markdown blocks:
     {
       "ai_probability": <number 0-100>,
       "plagiarism_risk": <number 0-100>,
-      "notes": "<A brief 2 sentence summary of why you gave these scores>"
+      "notes": "<A brief 2 sentence summary of why you gave these scores. Escape all quotes.>"
     }
-    Text to analyze: "${text}"`;
+    
+    TEXT PAYLOAD TO ANALYZE:
+    """
+    ${text}
+    """`;
 
     const result = await callAI(prompt);
 
+    if (result.startsWith("[SYS_ERR]")) {
+      analysisPanel.innerHTML = `<p style="color: var(--window-close); font-weight: 600; animation: pulse-text-red 2.5s infinite;">Analysis Halted.</p>`;
+      outputArea.innerHTML = `<span style='color: var(--window-close);'>// ${result}</span>`;
+      setProcessingState(false);
+      return;
+    }
+
     try {
-      const cleanJson = result
-        .replace(/```json/g, "")
-        .replace(/```/g, "")
-        .trim();
-      const analysis = JSON.parse(cleanJson);
+      const jsonMatch = result.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) throw new Error("No JSON object found");
+
+      const analysis = JSON.parse(jsonMatch[0]);
 
       const aiColor =
         analysis.ai_probability > 50
@@ -153,42 +180,63 @@ export function initForensics() {
         
         <div style="margin-top: 20px; border-top: 2px solid var(--cyberpunk-neon); padding-top: 15px;">
           <strong style="font-family: var(--font-header); font-size: 12px; color: var(--dracula-soul); text-transform: uppercase;">Forensic Notes:</strong>
-          <span style="font-family: var(--font-header); line-height: 1.7; opacity: 0.8; margin-top: 12px;">${analysis.notes}</span>
+          <span style="font-family: var(--font-header); line-height: 1.7; opacity: 0.8; margin-top: 12px; display: inline-block;">${analysis.notes}</span>
         </div>
       `;
       outputArea.innerHTML =
         "<span style='color: var(--cyberpunk-hyperlink); font-weight: 600;'>// Forensic scan complete. View analysis panel.</span>";
     } catch (e) {
-      analysisPanel.innerHTML = `<p style="color: var(--window-close);">Analysis failed. Unparsable data received.</p>`;
+      console.error("Parse Error Payload:", result);
+      analysisPanel.innerHTML = `<p style="color: var(--window-close);">Analysis failed. AI logic error.</p>`;
+
       outputArea.innerHTML =
-        "<span style='color: var(--window-close);'>// ERR: JSON parse failure.</span>";
+        "<span style='color: var(--window-close);'>// ERR: JSON parse failure. Raw Neural Net Output:</span><br><br>" +
+        "<span style='color: var(--secondary-text); opacity: 0.8;'>" +
+        result.replace(/\n/g, "<br>") +
+        "</span>";
     }
     setProcessingState(false);
   });
 
-  // PROTOCOL 2: REWRITE
+  // ==========================================
+  // PROTOCOL 2: STRUCTURAL REWRITE
+  // ==========================================
   btnRewrite.addEventListener("click", async () => {
     const text = inputArea.value.trim();
     if (!text || isProcessing) return;
 
     setProcessingState(true);
-    const prompt = `Rewrite the following text completely to bypass plagiarism checkers. Change the sentence structure, vocabulary, and pacing, but ensure the core factual information and original meaning remain intact. Do not add any introductory text. Text: "${text}"`;
+
+    const prompt = `Act as an expert human editor. Rewrite the following text to completely bypass AI detectors. You must optimize for two metrics: High Perplexity (use uncommon, highly specific vocabulary instead of predictable words) and High Burstiness (drastically vary sentence lengths—mix very short, punchy sentences with longer, complex ones). Strip out all AI-typical formatting and buzzwords. Preserve the exact facts. Output ONLY the rewritten text without introductions.\n\nTEXT:\n"""\n${text}\n"""`;
 
     const result = await callAI(prompt);
-    outputArea.innerHTML = result.replace(/\n/g, "<br>");
+
+    if (result.startsWith("[SYS_ERR]")) {
+      outputArea.innerHTML = `<span style='color: var(--window-close);'>// ${result}</span>`;
+    } else {
+      outputArea.innerHTML = result.replace(/\n/g, "<br>");
+    }
     setProcessingState(false);
   });
 
+  // ==========================================
   // PROTOCOL 3: HUMANIZE
+  // ==========================================
   btnHumanize.addEventListener("click", async () => {
     const text = inputArea.value.trim();
     if (!text || isProcessing) return;
 
     setProcessingState(true);
-    const prompt = `Rewrite the following text so it sounds like a real human wrote it. Remove common AI buzzwords (like 'delve', 'testament', 'tapestry', 'crucial', 'furthermore'). Introduce slight, natural variations in sentence length and use a conversational, highly authentic tone. Do not add any introductory text. Text: "${text}"`;
+
+    const prompt = `Rewrite this text to achieve a 100% human-written score on AI detectors. Write exactly like a highly educated human expert speaking directly to a peer. Use active voice exclusively. Radically vary your sentence structure. Completely ban words like 'delve', 'testament', 'tapestry', 'crucial', 'foster', 'moreover', 'multifaceted', and 'additionally'. Use grounded, conversational synonyms. Output ONLY the rewritten text without introductions.\n\nTEXT:\n"""\n${text}\n"""`;
 
     const result = await callAI(prompt);
-    outputArea.innerHTML = result.replace(/\n/g, "<br>");
+
+    if (result.startsWith("[SYS_ERR]")) {
+      outputArea.innerHTML = `<span style='color: var(--window-close);'>// ${result}</span>`;
+    } else {
+      outputArea.innerHTML = result.replace(/\n/g, "<br>");
+    }
     setProcessingState(false);
   });
 }

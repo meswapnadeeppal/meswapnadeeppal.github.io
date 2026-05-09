@@ -1801,14 +1801,15 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
 .forge-metric-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 6px;
+  font-family: var(--font-header);
   font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .forge-bar-bg {
   width: 100%;
-  height: 8px;
-  background: #1e293b;
+  height: 4px;
+  background: var(--background-slate);
   border-radius: 4px;
   overflow: hidden;
 }

@@ -121,8 +121,14 @@ export function initForensics() {
         .trim();
       const analysis = JSON.parse(cleanJson);
 
-      const aiColor = analysis.ai_probability > 50 ? "#ef4444" : "#10b981";
-      const plagColor = analysis.plagiarism_risk > 50 ? "#ef4444" : "#10b981";
+      const aiColor =
+        analysis.ai_probability > 50
+          ? "var(--window-close)"
+          : "var(--window-maximize)";
+      const plagColor =
+        analysis.plagiarism_risk > 50
+          ? "var(--window-close)"
+          : "var(--window-maximize)";
 
       analysisPanel.innerHTML = `
         <div class="forge-metric">
@@ -145,17 +151,17 @@ export function initForensics() {
           </div>
         </div>
         
-        <div style="margin-top: 20px; border-top: 1px solid #1e293b; padding-top: 15px;">
-          <strong style="color: #94a3b8; text-transform: uppercase; font-size: 11px;">Forensic Notes:</strong><br>
-          <span style="opacity: 0.9;">${analysis.notes}</span>
+        <div style="margin-top: 20px; border-top: 2px solid var(--cyberpunk-neon); padding-top: 15px;">
+          <strong style="font-family: var(--font-header); font-size: 12px; color: var(--dracula-soul); text-transform: uppercase;">Forensic Notes:</strong>
+          <span style="font-family: var(--font-header); line-height: 1.7; opacity: 0.8; margin-top: 12px;">${analysis.notes}</span>
         </div>
       `;
       outputArea.innerHTML =
-        "<span style='color: #10b981;'>// Forensic scan complete. View analysis panel.</span>";
+        "<span style='color: var(--cyberpunk-hyperlink); font-weight: 600;'>// Forensic scan complete. View analysis panel.</span>";
     } catch (e) {
-      analysisPanel.innerHTML = `<p style="color: #ef4444;">Analysis failed. Unparsable data received.</p>`;
+      analysisPanel.innerHTML = `<p style="color: var(--window-close);">Analysis failed. Unparsable data received.</p>`;
       outputArea.innerHTML =
-        "<span style='color: #ef4444;'>// ERR: JSON parse failure.</span>";
+        "<span style='color: var(--window-close);'>// ERR: JSON parse failure.</span>";
     }
     setProcessingState(false);
   });

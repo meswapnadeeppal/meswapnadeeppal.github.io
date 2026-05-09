@@ -18,7 +18,6 @@ export function initTerminal() {
   const cmdDisplay = document.getElementById("cmd-text-display");
   const loginTimeDisplay = document.getElementById("login-time-display");
 
-  // Format and set initial login timestamp
   if (loginTimeDisplay) {
     loginTimeDisplay.innerText = new Date().toLocaleString("en-US", {
       weekday: "short",
@@ -31,7 +30,6 @@ export function initTerminal() {
     });
   }
 
-  // Bind input tracking and execution
   if (cmdInput && interactiveOutput && cmdDisplay) {
     cmdInput.addEventListener("input", () => {
       cmdDisplay.textContent = cmdInput.value;
@@ -130,7 +128,6 @@ export function initFileSystem() {
     const fileData = fileSystem[fileId];
     if (!fileData) return;
 
-    // Handles external payload routing
     if (fileData.type === "executable") {
       document.getElementById("viewer-filepath").innerText = fileData.path;
       document.getElementById("viewer-content").innerHTML = `
@@ -159,19 +156,16 @@ export function initFileSystem() {
         );
       }
     } else if (fileData.type === "package") {
-      // Specialized rendering for internal AppImages (e.g., Neural Vision)
       document.getElementById("viewer-filepath").innerHTML =
         `<i class="fa-solid fa-bolt sys-color-neuralv" style="margin-right: 8px;"></i> ${fileData.path}`;
       document.getElementById("viewer-content").innerHTML = fileData.content;
     } else {
-      // Standard rendering for parsed code and raw text files
       document.getElementById("viewer-filepath").innerText = fileData.path;
       document.getElementById("viewer-content").innerHTML =
         `<div class="code-block">${fileData.content.trim()}</div>`;
     }
   };
 
-  /** --- Spotlight Search Implementation --- */
   const searchOverlay = document.getElementById("search-modal-overlay");
   const paletteInput = document.getElementById("palette-search-input");
   const searchResultsContainer = document.getElementById(
@@ -193,7 +187,6 @@ export function initFileSystem() {
     }
   };
 
-  // Global hotkey binding (Ctrl+K / Cmd+K)
   document.addEventListener("keydown", (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === "k") {
       e.preventDefault();

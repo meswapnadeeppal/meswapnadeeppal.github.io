@@ -184,8 +184,7 @@ export function initNeuralVision() {
     };
 
     try {
-      /* // --- 🔴 LOCALHOST MODE ---
-      // (Remember to scramble the key before committing!)
+      /*
       const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
       const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
       const response = await fetch(ENDPOINT, {
@@ -195,7 +194,6 @@ export function initNeuralVision() {
       });
       */
 
-      // --- 🟢 PRODUCTION MODE (Vercel) ---
       const response = await fetch(`/api/gemini`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

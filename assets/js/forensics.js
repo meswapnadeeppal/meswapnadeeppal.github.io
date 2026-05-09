@@ -17,7 +17,6 @@ export function initForensics() {
 
   let isProcessing = false;
 
-  // --- COPY TO CLIPBOARD LOGIC ---
   if (btnCopy && outputArea) {
     btnCopy.addEventListener("click", () => {
       let textToCopy = outputArea.innerText;
@@ -58,8 +57,7 @@ export function initForensics() {
     };
 
     try {
-      /* // --- 🔴 LOCALHOST MODE ---
-      // (Remember to scramble the key before committing!)
+      /*
       const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
       const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
       const response = await fetch(ENDPOINT, {
@@ -69,7 +67,6 @@ export function initForensics() {
       });
       */
 
-      // --- 🟢 PRODUCTION MODE (Vercel) ---
       const response = await fetch(`/api/gemini`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -98,7 +95,7 @@ export function initForensics() {
     }
   }
 
-  // --- PROTOCOL 1: FORENSIC SCAN ---
+  // PROTOCOL 1: FORENSIC SCAN
   btnScan.addEventListener("click", async () => {
     const text = inputArea.value.trim();
     if (!text || isProcessing) return;
@@ -163,7 +160,7 @@ export function initForensics() {
     setProcessingState(false);
   });
 
-  // --- PROTOCOL 2: REWRITE ---
+  // PROTOCOL 2: REWRITE
   btnRewrite.addEventListener("click", async () => {
     const text = inputArea.value.trim();
     if (!text || isProcessing) return;
@@ -176,7 +173,7 @@ export function initForensics() {
     setProcessingState(false);
   });
 
-  // --- PROTOCOL 3: HUMANIZE ---
+  // PROTOCOL 3: HUMANIZE
   btnHumanize.addEventListener("click", async () => {
     const text = inputArea.value.trim();
     if (!text || isProcessing) return;

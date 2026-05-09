@@ -29,6 +29,7 @@
     opacity: 0;
     transform: scale(0.95) translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -146,17 +147,4 @@
   overflow-y: auto;
   background-color: var(--slate-alpha-50);
   position: relative;
-}
-
-.window-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.window-content::-webkit-scrollbar-track {
-  background: var(--black-alpha-20);
-}
-
-.window-content::-webkit-scrollbar-thumb {
-  background: var(--cyberpunk-primary);
-  border-radius: 4px;
 }

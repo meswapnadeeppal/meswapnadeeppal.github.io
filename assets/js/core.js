@@ -29,7 +29,6 @@ export function initDraggableIcons() {
       initialLeft = parseInt(style.left, 10);
       initialTop = parseInt(style.top, 10);
 
-      // Elevate z-index on interaction
       icon.style.zIndex = ++topZIndex;
       document.body.style.userSelect = "none";
 
@@ -37,7 +36,7 @@ export function initDraggableIcons() {
         if (!isDragging) return;
         const dx = moveEvent.clientX - startX;
         const dy = moveEvent.clientY - startY;
-        // Threshold check: Prevent micro-movements from canceling a click
+
         if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasMoved = true;
         if (hasMoved) {
           icon.style.left = `${initialLeft + dx}px`;
@@ -56,7 +55,6 @@ export function initDraggableIcons() {
       document.addEventListener("mouseup", onMouseUp);
     });
 
-    // Cancel click event if the element was actually dragged
     icon.addEventListener(
       "click",
       (e) => {
@@ -72,20 +70,29 @@ export function initDraggableIcons() {
 
 /** * @function initWindowManager
  * @description Manages all native OS Windows. Hooks up close/open triggers,
- * active-state z-index elevation, and edge-resizing mechanics.
+ * active-state z-index elevation, edge-resizing mechanics, and hash routing.
  */
 export function initWindowManager() {
   const windows = document.querySelectorAll(".os-window");
 
-  // Global window toggler attached to the window object for HTML access
+  // CORE: TOGGLE WINDOW LOGIC
   window.toggleWindow = (id) => {
     const win = document.getElementById(id);
     if (!win) return;
+
     if (win.classList.contains("hidden")) {
       win.classList.remove("hidden");
       win.style.zIndex = ++topZIndex;
 
-      // Special case: Trigger achievement on first terminal open
+      const customHashes = {
+        "window-about": "whoami",
+        "window-system": "resume",
+        "window-terminal": "console",
+      };
+
+      const hashName = customHashes[id] || id.replace("window-", "");
+      window.history.pushState(null, null, `#${hashName}`);
+
       if (id === "window-terminal") {
         window.triggerAchievement(
           "root_access",
@@ -95,7 +102,6 @@ export function initWindowManager() {
         );
       }
 
-      // Auto-center newly opened windows
       if (window.innerWidth > 850) {
         const leftPos = (window.innerWidth - win.offsetWidth) / 2;
         const topPos = (window.innerHeight - win.offsetHeight) / 2;
@@ -104,15 +110,15 @@ export function initWindowManager() {
       }
     } else {
       win.classList.add("hidden");
+      window.history.pushState(null, null, window.location.pathname);
     }
   };
 
-  // Bind drag and resize events to every window
+  // CORE: WINDOW DRAG AND RESIZE
   windows.forEach((win) => {
     const header = win.querySelector(".window-header");
     const dirs = ["n", "s", "e", "w", "ne", "nw", "se", "sw"];
 
-    // Inject resize handles
     dirs.forEach((dir) => {
       const resizer = document.createElement("div");
       resizer.className = `resizer ${dir}`;
@@ -120,7 +126,6 @@ export function initWindowManager() {
       resizer.addEventListener("mousedown", initResize, false);
     });
 
-    // Elevate window on any click
     win.addEventListener("mousedown", () => {
       win.style.zIndex = ++topZIndex;
     });
@@ -159,7 +164,6 @@ export function initWindowManager() {
       document.removeEventListener("mouseup", onMouseUp);
     };
 
-    // Header drag init
     header.addEventListener("mousedown", (e) => {
       if (e.target.classList.contains("win-btn")) return;
       isDragging = true;
@@ -172,7 +176,6 @@ export function initWindowManager() {
       document.addEventListener("mouseup", onMouseUp);
     });
 
-    // Resizer init
     function initResize(e) {
       isResizing = true;
       currentResizer = e.target;
@@ -191,6 +194,47 @@ export function initWindowManager() {
     }
   });
 
+  // CORE: HASH ROUTING ENGINES
+  const reverseHashes = {
+    whoami: "window-about",
+    resume: "window-system",
+    console: "window-terminal",
+  };
+
+  // Initial Load Checker
+  const initialHash = window.location.hash.replace("#", "");
+  if (initialHash) {
+    const targetWindowId =
+      reverseHashes[initialHash] || `window-${initialHash}`;
+    const targetWindow = document.getElementById(targetWindowId);
+    if (targetWindow) {
+      targetWindow.classList.remove("hidden");
+      targetWindow.style.zIndex = ++topZIndex;
+    }
+  }
+
+  // Browser Back/Forward Listener
+  window.addEventListener("hashchange", () => {
+    const currentHash = window.location.hash.replace("#", "");
+
+    // Close all OS windows first
+    document.querySelectorAll(".os-window").forEach((win) => {
+      win.classList.add("hidden");
+    });
+
+    // Re-open target window matching the hash
+    if (currentHash) {
+      const targetWindowId =
+        reverseHashes[currentHash] || `window-${currentHash}`;
+      const targetWindow = document.getElementById(targetWindowId);
+      if (targetWindow) {
+        targetWindow.classList.remove("hidden");
+        targetWindow.style.zIndex = ++topZIndex;
+      }
+    }
+  });
+
+  // Initialize companion managers
   initPersonalization();
   initAudioAndMantra();
 }
@@ -209,7 +253,6 @@ export function initContextMenu() {
     const menuWidth = 250;
     const menuHeight = contextMenu.offsetHeight || 200;
 
-    // Bounds checking to prevent menu clipping off-screen
     if (x + menuWidth > window.innerWidth)
       x = window.innerWidth - menuWidth - 5;
     if (y + menuHeight > window.innerHeight)

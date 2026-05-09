@@ -10,12 +10,14 @@ import {
   initContextMenu,
   runBIOSBootSequence,
 } from "./core.js";
+
 import {
   initTerminal,
   initFileSystem,
   initContactForm,
   initSystemCV,
 } from "./apps.js";
+
 import { initNeuralVision } from "./vision.js";
 import { initForensics } from "./forensics.js";
 
@@ -37,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/** Handles the initial Uplink loading sequence */
+// Handles the initial Uplink loading sequence
 function initLoader() {
   const loader = document.getElementById("uplink-loader");
   const progressBar = document.getElementById("uplink-bar");
@@ -90,7 +92,7 @@ function initLoader() {
   }, 120);
 }
 
-/** Initializes the OS clock in the taskbar */
+// Initializes the OS clock in the taskbar
 function initClock() {
   const clockElement = document.getElementById("os-clock");
   if (clockElement) {
@@ -103,7 +105,7 @@ function initClock() {
   }
 }
 
-/** Initializes the Control Center dropdown logic */
+// Initializes the Control Center dropdown logic
 function initTopBar() {
   const ccToggleBtn = document.getElementById("cc-toggle-btn");
   const ccDropdown = document.getElementById("cloudweb-cc");

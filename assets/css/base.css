@@ -8,6 +8,36 @@
   background: var(--cyberpunk-hyperlink);
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black-alpha-30);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyberpunk-primary);
+  border-radius: 4px;
+  border: 1px solid var(--black-alpha-30);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyberpunk-hyperlink);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox Fallback */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyberpunk-primary) var(--black-alpha-30);
+}
+
 a {
   font-family: var(--font-header);
   color: var(--cyberpunk-hyperlink);
@@ -39,8 +69,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-primary);
-  font-size: 15px;
   color: var(--primary-text);
+  font-size: 15px;
   overflow: hidden;
   box-shadow: inset 0 0 100px var(--container-shadow);
   background-color: var(--background-slate);
@@ -61,43 +91,35 @@ body::before {
 }
 
 body.bg-grad-1 {
-  background: linear-gradient(
-    -45deg,
-    var(--cyberpunk-secondary),
-    var(--cyberpunk-primary),
-    var(--container-border),
-    var(--cyberpunk-select)
-  );
+  background: linear-gradient(-45deg,
+      var(--cyberpunk-secondary),
+      var(--cyberpunk-primary),
+      var(--container-border),
+      var(--cyberpunk-select));
 }
 
 body.bg-grad-2 {
-  background: linear-gradient(
-    -45deg,
-    var(--cyberpunk-glow),
-    var(--cyberpunk-hyperlink),
-    var(--window-maximize),
-    var(--cyberpunk-success)
-  );
+  background: linear-gradient(-45deg,
+      var(--cyberpunk-glow),
+      var(--cyberpunk-hyperlink),
+      var(--window-maximize),
+      var(--cyberpunk-success));
 }
 
 body.bg-grad-3 {
-  background: linear-gradient(
-    -45deg,
-    var(--halloween-blood-red),
-    var(--halloween-purple),
-    var(--halloween-slime),
-    var(--halloween-burnt-ember)
-  );
+  background: linear-gradient(-45deg,
+      var(--halloween-blood-red),
+      var(--halloween-purple),
+      var(--halloween-slime),
+      var(--halloween-burnt-ember));
 }
 
 body.bg-grad-4 {
-  background: linear-gradient(
-    -45deg,
-    var(--dracula-ichor),
-    var(--dracula-swamp),
-    var(--dracula-flare),
-    var(--dracula-soul)
-  );
+  background: linear-gradient(-45deg,
+      var(--dracula-ichor),
+      var(--dracula-swamp),
+      var(--dracula-flare),
+      var(--dracula-soul));
 }
 
 body[class*="bg-grad-"] {
@@ -109,35 +131,33 @@ body[class*="bg-grad-"] {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
 }
 
 body.bg-img-1 {
-  background: url("/assets/images/desktop-background/bg-new-worlds.webp") center
-    center / cover no-repeat fixed;
+  background: url("/assets/images/desktop-background/bg-new-worlds.webp") center center / cover no-repeat fixed;
   animation: none;
 }
 
 body.bg-img-2 {
-  background: url("/assets/images/desktop-background/bg-night-town.webp") center
-    center / cover no-repeat fixed;
+  background: url("/assets/images/desktop-background/bg-night-town.webp") center center / cover no-repeat fixed;
   animation: none;
 }
 
 body.bg-img-3 {
-  background: url("/assets/images/desktop-background/bg-forest-sunset.webp")
-    center center / cover no-repeat fixed;
+  background: url("/assets/images/desktop-background/bg-forest-sunset.webp") center center / cover no-repeat fixed;
   animation: none;
 }
 
 body.bg-img-4 {
-  background: url("/assets/images/desktop-background/bg-retro-truck.webp")
-    center center / cover no-repeat fixed;
+  background: url("/assets/images/desktop-background/bg-retro-truck.webp") center center / cover no-repeat fixed;
   animation: none;
 }
 

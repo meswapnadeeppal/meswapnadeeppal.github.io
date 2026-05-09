@@ -201,6 +201,16 @@ export function initWindowManager() {
     console: "window-terminal",
   };
 
+  // Helper function to auto-center windows opened via URL
+  const centerWindow = (win) => {
+    if (window.innerWidth > 850) {
+      const leftPos = (window.innerWidth - win.offsetWidth) / 2;
+      const topPos = (window.innerHeight - win.offsetHeight) / 2;
+      win.style.left = `${Math.max(10, leftPos)}px`;
+      win.style.top = `${Math.max(80, topPos)}px`;
+    }
+  };
+
   // Initial Load Checker
   const initialHash = window.location.hash.replace("#", "");
   if (initialHash) {
@@ -210,6 +220,7 @@ export function initWindowManager() {
     if (targetWindow) {
       targetWindow.classList.remove("hidden");
       targetWindow.style.zIndex = ++topZIndex;
+      centerWindow(targetWindow);
     }
   }
 
@@ -230,6 +241,7 @@ export function initWindowManager() {
       if (targetWindow) {
         targetWindow.classList.remove("hidden");
         targetWindow.style.zIndex = ++topZIndex;
+        centerWindow(targetWindow);
       }
     }
   });

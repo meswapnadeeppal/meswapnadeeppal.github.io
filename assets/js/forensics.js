@@ -62,19 +62,18 @@ export function initForensics() {
 
     try {
       // const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
-      const LOCAL_API_KEY = "AIzaSyBXafO2iwGh-ljA1zjxdkrbLkV9pEWoxIY";
-      const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
-      const response = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestBody),
-      });
-
-      // const response = await fetch(`/api/gemini`, {
+      // const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
+      // const response = await fetch(ENDPOINT, {
       //   method: "POST",
       //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify(requestBody),
       // });
+
+      const response = await fetch(`/api/gemini`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      });
 
       const data = await response.json();
 

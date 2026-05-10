@@ -59,7 +59,6 @@ export function initNeuralVision() {
     reader.onload = async (e) => {
       buildScannerUI(e.target.result);
 
-      const base64Data = e.target.result.split(",")[1];
       const mimeType = file.type;
 
       printToTerminal(

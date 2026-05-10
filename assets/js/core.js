@@ -540,19 +540,22 @@ export async function runBIOSBootSequence(onComplete) {
   const userAgent = navigator.userAgent;
 
   const lines = [
-    "SynthwaveBIOS 4.0 Release 6.0",
-    "Copyright 1999 - 2026 Synthwave Technologies Ltd.",
+    "SynthwaveBIOS v4.0 Release 6.0",
+    "Copyright (C) 1999 - 2026 Swapnadeep Pal.",
     "All Rights Reserved",
     "",
-    "CPU: Genuine Intel(R) Processor - Detecting... OK",
+    "CPU: Genuine MERN-Core Processor - Detecting... OK",
     `Memory Testing: ${memory} Extended RAM... OK`,
     "",
     `Client Agent: ${userAgent}`,
     "",
-    "Detecting Primary Master...   swapnadeep.cloud [ONLINE]",
-    "Detecting Primary Slave...    None",
-    "",
+    "Detecting Primary Host...     swapnadeep.cloud [ONLINE]",
     "Mounting file system...       SUCCESS",
+    "Loading MERN_Stack.sys...     SUCCESS",
+    "Verifying Forensic Tools...   Text_Forge.AppImage [OK]",
+    "                              Neural_Vision.sys [OK]",
+    "",
+    "Decrypting Portfolio Data...  SUCCESS",
     "Loading UX_Engine.sys...      SUCCESS",
     "Initializing GUI...",
   ];

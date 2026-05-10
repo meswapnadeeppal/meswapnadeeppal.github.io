@@ -82,7 +82,7 @@ export const fileSystem = {
         </h2>
         
         <p style="font-size: 14px; line-height: 1.7; margin-bottom: 20px; color: var(--secondary-text);">
-          <strong>Text Forge</strong> is a forensic linguistics and text transformation suite. It analyzes text payloads for AI generation footprints and plagiarism. It also includes protocols to rewrite, humanize, and restructure text to bypass automated detection systems.
+          <strong>Text Forge</strong> is a forensic linguistics and text transformation suite. It analyzes text payloads for AI generation footprints and calculates plagiarism risk. It also features an advanced rewrite protocol designed to restructure syntax and inject human cadence, bypassing automated detection systems.
         </p>
 
         <div style="display: grid; grid-template-columns: 1fr; gap: 20px; font-family: var(--font-primary); color: var(--secondary-text); background: var(--background-slate); padding: 20px; margin-bottom: 30px; border-radius: 8px; border: 2px solid var(--container-border);">
@@ -93,13 +93,8 @@ export const fileSystem = {
           </div>
 
           <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div style="font-family: var(--font-header); font-size: 14px;"><strong style="color: var(--window-maximize);">[2] Structural Rewrite</strong> <span style="opacity: 0.5; font-size: 11px; margin-left: 6px;">// Technical Refactoring</span></div>
-            <div style="font-size: 12px; opacity: 0.8; line-height: 1.5;">Acts as a senior technical editor to refine clarity and syntax. It reconstructs the text to remove repetitive AI fingerprints while strictly preserving the factual payload.</div>
-          </div>
-
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div style="font-family: var(--font-header); font-size: 14px;"><strong style="color: var(--synthwave-brass);">[3] Humanize Payload</strong> <span style="opacity: 0.5; font-size: 11px; margin-left: 6px;">// Organic Cadence Injection</span></div>
-            <div style="font-size: 12px; opacity: 0.8; line-height: 1.5;">Injects natural conversational cadence into the text. It actively strips out common AI buzzwords and introduces authentic, human-like variations in sentence structure.</div>
+            <div style="font-family: var(--font-header); font-size: 14px;"><strong style="color: var(--window-maximize);">[2] Rewrite & Humanize</strong> <span style="opacity: 0.5; font-size: 11px; margin-left: 6px;">// Technical Refactoring</span></div>
+            <div style="font-size: 12px; opacity: 0.8; line-height: 1.5;">Acts as a senior technical editor to refine clarity and syntax. It reconstructs the text to remove repetitive AI fingerprints, alters burstiness, and injects organic human cadence while preserving the exact factual payload.</div>
           </div>
 
         </div>

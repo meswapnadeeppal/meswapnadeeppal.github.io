@@ -1728,18 +1728,6 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   color: var(--secondary-text);
 }
 
-.pda-btn-tertiary {
-  background-color: var(--background-slate);
-  border: 2px solid var(--synthwave-brass);
-  color: var(--primary-text);
-}
-
-.pda-btn-tertiary:hover {
-  background-color: rgba(255, 140, 0, 0.29);
-  border-color: var(--cyberpunk-hyperlink);
-  color: var(--secondary-text);
-}
-
 .forge-copy-btn {
   display: flex;
   align-items: center;

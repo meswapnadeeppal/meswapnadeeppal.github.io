@@ -10,7 +10,6 @@ export function initForensics() {
 
   const btnScan = document.getElementById("btn-forge-scan");
   const btnRewrite = document.getElementById("btn-forge-rewrite");
-  const btnHumanize = document.getElementById("btn-forge-humanize");
   const btnCopy = document.getElementById("btn-forge-copy");
 
   if (!inputArea || !btnScan) return;
@@ -36,9 +35,10 @@ export function initForensics() {
         .writeText(textToCopy)
         .then(() => {
           const originalHTML = btnCopy.innerHTML;
-          btnCopy.innerHTML = '<i class="fa-solid fa-check"></i> COPIED!';
-          btnCopy.style.color = "var(--cyberpunk-success)";
-          btnCopy.style.borderColor = "var(--cyberpunk-success)";
+          btnCopy.innerHTML =
+            '<span style="color: var(--secondary-text)"><i class="fa-solid fa-check"></i> COPIED!</span>';
+          btnCopy.style.color = "var(--cyberpunk-primary)";
+          btnCopy.style.borderColor = "var(--cyberpunk-neon)";
 
           setTimeout(() => {
             btnCopy.innerHTML = originalHTML;
@@ -61,21 +61,20 @@ export function initForensics() {
     };
 
     try {
-      /*
-      const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
+      // const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
+      const LOCAL_API_KEY = "AIzaSyBXafO2iwGh-ljA1zjxdkrbLkV9pEWoxIY";
       const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
       const response = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
       });
-      */
 
-      const response = await fetch(`/api/gemini`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestBody),
-      });
+      // const response = await fetch(`/api/gemini`, {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(requestBody),
+      // });
 
       const data = await response.json();
 
@@ -102,11 +101,10 @@ export function initForensics() {
     isProcessing = active;
     btnScan.style.opacity = active ? "0.5" : "1";
     btnRewrite.style.opacity = active ? "0.5" : "1";
-    btnHumanize.style.opacity = active ? "0.5" : "1";
 
     if (active) {
       outputArea.innerHTML =
-        "<span style='color: var(--cyberpunk-hyperlink); font-weight:600;'>Processing payload...</span>";
+        "<span style='color: var(--dracula-soul); font-weight: 600;'>Processing payload...</span>";
     }
   }
 
@@ -136,8 +134,8 @@ export function initForensics() {
     const result = await callAI(prompt);
 
     if (result.startsWith("[SYS_ERR]")) {
-      analysisPanel.innerHTML = `<p style="color: var(--window-close); font-weight: 600; animation: pulse-text-red 2.5s infinite;">Analysis Halted.</p>`;
-      outputArea.innerHTML = `<span style='color: var(--window-close);'>// ${result}</span>`;
+      analysisPanel.innerHTML = `<p style="color: var(--halloween-burnt-ember); font-weight: 800; text-transform: uppercase;">Analysis Halted.</p>`;
+      outputArea.innerHTML = `<span style='color: var(--halloween-burnt-ember); font-weight: 600;'>// ${result}</span>`;
       setProcessingState(false);
       return;
     }
@@ -179,7 +177,7 @@ export function initForensics() {
         </div>
         
         <div style="margin-top: 20px; border-top: 2px solid var(--cyberpunk-neon); padding-top: 15px;">
-          <strong style="font-family: var(--font-header); font-size: 12px; color: var(--dracula-soul); text-transform: uppercase;">Forensic Notes:</strong>
+          <strong style="font-family: var(--font-header); font-size: 12px; color: var(--dracula-soul); text-transform: uppercase;">Forensic Notes:</strong><br>
           <span style="font-family: var(--font-header); line-height: 1.7; opacity: 0.8; margin-top: 12px; display: inline-block;">${analysis.notes}</span>
         </div>
       `;
@@ -187,10 +185,10 @@ export function initForensics() {
         "<span style='color: var(--cyberpunk-hyperlink); font-weight: 600;'>// Forensic scan complete. View analysis panel.</span>";
     } catch (e) {
       console.error("Parse Error Payload:", result);
-      analysisPanel.innerHTML = `<p style="color: var(--window-close);">Analysis failed. AI logic error.</p>`;
+      analysisPanel.innerHTML = `<p style="color: var(--halloween-burnt-ember); font-weight: 600;">Analysis failed. AI logic error.</p>`;
 
       outputArea.innerHTML =
-        "<span style='color: var(--window-close);'>// ERR: JSON parse failure. Raw Neural Net Output:</span><br><br>" +
+        "<span style='color: var(--halloween-burnt-ember); font-weight: 600;'>// ERR: JSON parse failure. Raw Neural Net Output:</span><br><br>" +
         "<span style='color: var(--secondary-text); opacity: 0.8;'>" +
         result.replace(/\n/g, "<br>") +
         "</span>";
@@ -199,7 +197,7 @@ export function initForensics() {
   });
 
   // ==========================================
-  // PROTOCOL 2: STRUCTURAL REWRITE
+  // PROTOCOL 2: STRUCTURAL REWRITE & HUMANIZE
   // ==========================================
   btnRewrite.addEventListener("click", async () => {
     const text = inputArea.value.trim();
@@ -207,33 +205,18 @@ export function initForensics() {
 
     setProcessingState(true);
 
-    const prompt = `Act as an expert human editor. Rewrite the following text to completely bypass AI detectors. You must optimize for two metrics: High Perplexity (use uncommon, highly specific vocabulary instead of predictable words) and High Burstiness (drastically vary sentence lengths—mix very short, punchy sentences with longer, complex ones). Strip out all AI-typical formatting and buzzwords. Preserve the exact facts. Output ONLY the rewritten text without introductions.\n\nTEXT:\n"""\n${text}\n"""`;
+    const prompt = `Rewrite the following text by acting as an aggressive synonym spinner. You must obey these strict rules:
+    1. Lock the Structure: Keep the exact original sentence structure, punctuation, and length. Do not combine or split sentences.
+    2. Quirky Lexical Swaps: Swap everyday nouns, verbs, and adjectives for slightly uncommon or literal synonyms (e.g., change 'flow' to 'inflow', 'pulse' to 'palpitation', 'thoughts' to 'studies', 'things' to 'effects').
+    3. Force Contractions: Always combine words into contractions where possible (change 'do not' to 'don't', 'should not' to 'shouldn't', 'you are' to 'you're').
+    4. Maintain the core factual meaning but completely scramble the exact vocabulary used. 
+    
+    Output ONLY the rewritten text without any greetings, quotes, or markdown.\n\nTEXT:\n"""\n${text}\n"""`;
 
     const result = await callAI(prompt);
 
     if (result.startsWith("[SYS_ERR]")) {
-      outputArea.innerHTML = `<span style='color: var(--window-close);'>// ${result}</span>`;
-    } else {
-      outputArea.innerHTML = result.replace(/\n/g, "<br>");
-    }
-    setProcessingState(false);
-  });
-
-  // ==========================================
-  // PROTOCOL 3: HUMANIZE
-  // ==========================================
-  btnHumanize.addEventListener("click", async () => {
-    const text = inputArea.value.trim();
-    if (!text || isProcessing) return;
-
-    setProcessingState(true);
-
-    const prompt = `Rewrite this text to achieve a 100% human-written score on AI detectors. Write exactly like a highly educated human expert speaking directly to a peer. Use active voice exclusively. Radically vary your sentence structure. Completely ban words like 'delve', 'testament', 'tapestry', 'crucial', 'foster', 'moreover', 'multifaceted', and 'additionally'. Use grounded, conversational synonyms. Output ONLY the rewritten text without introductions.\n\nTEXT:\n"""\n${text}\n"""`;
-
-    const result = await callAI(prompt);
-
-    if (result.startsWith("[SYS_ERR]")) {
-      outputArea.innerHTML = `<span style='color: var(--window-close);'>// ${result}</span>`;
+      outputArea.innerHTML = `<span style='color: var(--halloween-burnt-ember); font-weight: 600;'>// ${result}</span>`;
     } else {
       outputArea.innerHTML = result.replace(/\n/g, "<br>");
     }

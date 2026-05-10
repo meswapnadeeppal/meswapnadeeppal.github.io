@@ -59,8 +59,6 @@ export function initNeuralVision() {
     reader.onload = async (e) => {
       buildScannerUI(e.target.result);
 
-      const mimeType = file.type;
-
       printToTerminal(
         `<br><span style="color: var(--dracula-soul);"><span class="fa-solid fa-terminal"></span> Uploading payload :</span> <span style="color: var(--window-maximize);">[[ ${file.name} ]]</span> ...`,
       );

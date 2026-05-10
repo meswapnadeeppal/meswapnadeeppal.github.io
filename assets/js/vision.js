@@ -364,8 +364,16 @@ export function initNeuralVision() {
     const cursor = DOM.terminal.querySelector(".term-cursor");
     if (cursor) cursor.remove();
 
-    const formattedText = append ? `<br>${text}` : text;
-    DOM.terminal.innerHTML += `${formattedText}<span class="term-cursor"> _</span>`;
+    if (append) {
+      DOM.terminal.appendChild(document.createElement("br"));
+    }
+    DOM.terminal.appendChild(document.createTextNode(text));
+
+    const cursorSpan = document.createElement("span");
+    cursorSpan.className = "term-cursor";
+    cursorSpan.textContent = " _";
+    DOM.terminal.appendChild(cursorSpan);
+
     DOM.terminal.scrollTop = DOM.terminal.scrollHeight;
   }
 
@@ -380,7 +388,7 @@ export function initNeuralVision() {
     let i = 0;
     function type() {
       if (i < text.length) {
-        targetSpan.innerHTML += text.charAt(i);
+        targetSpan.textContent += text.charAt(i);
         i++;
         DOM.terminal.scrollTop = DOM.terminal.scrollHeight;
         setTimeout(type, speed);

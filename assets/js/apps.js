@@ -55,7 +55,11 @@ function processCommand(cmd, interactiveOutput) {
   const echoLine = document.createElement("div");
   echoLine.style.display = "flex";
   echoLine.style.alignItems = "flex-end";
-  echoLine.innerHTML = `<div class="console-prompt" style="width: 100%;"><div class="console-prompt-line1"><span class="console-blue">┌──(</span><span class="console-green">swapnadeep㉿cloud</span><span class="console-blue">)-[</span><span class="console-white">~</span><span class="console-blue">]</span></div><div class="console-prompt-line2"><span class="console-blue">└─$</span><span class="console-cmd-display" style="margin-left: 8px;">${cmd}</span></div></div>`;
+  echoLine.innerHTML = `<div class="console-prompt" style="width: 100%;"><div class="console-prompt-line1"><span class="console-blue">┌──(</span><span class="console-green">swapnadeep㉿cloud</span><span class="console-blue">)-[</span><span class="console-white">~</span><span class="console-blue">]</span></div><div class="console-prompt-line2"><span class="console-blue">└─$</span><span class="console-cmd-display" style="margin-left: 8px;"></span></div></div>`;
+  const cmdDisplaySpan = echoLine.querySelector(".console-cmd-display");
+  if (cmdDisplaySpan) {
+    cmdDisplaySpan.textContent = cmd;
+  }
   interactiveOutput.appendChild(echoLine);
 
   const responseLine = document.createElement("p");

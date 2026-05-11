@@ -181,15 +181,13 @@ export function initNeuralVision() {
     };
 
     try {
-      /*
-      const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
-      const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
-      const response = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestBody),
-      });
-      */
+      // const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
+      // const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
+      // const response = await fetch(ENDPOINT, {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(requestBody),
+      // });
 
       const response = await fetch(`/api/gemini`, {
         method: "POST",
@@ -362,9 +360,10 @@ export function initNeuralVision() {
     if (cursor) cursor.remove();
 
     if (append) {
-      DOM.terminal.appendChild(document.createElement("br"));
+      DOM.terminal.insertAdjacentHTML("beforeend", "<br>");
     }
-    DOM.terminal.appendChild(document.createTextNode(text));
+
+    DOM.terminal.insertAdjacentHTML("beforeend", text);
 
     const cursorSpan = document.createElement("span");
     cursorSpan.className = "term-cursor";

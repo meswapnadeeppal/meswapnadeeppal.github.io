@@ -14,6 +14,10 @@ export function initNeuralVision() {
 
   let isScannerLocked = false;
 
+  let isTypingPaused = false;
+  let isTypingStopped = false;
+  let currentAbortController = null;
+
   DOM.dropZone.addEventListener("click", () => {
     if (!isScannerLocked) DOM.fileInput.click();
   });
@@ -169,6 +173,8 @@ export function initNeuralVision() {
   // API ROUTING (LOCAL VS PRODUCTION)
   // ==========================================
   async function callNeuralNet(promptText, base64Data, mimeType) {
+    currentAbortController = new AbortController();
+
     const requestBody = {
       contents: [
         {
@@ -187,16 +193,21 @@ export function initNeuralVision() {
       //   method: "POST",
       //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify(requestBody),
+      //   signal: currentAbortController.signal
       // });
 
       const response = await fetch(`/api/gemini`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
+        signal: currentAbortController.signal,
       });
 
       return await response.json();
     } catch (error) {
+      if (error.name === "AbortError") {
+        return { error: { message: "Process aborted by user." } };
+      }
       console.error("API Request Failed:", error);
       return null;
     }
@@ -289,6 +300,39 @@ export function initNeuralVision() {
           });
           btn.style.gridColumn = "1 / -1";
 
+          const controlsDiv = document.getElementById("vision-controls");
+          const actionRow = document.createElement("div");
+          actionRow.id = "vision-action-row";
+          actionRow.style.cssText =
+            "grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 5px; animation: windowPopIn 0.3s ease forwards;";
+
+          actionRow.innerHTML = `
+            <button id="btn-vision-pause" style="flex: 1; padding: 10px; font-family: var(--font-header); font-weight: bold; font-size: 12px; background: rgba(255, 215, 0, 0.05); border: 2px solid var(--cyberpunk-hyperlink); color: var(--cyberpunk-hyperlink); border-radius: 3px; cursor: pointer; transition: 0.2s;">[ PAUSE ]</button>
+            <button id="btn-vision-stop" style="flex: 1; padding: 10px; font-family: var(--font-header); font-weight: bold; font-size: 12px; background: rgba(255, 0, 60, 0.05); border: 2px solid var(--window-close); color: var(--window-close); border-radius: 3px; cursor: pointer; transition: 0.2s;">[ STOP ]</button>
+          `;
+          controlsDiv.appendChild(actionRow);
+
+          const pauseBtn = document.getElementById("btn-vision-pause");
+          const stopBtn = document.getElementById("btn-vision-stop");
+
+          pauseBtn.addEventListener("click", () => {
+            isTypingPaused = !isTypingPaused;
+            pauseBtn.innerText = isTypingPaused ? "[ RESUME ]" : "[ PAUSE ]";
+            pauseBtn.style.background = isTypingPaused
+              ? "rgba(255, 215, 0, 0.2)"
+              : "rgba(255, 215, 0, 0.05)";
+          });
+
+          stopBtn.addEventListener("click", () => {
+            isTypingStopped = true;
+            if (currentAbortController) currentAbortController.abort();
+            stopBtn.innerText = "[ ABORTED ]";
+            pauseBtn.style.pointerEvents = "none";
+            pauseBtn.style.opacity = "0.5";
+          });
+
+          isTypingPaused = false;
+          isTypingStopped = false;
           executeAIProtocol(file, fileDataUrl, btnInfo.protocol);
         });
       }
@@ -404,11 +448,28 @@ export function initNeuralVision() {
     if (cursor) cursor.remove();
 
     const spanId = `typing-result-${Date.now()}`;
-    DOM.terminal.innerHTML += `<br><br><span style="color: ${textColor};" id="${spanId}"></span><span class="term-cursor"> _</span>`;
+    DOM.terminal.insertAdjacentHTML(
+      "beforeend",
+      `<br><br><span style="color: ${textColor};" id="${spanId}"></span><span class="term-cursor"> _</span>`,
+    );
     const targetSpan = document.getElementById(spanId);
 
     let i = 0;
     function type() {
+      if (isTypingStopped) {
+        printToTerminal(
+          "<br><br><span style='color: var(--window-close);' class='fa-solid fa-ban'></span> <span style='color: var(--window-close);'>PROCESS TERMINATED.</span>",
+          true,
+        );
+        showResetPrompt();
+        return;
+      }
+
+      if (isTypingPaused) {
+        setTimeout(type, 100);
+        return;
+      }
+
       if (i < text.length) {
         targetSpan.innerHTML +=
           text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
@@ -416,17 +477,21 @@ export function initNeuralVision() {
         DOM.terminal.scrollTop = DOM.terminal.scrollHeight;
         setTimeout(type, speed);
       } else {
-        setTimeout(() => {
-          printToTerminal(
-            "<br><span class='fa-solid fa-terminal'></span> Awaiting next visual data ... <span id='vision-reset-btn' style='color: var(--window-close); cursor: pointer; letter-spacing: 1px;'>[RESET SCANNER]</span>",
-            true,
-          );
-          document
-            .getElementById("vision-reset-btn")
-            .addEventListener("click", resetScannerUI);
-        }, 1000);
+        showResetPrompt();
       }
     }
     type();
+  }
+
+  function showResetPrompt() {
+    setTimeout(() => {
+      printToTerminal(
+        "<br><span class='fa-solid fa-terminal'></span> Awaiting next visual data ... <span id='vision-reset-btn' style='color: var(--window-close); cursor: pointer; letter-spacing: 1px;'>[RESET SCANNER]</span>",
+        true,
+      );
+      document
+        .getElementById("vision-reset-btn")
+        .addEventListener("click", resetScannerUI);
+    }, 1000);
   }
 }

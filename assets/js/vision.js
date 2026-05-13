@@ -18,6 +18,12 @@ export function initNeuralVision() {
   let isTypingStopped = false;
   let currentAbortController = null;
 
+  function escapeHTML(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
   DOM.dropZone.addEventListener("click", () => {
     if (!isScannerLocked) DOM.fileInput.click();
   });
@@ -64,7 +70,7 @@ export function initNeuralVision() {
       buildScannerUI(e.target.result);
 
       printToTerminal(
-        `<br><span style="color: var(--dracula-soul);"><span class="fa-solid fa-terminal"></span> Uploading payload :</span> <span style="color: var(--window-maximize);">[[ ${file.name} ]]</span> ...`,
+        `<br><span style="color: var(--dracula-soul);"><span class="fa-solid fa-terminal"></span> Uploading payload :</span> <span style="color: var(--window-maximize);">[[ ${escapeHTML(file.name)} ]]</span> ...`,
       );
 
       setTimeout(() => {
@@ -187,15 +193,6 @@ export function initNeuralVision() {
     };
 
     try {
-      // const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
-      // const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
-      // const response = await fetch(ENDPOINT, {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(requestBody),
-      //   signal: currentAbortController.signal
-      // });
-
       const response = await fetch(`/api/gemini`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -373,11 +370,7 @@ export function initNeuralVision() {
     const span = document.createElement("span");
     span.style.cssText = `color: ${color}; font-weight: bold;`;
 
-    if (appendToLastLine) {
-      DOM.terminal.appendChild(span);
-    } else {
-      DOM.terminal.innerHTML += span.outerHTML;
-    }
+    DOM.terminal.appendChild(span);
 
     const activeSpan = DOM.terminal.lastElementChild;
     const frames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
@@ -422,13 +415,16 @@ export function initNeuralVision() {
     if (cursor) cursor.remove();
 
     const spanId = `typing-${Date.now()}`;
-    DOM.terminal.innerHTML += `<br><span style="color: ${textColor};" id="${spanId}"></span><span class="term-cursor"> _</span>`;
+    DOM.terminal.insertAdjacentHTML(
+      "beforeend",
+      `<br><span style="color: ${textColor};" id="${spanId}"></span><span class="term-cursor"> _</span>`,
+    );
     const targetSpan = document.getElementById(spanId);
 
     let i = 0;
     function type() {
       if (i < text.length) {
-        targetSpan.textContent += text.charAt(i);
+        targetSpan.appendChild(document.createTextNode(text.charAt(i)));
         i++;
         DOM.terminal.scrollTop = DOM.terminal.scrollHeight;
         setTimeout(type, speed);
@@ -471,8 +467,13 @@ export function initNeuralVision() {
       }
 
       if (i < text.length) {
-        targetSpan.innerHTML +=
-          text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+        const char = text.charAt(i);
+        if (char === "\n") {
+          targetSpan.appendChild(document.createElement("br"));
+        } else {
+          targetSpan.appendChild(document.createTextNode(char));
+        }
+
         i++;
         DOM.terminal.scrollTop = DOM.terminal.scrollHeight;
         setTimeout(type, speed);

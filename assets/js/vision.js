@@ -312,6 +312,26 @@ export function initNeuralVision() {
           const pauseBtn = document.getElementById("btn-vision-pause");
           const stopBtn = document.getElementById("btn-vision-stop");
 
+          pauseBtn.addEventListener("mouseover", () => {
+            pauseBtn.style.background = "rgba(255, 215, 0, 0.2)";
+          });
+
+          pauseBtn.addEventListener("mouseout", () => {
+            pauseBtn.style.background = isTypingPaused
+              ? "rgba(255, 215, 0, 0.2)"
+              : "rgba(255, 215, 0, 0.05)";
+          });
+
+          stopBtn.addEventListener("mouseover", () => {
+            if (!isTypingStopped)
+              stopBtn.style.background = "rgba(255, 0, 60, 0.2)";
+          });
+
+          stopBtn.addEventListener("mouseout", () => {
+            if (!isTypingStopped)
+              stopBtn.style.background = "rgba(255, 0, 60, 0.05)";
+          });
+
           pauseBtn.addEventListener("click", () => {
             isTypingPaused = !isTypingPaused;
             pauseBtn.innerText = isTypingPaused ? "[ RESUME ]" : "[ PAUSE ]";

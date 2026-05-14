@@ -193,6 +193,14 @@ export function initNeuralVision() {
     };
 
     try {
+      // const LOCAL_API_KEY = "PASTE_YOUR_KEY_HERE";
+      // const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${LOCAL_API_KEY}`;
+      // const response = await fetch(ENDPOINT, {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(requestBody),
+      // });
+
       const response = await fetch(`/api/gemini`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -215,8 +223,7 @@ export function initNeuralVision() {
       if (child.id !== "vision-file-input") child.style.display = "none";
     });
 
-    DOM.dropZone.style.cssText =
-      "cursor: default; display: flex; flex-direction: column; justify-content: center; align-items: center;";
+    DOM.dropZone.style.cssText = "justify-content: unset; padding: 20px 0px;";
 
     const imgPreview = document.createElement("img");
     imgPreview.id = "vision-image-preview";
@@ -505,9 +512,49 @@ export function initNeuralVision() {
   }
 
   function showResetPrompt() {
+    const pauseBtn = document.getElementById("btn-vision-pause");
+    const stopBtn = document.getElementById("btn-vision-stop");
+
+    if (pauseBtn) {
+      pauseBtn.style.pointerEvents = "none";
+      pauseBtn.style.opacity = "0.3";
+      pauseBtn.style.borderColor = "var(--container-border)";
+      pauseBtn.style.color = "var(--vision-muted-text)";
+    }
+    if (stopBtn) {
+      stopBtn.style.pointerEvents = "none";
+      stopBtn.style.opacity = "0.3";
+      stopBtn.style.borderColor = "var(--container-border)";
+      stopBtn.style.color = "var(--vision-muted-text)";
+    }
+
+    const controlsContainer = document.getElementById("vision-controls");
+    if (controlsContainer) {
+      const activeBtn = Array.from(controlsContainer.children).find(
+        (child) =>
+          child.tagName === "BUTTON" &&
+          child.id.startsWith("btn-protocol-") &&
+          child.style.display !== "none",
+      );
+
+      if (activeBtn) {
+        if (isTypingStopped) {
+          activeBtn.innerText = "[ TERMINATED ]";
+          activeBtn.style.color = "var(--halloween-burnt-ember)";
+          activeBtn.style.borderColor = "var(--halloween-burnt-ember)";
+          activeBtn.style.background = "rgba(255, 0, 60, 0.05)";
+        } else {
+          activeBtn.innerText = "[ COMPLETE ]";
+          activeBtn.style.color = "var(--cyberpunk-success)";
+          activeBtn.style.borderColor = "var(--cyberpunk-success)";
+          activeBtn.style.background = "rgba(0, 255, 0, 0.05)";
+        }
+      }
+    }
+
     setTimeout(() => {
       printToTerminal(
-        "<br><span class='fa-solid fa-terminal'></span> Awaiting next visual data ... <span id='vision-reset-btn' style='color: var(--window-close); cursor: pointer; letter-spacing: 1px;'>[RESET SCANNER]</span>",
+        "<br><span class='fa-solid fa-terminal'></span> Awaiting next visual data ... <span id='vision-reset-btn' style='color: var(--halloween-burnt-ember); cursor: pointer; letter-spacing: 1px;'>[RESET SCANNER]</span>",
         true,
       );
       document

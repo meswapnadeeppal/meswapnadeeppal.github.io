@@ -1536,12 +1536,13 @@ input[type="checkbox"]:checked ~ .custom-checkbox::after {
   border: 3px solid var(--container-border);
   border-radius: 8px;
   cursor: pointer;
+  overflow-y: auto;
   transition: all 0.3s ease;
 }
 
 .vision-drop-zone:hover,
 .vision-drop-zone.dragover {
-  border-color: var(--dracula-swamp);
+  border-color: var(--cyberpunk-neon);
 }
 
 .vision-upload-icon {

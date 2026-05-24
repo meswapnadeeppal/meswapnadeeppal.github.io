@@ -21,7 +21,7 @@
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   box-shadow: 0 8px 20px var(--container-shadow);
   font-family: var(--font-header);
 }
